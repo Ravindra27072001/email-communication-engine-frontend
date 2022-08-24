@@ -1,4 +1,4 @@
-# email-engine
+# email-communication-engine-frontend
 
 ## Project setup
 ```
