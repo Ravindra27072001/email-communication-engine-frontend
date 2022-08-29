@@ -1,70 +1,76 @@
 <template>
-    <nav class="navbar navbar-expand-lg bg-warning p-3">
-        <a class="navbar-brand" href="#">Email Communication</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <!-- <li class="nav-item active">
+    <div class="body">
+        <nav class="tables">
+
+            <button class="navbar-toggler" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex justify-content-between" id="navbarNavDropdown">
+                <ul class="d-flex">
+                    <!-- <li class="nav-item active">
                     <a class="nav-link" href="/mailAccounts">Mail Account</a>
                 </li> -->
 
-                <router-link to="/mailAccounts" class=" text-decoration-none">
-                    <li class="nav-item active">
-                        <span class="nav-link">Mail Account</span>
-                    </li>
-                </router-link>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Features
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <router-link to="/allLists" class="text-decoration-none">
-                            <span class="dropdown-item">Lists</span>
-                        </router-link>
-                        <router-link to="/addEmail" class="text-decoration-none">
-                            <span class="dropdown-item">Users Emails</span>
-                        </router-link>
-                        <router-link to="/sendEmail" class="text-decoration-none">
-                            <span class="dropdown-item">Write Email</span>
-                        </router-link>
-                    </div>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Accounts
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-
-                        <router-link to="/mailAccounts" class="text-decoration-none">
-                            <span class="dropdown-item">Mail Accounts</span>
-                        </router-link>
-                        <router-link to="/addAccount" class="text-decoration-none">
-                            <span class="dropdown-item">Add Account</span>
-                        </router-link>
-                    </div>
-                </li>
-
-
-                <li class="nav-item">
-                    <router-link to="/" class="text-decoration-none">
-                        <span class="nav-link" @click="logout()">Logout</span>
+                    <router-link to="/home" class="text-decoration-none">
+                        <span class="nav-link text-dark">Home</span>
                     </router-link>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
+                    <li class="nav-item list-inline dropdown ms-3">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Features
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <router-link to="/allLists" class="text-decoration-none">
+                                <span class="dropdown-item">Lists</span>
+                            </router-link>
+                            <router-link to="/addEmail" class="text-decoration-none">
+                                <span class="dropdown-item">Add Member</span>
+                            </router-link>
+                            <router-link to="/sendEmail" class="text-decoration-none">
+                                <span class="dropdown-item">Write Email</span>
+                            </router-link>
+                        </div>
+                    </li>
+
+                    <li class="nav-item list-inline dropdown ms-3">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Accounts
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                            <router-link to="/mailAccounts" class="text-decoration-none">
+                                <span class="dropdown-item">Mail Accounts</span>
+                            </router-link>
+                            <router-link to="/addAccount" class="text-decoration-none">
+                                <span class="dropdown-item">Add Account</span>
+                            </router-link>
+                        </div>
+                    </li>
+
+
+                    <li class="nav-item list-inline ms-3">
+                        <router-link to="/" class="text-decoration-none">
+                            <span class="nav-link text-dark" @click="logout()">Logout</span>
+                        </router-link>
+                    </li>
+                </ul>
+
+                <!-- <div>Hello {{ email }}</div> -->
+            </div>
+        </nav>
+
+    </div>
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            email: localStorage.getItem('email')
+        }
+    },
     methods: {
         logout() {
             localStorage.removeItem('token');
@@ -76,4 +82,12 @@ export default {
 </script>
 
 <style>
+.body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+.tables {
+    background-color: lightblue;
+}
 </style>

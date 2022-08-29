@@ -13,17 +13,18 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/js/dist/dropdown'
 
 
-import '@fortawesome/fontawesome-free'
+// import '@fortawesome/fontawesome-free'
 
-Vue.use( Router );
+Vue.use(Router);
 Vue.use(Vuelidate);
 
 Vue.use(Toasted, {
   duration: 2000,
   theme: 'outline',
-  colour: 'green',
-  iconPack: 'material'
+  iconPack: 'fontawesome',
+  position: 'top-right'
 });
+
 
 Vue.config.productionTip = false
 

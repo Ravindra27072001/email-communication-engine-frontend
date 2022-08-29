@@ -4,7 +4,7 @@ import config from "@/config";
 
 export const VerifyOTP = async (credentials) => {
     return await axios.post(
-        `${config.baseUrl}/user/verifyOTP`,
+        `${config.baseUrl}/verification/verifyOTP`,
         credentials,
         {
             headers: {

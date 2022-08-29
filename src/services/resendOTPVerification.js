@@ -3,7 +3,7 @@ import config from "@/config";
 
 
 export const ResendOTPVerification = async (credentials) => {
-    return await axios.post(`${config.baseUrl}/user/resendOTPVerification`,
+    return await axios.post(`${config.baseUrl}/verification/resendOTPVerification`,
         credentials,
         {
             headers: {

@@ -6,9 +6,8 @@ export const Signin = async (credentials) => {
         credentials,
         {
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
-            method: 'POST',
         }
     );
 }

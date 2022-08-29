@@ -2,26 +2,29 @@ import axios from "axios";
 import config from "@/config";
 
 export const SearchList = async (userId) => {
-    return await axios.get(`${config.baseUrl}/user/allLists/${userId}`, {
+    return await axios.get(`${config.baseUrl}/list/allLists/${userId}`, {
         headers: {
             "Content-Type": "application/json",
+            "Authorization": `${localStorage.getItem('token')}`
         },
     })
 }
 
 export const SearchUserEmail = async (id) => {
     // console.log("object", id);
-    return await axios.get(`${config.baseUrl}/user/usersEmails/${id}`, {
+    return await axios.get(`${config.baseUrl}/list/usersEmails/${id}`, {
         headers: {
             "Content-Type": "application/json",
+            "Authorization": `${localStorage.getItem('token')}`
         }
     })
 }
 
 export const AddUser = async (credentials) => {
-    return await axios.post(`${config.baseUrl}/user/addUser`, credentials, {
+    return await axios.post(`${config.baseUrl}/list/addUser`, credentials, {
         headers: {
             "Content-Type": "application/json",
+            "Authorization": `${localStorage.getItem('token')}`
         },
     })
 }
@@ -30,10 +33,11 @@ export const AddUser = async (credentials) => {
 
 export const AddList = async (credentials) => {
     return await axios.post(
-        `${config.baseUrl}/user/addList`, credentials,
+        `${config.baseUrl}/list/addList`, credentials,
         {
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `${localStorage.getItem('token')}`
             },
         }
     )
@@ -41,14 +45,27 @@ export const AddList = async (credentials) => {
 
 export const DeleteList = async (id) => {
     return await axios.delete(
-        `${config.baseUrl}/user/deleteList/${id}`,
+        `${config.baseUrl}/list/deleteList/${id}`,
         {
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `${localStorage.getItem('token')}`
             },
         }
     )
 }
 
+
+export const DeleteMember = async (id) => {
+    return await axios.delete(
+        `${config.baseUrl}/list/deleteMember/${id}`,
+        {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `${localStorage.getItem('token')}`
+            },
+        }
+    )
+}
 
 

@@ -8,17 +8,16 @@ import AddAccount from '@/components/AddAccount'
 import AddList from '@/components/AddList'
 import AllLists from '@/components/AllLists'
 import AddEmail from '@/components/AddEmail'
-import AllUsersEmails from '@/components/AllUsersEmails'
+// import AllUsersEmails from '@/components/AllUsersEmails'
 import SendEmail from "@/components/SendEmail"
 import PageNotFound from '@/components/PageNotFound'
+import HomePage from '@/components/HomePage'
 
 // import store from "@/store";
 
-// const meta = {
-//     authorize: localStorage.getItem('token')
-// };
+// const require = `${localStorage.getItem('token')}`
 
-// console.log(meta.authorize);
+// console.log("des,cjhx",require);
 
 // const authToken = localStorage.getItem('token');
 
@@ -47,39 +46,60 @@ const router = new Router(
                 component: OTPVerification,
             },
             {
+                name: 'home',
+                path: '/home',
+                component: HomePage,
+                meta: {
+                    requiresAuth: true,
+                }
+            },
+            {
                 name: 'mailAccounts',
                 path: '/MailAccounts',
                 component: MailAccounts,
+                meta: {
+                    requiresAuth: true,
+                }
             },
             {
                 name: 'addAccount',
                 path: '/AddAccount',
                 component: AddAccount,
+                meta: {
+                    requiresAuth: true,
+                }
             },
             {
                 name: 'allLists',
                 path: '/AllLists',
                 component: AllLists,
+                meta: {
+                    requiresAuth: true,
+                }
             },
             {
                 name: 'addList',
                 path: '/AddList',
                 component: AddList,
+                meta: {
+                    requiresAuth: true,
+                }
             },
             {
                 name: 'addEmail',
                 path: '/AddEmail',
                 component: AddEmail,
-            },
-            {
-                name: 'allUsersEmails',
-                path: '/allUsersEmails',
-                component: AllUsersEmails,
+                meta: {
+                    requiresAuth: true,
+                }
             },
             {
                 name: 'sendEmail',
                 path: '/sendEmail',
                 component: SendEmail,
+                meta: {
+                    requiresAuth: true,
+                }
             },
             {
                 name: 'pageNotFound',
@@ -92,22 +112,20 @@ const router = new Router(
 
 );
 
-// router.beforeEach((to, from, next) => {
-//     console.log("object", to.meta.authToken);
-//     if (to.meta.authToken) {
-//         next('/');
-//     } else {
-//         next();
-//     }
-// })
+router.beforeEach((to,from,next) => {
+    console.log(to.matched)
+    if(to.matched.some(record => record.meta.requiresAuth)){
+        if(localStorage.getItem('token')){
+            next();
+        } else{
+            next('/')
+        }
+    }
+    else{
+        next();
+    }
+})
 
-// router.beforeEach((to, from, next) => {
-//     console.log("object", meta.authorize);
-//     if (!meta.authorize == null) {
-//         next()
-//     } else {
-//         next();
-//     }
-// });
+
 
 export default router;

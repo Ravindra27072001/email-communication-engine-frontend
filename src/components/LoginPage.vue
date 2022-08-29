@@ -1,24 +1,24 @@
 <template>
-    <section class="mt-5">
+    <section class="body mt-5">
         <div class="container p-5">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col col-xl-10">
-                    <div class="card rounded bg-warning">
+                    <div class="card rounded">
                         <div class="row g-0">
-                            <div class="col-md-6 col-lg-5 d-none d-md-block bg-warning rounded">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
                                 <img src="../images/email.png" alt="login form" class="img-fluid"
                                     style="border-radius: 1rem 0 0 1rem; margin-top: 100px; margin-bottom: 100px;" />
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                                <div class="card-body bg-warning rounded">
+                                <div class="card-body rounded">
                                     <form @submit.prevent="login">
                                         <div class="d-flex align-items-center mb-3 pb-1">
                                             <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219"></i>
                                         </div>
 
-                                        <h2 class="mb-3 pb-3">
+                                        <h1 class="mb-3 pb-3 text-center">
                                             Sign into your account
-                                        </h2>
+                                        </h1>
 
                                         <div class="form-outline">
                                             <label class="form-label" for="form-control">Email address</label>
@@ -41,7 +41,7 @@
                                             </button>
                                         </div>
 
-                                        <p class="mt-3">
+                                        <p class="mt-5">
                                             Don't have an account? <a href="/register">Register here</a>
                                         </p>
 
@@ -92,7 +92,9 @@ export default {
 
             Signin(credentials).then((response) => {
                 if (response.data.status === "FAILED") {
-                    this.$toasted.show(response.data.message);
+                    this.$toasted.show(response.data.message, {
+                        type: 'error'
+                    });
                 } else {
                     console.log("object", response);
                     const { authToken, email, userId } = response.data;
@@ -101,8 +103,10 @@ export default {
                     localStorage.setItem('email', email);
                     localStorage.setItem('userId', userId);
 
-                    this.$toasted.show(response.data.message);
-                    this.$router.push({ name: 'mailAccounts' })
+                    this.$toasted.show(response.data.message, {
+                        type: 'success'
+                    });
+                    this.$router.push({ name: 'home' })
                 }
 
             })

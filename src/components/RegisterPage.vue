@@ -1,22 +1,23 @@
 <template>
-  <section class="mt-5">
+  <section class="body mt-5">
     <div class="container p-5">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col col-xl-10">
-          <div class="card rounded bg-warning">
+          <div class="card rounded">
             <div class="row g-0">
-              <div class="col-md-6 col-lg-5 d-none d-md-block bg-warning rounded">
+              <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
                 <img src="../images/email.png" alt="login form" class="img-fluid" style="
                     border-radius: 1rem 0 0 1rem;
-                    margin-top: 100px;
-                    margin-bottom: 100px;
+                    padding: 20px;
+                    margin-top: 150px;
+                    margin-bottom: 70px;
                   " />
               </div>
               <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                <div class="card-body bg-warning rounded">
+                <div class="card-body rounded">
                   <form @submit.prevent="submit">
 
-                    <h2 class="mb-3 pb-3">SignUp to your account</h2>
+                    <h1 class="mb-3 pb-3 text-center">SignUp to your account</h1>
 
                     <div class="form-outline">
                       <label class="form-label" for="form-control">Name</label>
@@ -92,10 +93,16 @@
                       Verify OTP
                     </button>
                   </div>
+
+                  <div v-show="showSpinner" class="spinner-border" role="status">
+                    <span class="sr-only"></span>
+                  </div>
+
                   <p class="mt-3">
                     Already have an account?
                     <a href="/">Login here</a>
                   </p>
+
                 </div>
               </div>
             </div>
@@ -110,8 +117,6 @@
 import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
 import { Signup } from "@/services/signup";
 import { VerifyOTP } from "@/services/verifyOTP"
-// import axios from "axios";
-// import config from "@/config";
 
 export default {
   name: "RegisterPage",
@@ -125,6 +130,7 @@ export default {
       otp: "",
       userId: "",
       response: "",
+      showSpinner: false,
       showOTP: false,
       showOTPButton: false,
       showSubmitButton: true,
@@ -180,55 +186,64 @@ export default {
         email: this.email,
         password: this.password,
       };
-      // console.log("credentials:", credentials);
+
+
 
       if (!this.$v.$invalid) {
+
+        this.showSpinner = true;
+        this.showSubmitButton = false;
 
         Signup(credentials)
           .then((response) => {
             if (response.data.status == "FAILED") {
-              this.$toasted.show(response.data.message);
-            } else {
-              this.$toasted.show(response.data.message);
+              this.showSpinner = false;
+              this.showSubmitButton = true;
+              this.$toasted.show(response.data.message, {
+                type: 'error'
+              });
             }
-            console.log(response.data)
-            this.userId = response.data.data.userId
-            this.otp = response.data.data.otp
-            this.showSubmitButton = false;
-            this.showOTPButton = true;
-            this.showOTP = true
+            else {
+              this.$toasted.show(response.data.message, {
+                type: 'success'
+              });
+              console.log(response.data)
+              this.userId = response.data.data.userId
+              this.otp = response.data.data.otp
+              this.showSpinner = false;
+              this.showOTPButton = true;
+              this.showOTP = true
+            }
+
 
           })
       }
     },
 
-
     verifyOTP() {
-      // console.log("userId: ", this.userId);
-      // console.log("otp: ", this.otp);
       const credentials = {
         userId: this.userId,
         otp: this.otp,
         email: this.email,
       }
-      // console.log("VerifyOtp k credentials",credentials)
       VerifyOTP(credentials)
         .then((response) => {
-          // console.log("Ther response is: ", response.data)
-          this.$toasted.show(response.data.message);
+
           if (response.data.status == "VERIFIED") {
-            // localStorage.setItem("userId", this.userId)
+            this.$toasted.show(response.data.message, {
+              type: 'success'
+            });
             this.$router.push({ name: 'login' })
+          } else {
+            this.$toasted.show(response.data.message, {
+              type: 'error'
+            });
           }
-          // console.log(this.otp);
-          // console.log(this.userId)
-          // console.log("response is: ", response.data.message)
-          // this.$toasted.show("OTP verified successfully");
         })
-        .catch(() => {
-          this.$toasted.show("yha pr error he");
-          // console.log("response is: ", error.message)
-          // console.log("registration failed");
+        .catch((error) => {
+          this.$toasted.show(error.message, {
+            type: 'error'
+          });
         });
     }
   },
