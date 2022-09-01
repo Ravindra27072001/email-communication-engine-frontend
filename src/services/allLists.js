@@ -44,6 +44,7 @@ export const AddList = async (credentials) => {
 }
 
 export const DeleteList = async (id) => {
+    console.log("id", id);
     return await axios.delete(
         `${config.baseUrl}/list/deleteList/${id}`,
         {

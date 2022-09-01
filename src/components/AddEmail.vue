@@ -3,7 +3,7 @@
         <NavBar />
 
         <div class="container p-5">
-            <h1 class="mb-3 pb-3 text-center text-white">Add an email</h1>
+            <h1 class="mb-3 pb-3 text-center fw-bolder text-white">Add an email</h1>
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col col-xl-8">
                     <div class="card rounded ">

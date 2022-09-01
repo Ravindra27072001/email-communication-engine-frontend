@@ -4,8 +4,25 @@
 
     <section>
 
-      <div class="container">
-        <h1 class="text-center text-white m-5">All Accounts</h1>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-body">
+                Do you really want to delete the Account ?
+              </div>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" @click="removeAccount()">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h1 class="mb-3 pb-3 text-center text-white fw-bolder m-5">All Accounts</h1>
 
         <div class="d-flex justify-content-center">
           <div v-show="showSpinner" class="spinner-border" role="status">
@@ -18,34 +35,35 @@
           <h3 class="mt-5 text-white">You don't have any account</h3>
         </div>
 
-        <div v-show="showTable" class="text-center">
+        <div v-show="showTable" class="container">
 
 
-          <div class="tables rounded">
 
-            <table class="table accountTable shadow p-5 mb-5 bg-body rounded">
-              <thead>
-                <tr>
-                  <!-- <th scope="col">Name</th> -->
-                  <th scope="col">Company Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Passwod</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="account in accounts" :key="account._id">
-                  <td data-label="Company Name">{{  account.companyName  }}</td>
-                  <td data-label="Email">{{  account.email  }}</td>
-                  <td data-label="Password">{{  account.password  }}</td>
-                  <td data-label="Action"><button @click="removeAccount(account._id)" type="button"
-                      class="btn btn-danger btn-sm">Delete</button></td>
+          <table class="table accountTable shadow p-5 mt-5 mb-5 bg-body rounded ">
+            <thead>
+              <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Email</th>
+                <th scope="col">Company Name</th>
+                <!-- <th scope="col">Passwod</th> -->
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="account, i in accounts" :key="account._id">
+                <td data-label="S.No.">{{  ++i  }}</td>
+                <td data-label="Email">{{  account.email  }}</td>
+                <td data-label="Company Name">{{  account.companyName  }}</td>
 
-                </tr>
-              </tbody>
-            </table>
+                <td data-label="Action"><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" @click="getAccountId(account._id)">
+                    Delete
+                  </button></td>
 
-          </div>
+              </tr>
+            </tbody>
+          </table>
+
         </div>
         <div class="text-center">
           <button @click="addAccount()" type="button" class="btn btn-primary m-5">Add Account</button>
@@ -69,6 +87,7 @@ export default {
     return {
       accounts: "",
       userId: "",
+      accountId: "",
       showSpinner: true,
       showImage: false,
       showTable: true,
@@ -78,9 +97,14 @@ export default {
     addAccount() {
       this.$router.push({ name: "addAccount" });
     },
-    removeAccount(id) {
-      console.log("yeee id aa gyii: ", id);
-      DeleteAccount(id).then((result) => {
+
+    getAccountId(_id){
+      console.log("accountId: ", _id);
+      this.accountId = _id;
+    },
+    removeAccount() {
+      // console.log("yeee id aa gyii: ", id);
+      DeleteAccount(this.accountId).then((result) => {
         console.log(result.data.status)
         if (result.data.status == "SUCCESS") {
           this.$toasted.show(result.data.message, {
@@ -122,8 +146,7 @@ export default {
 </script>
 
 <style>
-
-@media (max-width: 550px) {
+@media (max-width: 775px) {
   .accountTable td::before {
     content: attr(data-label);
     position: absolute;

@@ -9,8 +9,12 @@ import Toasted from 'vue-toasted'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 // import 'bootstrap/dist/js/bootstrap'
-
 import 'bootstrap/js/dist/dropdown'
+
+
+import 'bootstrap/js/dist/collapse'
+import 'bootstrap/js/dist/modal'
+// import 'bootstrap/js/src/collapse'
 
 
 // import '@fortawesome/fontawesome-free'

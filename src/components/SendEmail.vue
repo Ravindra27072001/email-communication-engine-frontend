@@ -3,7 +3,7 @@
         <NavBar />
 
         <div class="container p-5">
-            <h1 class="mb-3 pb-3 text-center text-white">Write an Email</h1>
+            <h1 class="mb-3 pb-3 text-center fw-bolder text-white">Send an Email</h1>
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col col-xl-8">
                     <div class="rounded tables p-3">
@@ -43,7 +43,7 @@
                             </div>
 
                             <div class="form-outline mt-2 w-50">
-                                <label class="form-label" for="form-control">Start time (hh:mm)</label>
+                                <label class="form-label" for="form-control">Start time</label>
                                 <input type="time" class="form-control" v-model.trim="startTime" name="startTime" />
                                 <div class="invalid-feedback">
                                     <span v-if="!$v.to.startTime">Required</span>
@@ -51,14 +51,12 @@
                             </div>
 
                             <div class="form-outline mt-2 w-50">
-                                <label class="form-label" for="form-control">End time (hh:mm)</label>
+                                <label class="form-label" for="form-control">End time</label>
                                 <input type="time" class="form-control" v-model.trim="endTime" name="endTime" />
                                 <div class="invalid-feedback">
                                     <span v-if="!$v.to.endTime">Required</span>
                                 </div>
                             </div>
-
-
 
                             <div class="form-outline mt-2">
                                 <label class="form-label" for="form-control">When do you want to send the email</label>
@@ -189,7 +187,7 @@ export default {
             SendEmail(credentials).then((result) => {
 
                 console.log("object, ", result.data);
-                
+
                 if (result.data.status == "FAILED") {
                     this.$toasted.show(result.data.message, {
                         type: 'error'

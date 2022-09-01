@@ -3,12 +3,46 @@
     <!-- <NavBar /> -->
     <NavBar />
 
-
-
     <section>
 
+      <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModal1Label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-body">
+                Do you really want to delete the Member ?
+              </div>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                @click="removeMember()">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-body">
+                Do you really want to delete the List ?
+                Users of this list will also be deleted.
+              </div>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" @click="removeList()">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="container ">
-        <h1 class="text-center m-5 text-white">All Lists</h1>
+        <h1 class="mb-3 pb-3 text-center text-white fw-bolder mt-5">All Lists</h1>
 
         <div class="d-flex justify-content-center">
           <div v-show="showSpinner" class="spinner-border" role="status">
@@ -27,7 +61,7 @@
 
             <div class="bg-body rounded">
 
-              <table class="table listTable">
+              <table class="table listTable mt-5">
                 <thead>
                   <tr>
                     <th scope="col">List Name</th>
@@ -38,12 +72,17 @@
                 </thead>
                 <tbody>
                   <tr v-for="list in lists" :key="list._id">
-                    <td data-label="List Name">{{  list.listName  }}</td>
+                    <td data-label="List Name">{{ list.listName }}</td>
                     <td data-label="Users"> <button @click="userList(list._id)" type="button"
                         class="btn btn-primary btn-sm">Users list</button></td>
-                    <td data-label="Description">{{  list.description  }}</td>
-                    <td data-label="Action"><button @click="removeList(list._id)" type="button"
-                        class="btn btn-danger btn-sm">Delete</button></td>
+                    <td data-label="Description">{{ list.description }}</td>
+                    <td data-label="Action"><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" @click="getListId(list._id)">
+                        Delete
+                      </button></td>
+
+
+                    <!-- <button @click="removeList(list._id)" type="button" class="btn btn-danger btn-sm">Delete</button> -->
                   </tr>
                 </tbody>
               </table>
@@ -62,11 +101,11 @@
 
 
           <div v-show="showUsersImage" class="text-center">
-            <h1 class="text-center text-white m-5">All Users</h1>
+            <h1 class="text-center text-white fw-bolder m-5">All Users</h1>
             <img src="../images/oops.png" alt="no list">
             <h3 class="mt-5">No email is there</h3>
             <div class="text-center">
-              <button @click="addUser()" type="button" class="btn btn-primary m-5 text-white">Add an Email</button>
+              <button @click="addUser()" type="button" class="btn btn-primary m-5">Add an Email</button>
             </div>
           </div>
 
@@ -74,11 +113,11 @@
           <div v-show="showUsersTable" class="text-center">
             <hr>
 
-            <h1 class="text-center text-white m-5">All Users</h1>
+            <h1 class="mb-3 pb-3 text-center text-white fw-bolder mt-5">All Users</h1>
 
             <div class="bg-body rounded">
 
-              <table class="table userTable">
+              <table class="table userTable mt-5">
                 <thead>
                   <tr>
                     <th scope="col">User Name</th>
@@ -88,11 +127,12 @@
                 </thead>
                 <tbody>
                   <tr v-for="user in usersEmails" :key="user._id">
-                    <td data-label="User Name">{{  user.name  }}</td>
-                    <td data-label="Email"> {{  user.email  }}</td>
-                    <td data-label="Action"><button @click="removeUser(user._id)" type="button"
-                        class="btn btn-danger btn-sm">Delete</button>
-                    </td>
+                    <td data-label="User Name">{{ user.name }}</td>
+                    <td data-label="Email"> {{ user.email }}</td>
+                    <td data-label="Action"><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal1" @click="getMemberId(user._id)">
+                        Delete
+                      </button></td>
                   </tr>
                 </tbody>
               </table>
@@ -105,6 +145,8 @@
         </div>
 
       </div>
+
+
 
 
     </section>
@@ -125,6 +167,8 @@ export default {
       lists: "",
       usersEmails: "",
       SearchUserId: "",
+      listId: "",
+      memberId: "",
       userId: localStorage.getItem('userId'),
       showSpinner: true,
       showListsImage: false,
@@ -134,22 +178,20 @@ export default {
     };
   },
   methods: {
-    userList(id) {
+
+    async userList(id) {
       this.SearchUserId = id;
-      SearchUserEmail(id).then((result) => {
-        console.log("object", id);
-        console.log("object", result.data.data);
-        this.showUsersTable = true;
-        this.showUsersImage = false;
-        this.usersEmails = result.data.data
-        console.log(this.usersEmails.length);
-        if (!this.usersEmails.length) {
-          this.showUsersImage = true;
-          this.showUsersTable = false;
-        }
-      }).catch((error) => {
-        console.log("objectttttttttttttt", error);
-      })
+      console.log("is:", id);
+      const result = await SearchUserEmail(id)
+
+      this.showUsersTable = true;
+      this.showUsersImage = false;
+      this.usersEmails = result.data.data
+
+      if (!this.usersEmails.length) {
+        this.showUsersImage = true;
+        this.showUsersTable = false;
+      }
     },
 
     addUser() {
@@ -157,68 +199,80 @@ export default {
     },
 
     addList() {
-      console.log("object", this.listId);
-
       this.$router.push({ name: "addList" });
-      // console.log(this.userId);
-
-    },
-    removeList(id) {
-
-      DeleteList(id).then((result) => {
-
-        if (result.data.status == "SUCCESS") {
-
-          SearchList(this.userId).then((response) => {
-
-            if (response.data.status === "FAILED") {
-              this.showListsImage = true;
-              this.showListsTable = false;
-            }
-            this.lists = response.data.data;
-          });
-
-          this.$toasted.show(result.data.message, {
-            type: 'success'
-          });
-        }
-        else {
-          this.$toasted.show(result.data.message, {
-            type: 'error'
-          });
-        }
-      })
-      // SearchList(this.userId)
     },
 
-    removeUser(id) {
+    getListId(_id) {
+      this.listId = _id;
+      console.log("List Id: ", this.listId);
+    },
 
-      DeleteMember(id).then((result) => {
+    getMemberId(_id) {
+      this.memberId = _id;
+      console.log("memberId", this.memberId);
+    },
 
-        if (result.data.message === "No Email is there") {
-          this.$toasted.show(result.data.message, {
-            type: 'error'
-          });
+    async removeList() {
+
+      const result = await DeleteList(this.listId)
+      if (result.data.status == "SUCCESS") {
+
+        const response = await SearchList(this.userId);
+        if (response.data.status === "FAILED") {
+          this.showListsImage = true;
+          this.showListsTable = false;
         }
         else {
-          this.$toasted.show(result.data.message, {
-            type: 'success'
-          });
-          SearchUserEmail(this.SearchUserId).then((result) => {
+          this.lists = response.data.data;
+          const result = await SearchUserEmail(this.listId);
+          this.usersEmails = result.data.data
 
-            this.usersEmails = result.data.data
-
-            if (!this.usersEmails.length) {
-              this.showUsersImage = true;
-              this.showUsersTable = false;
-            }
-          })
+          if (!this.usersEmails.length) {
+            this.showUsersImage = true;
+            this.showUsersTable = false;
+          }
         }
+        this.$toasted.show(result.data.message, {
+          type: 'success'
+        });
+
+      }
+      else {
+        this.$toasted.show(result.data.message, {
+          type: 'error'
+        });
+      }
+
+    },
 
 
-      })
+    async removeMember() {
+      console.log("memberId", this.memberId);
+      const result = await DeleteMember(this.memberId)
+
+      if (result.data.message === "No Email is there") {
+        this.$toasted.show(result.data.message, {
+          type: 'error'
+        });
+      }
+      else {
+        this.$toasted.show(result.data.message, {
+          type: 'success'
+        });
+
+        const response = await SearchUserEmail(this.SearchUserId);
+
+        this.usersEmails = response.data.data
+
+        if (!this.usersEmails.length) {
+          this.showUsersImage = true;
+          this.showUsersTable = false;
+        }
+      }
+
     }
   },
+
   mounted() {
 
     SearchList(this.userId).then((response) => {
@@ -237,7 +291,7 @@ export default {
 </script>
 
 <style>
-@media(max-width: 550px) {
+@media(max-width: 775px) {
   .table thead {
     display: none;
   }
