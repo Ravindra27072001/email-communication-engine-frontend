@@ -91,18 +91,17 @@ export default {
             // console.log("credentials:", credentials);
 
             Signin(credentials).then((response) => {
-                console.log("perfect response", response);
-                if (response.data.status != 200) {
+                if (response.data.status === "FAILED") {
                     this.$toasted.show(response.data.message, {
                         type: 'error'
                     });
                 } else {
                     console.log("object", response);
-                    // const { authToken, email, userId } = response.data;
+                    const { authToken, email, userId } = response.data;
 
-                    // localStorage.setItem('token', authToken);
-                    // localStorage.setItem('email', email);
-                    // localStorage.setItem('userId', userId);
+                    localStorage.setItem('token', authToken);
+                    localStorage.setItem('email', email);
+                    localStorage.setItem('userId', userId);
 
                     this.$toasted.show(response.data.message, {
                         type: 'success'
