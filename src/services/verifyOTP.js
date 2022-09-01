@@ -1,10 +1,9 @@
 import axios from "axios";
-import config from "@/config";
 
 
 export const VerifyOTP = async (credentials) => {
     return await axios.post(
-        `${config.baseUrl}/verification/verifyOTP`,
+        `${process.env.VUE_APP_BASE_URL}/verification/verifyOTP`,
         credentials,
         {
             headers: {

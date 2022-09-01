@@ -1,8 +1,7 @@
 import axios from "axios";
-import config from "@/config";
 
 export const Signin = async (credentials) => {
-    return await axios.post(`${config.baseUrl}/user/signin`,
+    return await axios.post(`${process.env.VUE_APP_BASE_URL}/user/signin`,
         credentials,
         {
             headers: {

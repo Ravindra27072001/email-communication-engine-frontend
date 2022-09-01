@@ -110,43 +110,6 @@ export default {
                 }
 
             })
-            // console.log("objectddddd", response);
-
-            // .then((response) => {
-            //     console.log("object", response);
-            //     // if (response.data.status === "FAILED") {
-            //     //     this.$toasted.show(response.data.message);
-            //     // } else{
-            //     //     this.$toasted.show(response.data.message);
-            //     //     this.$router.push({ name: 'mailAccounts' })
-            //     // }
-
-            // })
-
-            // Signin(credentials)
-            //     .then((response) => {
-            //         console.log(response.data);
-
-            //         // localStorage.setItem("email", data.email);
-            //         // localStorage.setItem("name", data.name);
-
-            //         if (response.data.status === "FAILED") {
-            //             this.$toasted.show(response.data.message);
-            //         }
-            //         else {
-            //             console.log("ye data he: ", store.state.authenticated)
-
-
-
-            //             this.$store.commit("setAuthentication", true);
-            //             // this.$store.commit("setAuthentication")
-            //             console.log("ye data he: ", store.state.authenticated)
-            //             localStorage.setItem("userId", response.data.data[0]._id);
-            //             this.$toasted.show(response.data.message);
-            //             // console.log("ye data he: ", response.data)
-            //             this.$router.push({ name: 'mailAccounts' })
-            //         }
-            //     })
         }
     }
 

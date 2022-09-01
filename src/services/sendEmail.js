@@ -1,11 +1,10 @@
 import axios from "axios";
-import config from "@/config";
 
 
 
 export const SendEmail = async (credentials) => {
     return await axios.post(
-        `${config.baseUrl}/email/sendEmail`,
+        `${process.env.VUE_APP_BASE_URL}/email/sendEmail`,
         credentials,
         {
             headers: {

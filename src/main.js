@@ -5,19 +5,14 @@ import Router from 'vue-router';
 import router from './router/index';
 import Vuelidate from 'vuelidate'
 import Toasted from 'vue-toasted'
-// import store from './store'
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-// import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/js/dist/dropdown'
-
 
 import 'bootstrap/js/dist/collapse'
 import 'bootstrap/js/dist/modal'
-// import 'bootstrap/js/src/collapse'
 
-
-// import '@fortawesome/fontawesome-free'
 
 Vue.use(Router);
 Vue.use(Vuelidate);

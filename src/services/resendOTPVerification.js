@@ -1,9 +1,8 @@
 import axios from "axios";
-import config from "@/config";
 
 
 export const ResendOTPVerification = async (credentials) => {
-    return await axios.post(`${config.baseUrl}/verification/resendOTPVerification`,
+    return await axios.post(`${process.env.VUE_APP_BASE_URL}/verification/resendOTPVerification`,
         credentials,
         {
             headers: {

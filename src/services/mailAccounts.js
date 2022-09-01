@@ -1,8 +1,7 @@
 import axios from "axios";
-import config from "@/config";
 
 export const SearchAccounts = async (userId) => {
-    return await axios.get(`${config.baseUrl}/account/mailAccounts/${userId}`, {
+    return await axios.get(`${process.env.VUE_APP_BASE_URL}/account/mailAccounts/${userId}`, {
         headers: {
             "Content-Type": "application/json",
             "Authorization": `${localStorage.getItem('token')}`
@@ -12,7 +11,7 @@ export const SearchAccounts = async (userId) => {
 
 export const AddAccount = async (credentials) => {
     return await axios.post(
-        `${config.baseUrl}/account/addAccount`, credentials,
+        `${process.env.VUE_APP_BASE_URL}/account/addAccount`, credentials,
         {
             headers: {
                 "Content-Type": "application/json",
@@ -24,7 +23,7 @@ export const AddAccount = async (credentials) => {
 
 export const DeleteAccount = async (id) => {
     return await axios.delete(
-        `${config.baseUrl}/account/deleteAccount/${id}`,
+        `${process.env.VUE_APP_BASE_URL}/account/deleteAccount/${id}`,
         {
             headers: {
                 "Content-Type": "application/json",
