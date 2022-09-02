@@ -5,7 +5,7 @@
             <nav class="navbar navbar-expand-lg navbar-light tables">
                 <div class="container-fluid">
                     <router-link to="/home" class="text-decoration-none">
-                        <span class="colorClass p-2">Email Engine</span>
+                        <span class="colorClass p-2">Email</span>
                     </router-link>
                     <!-- <h1 class="colorClass p-2 mt-1" href="/home">Email Engine</h1> -->
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

@@ -4,7 +4,7 @@
 
         <div class="pt-5">
             <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary">Add an email</h1>
-            <div class="row d-flex justify-content-center align-items-center">
+            <div class="d-flex justify-content-center align-items-center">
                 <div class="col col-xl-8">
                     <div class="card mt-3 m-auto" id="newClass">
                         <div class="row g-0">
