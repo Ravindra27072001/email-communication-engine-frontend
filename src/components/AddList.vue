@@ -64,7 +64,6 @@ export default {
             listName: '',
             description: '',
             userId: '',
-
         }
     },
     validations: {
@@ -75,7 +74,6 @@ export default {
             required,
         }
     },
-
     methods: {
         async submit() {
             console.log('touched')

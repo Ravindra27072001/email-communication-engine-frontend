@@ -71,10 +71,8 @@ export default {
         }
     },
     mounted() {
-
         ScheduledEmails(this.userId).then((result) => {
             console.log(result);
-
             if (result.data.status === "FAILED") {
                 this.showSpinner = false;
                 this.showEmails = true;
@@ -85,7 +83,6 @@ export default {
             }
         });
     },
-
 }
 </script>
 

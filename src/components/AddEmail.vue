@@ -78,7 +78,6 @@ import { required, email } from 'vuelidate/lib/validators'
 import NavBar from './NavBar.vue';
 // import { AddAccount } from '@/services/mailAccounts'
 import { SearchList, AddUser } from '../services/allLists'
-
 export default {
     name: "AddAccount",
     components: { NavBar },
@@ -89,7 +88,6 @@ export default {
             name: '',
             userId: localStorage.getItem('userId'),
             listName: '',
-
         }
     },
     validations: {
@@ -98,10 +96,8 @@ export default {
             email,
             isUnique(value) {
                 if (value === "") return true;
-
                 var email_regex =
                     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
                 return new Promise((resolve) => {
                     setTimeout(() => {
                         resolve(email_regex.test(value));
@@ -121,14 +117,12 @@ export default {
             this.$v.$touch();
             console.log("listName: ", this.listName, this.userId);
             console.log('touched')
-
             const credentials = {
                 userId: this.userId,
                 name: this.name,
                 email: this.email,
                 listName: this.listName
             }
-
             AddUser(credentials).then((result) => {
                 console.log("ye rhi list ki id: ", result.data);
                 if (result.data.status === "FAILED") {

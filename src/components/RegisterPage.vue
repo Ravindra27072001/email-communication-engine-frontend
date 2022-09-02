@@ -1,254 +1,239 @@
 <template>
-  <section class="body mt-5">
-    <div class="container p-5">
-      <div class="row d-flex justify-content-center align-items-center">
-        <div class="col col-xl-10">
-          <div class="card rounded">
-            <div class="row g-0">
-              <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
-                <img src="../images/email.png" alt="login form" class="img-fluid" style="
-                    border-radius: 1rem 0 0 1rem;
-                    padding: 20px;
-                    margin-top: 150px;
-                    margin-bottom: 70px;
-                  " />
-              </div>
-              <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                <div class="card-body rounded">
-                  <form @submit.prevent="submit">
-
-                    <h1 class="mb-3 pb-3 text-center">SignUp to your account</h1>
-
-                    <div class="form-outline">
-                      <label class="form-label" for="form-control">Name</label>
-                      <input type="text" class="form-control" v-model.trim="$v.name.$model" :class="{
-                        'is-invalid': $v.name.$error,
-                        'is-valid': !$v.name.$invalid,
-                      }" name="name" />
-                      <div class="valid-feedback">Name is valid</div>
-                      <div class="invalid-feedback">
-                        <span v-if="!$v.name.required">Name is required</span>
+    <section class="body mt-5">
+      <div class="container p-5">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col col-xl-10">
+            <div class="card rounded">
+              <div class="row g-0">
+                <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
+                  <img src="../images/email.png" alt="login form" class="img-fluid" style="
+                      border-radius: 1rem 0 0 1rem;
+                      padding: 20px;
+                      margin-top: 150px;
+                      margin-bottom: 70px;
+                    " />
+                </div>
+                <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                  <div class="card-body rounded">
+                    <form @submit.prevent="submit">
+  
+                      <h1 class="mb-3 pb-3 text-center">SignUp to your account</h1>
+  
+                      <div class="form-outline">
+                        <label class="form-label" for="form-control">Name</label>
+                        <input type="text" class="form-control" v-model.trim="$v.name.$model" :class="{
+                          'is-invalid': $v.name.$error,
+                          'is-valid': !$v.name.$invalid,
+                        }" name="name" />
+                        <div class="valid-feedback">Name is valid</div>
+                        <div class="invalid-feedback">
+                          <span v-if="!$v.name.required">Name is required</span>
+                        </div>
                       </div>
-                    </div>
-
-                    <div class="form-outline">
-                      <label class="form-label" for="form-control">Email address</label>
-                      <input type="email" class="form-control" v-model.trim="$v.email.$model" :class="{
-                        'is-invalid': $v.email.$error,
-                        'is-valid': !$v.email.$invalid,
-                      }" name="email" />
-                      <div class="valid-feedback">Your email is valid</div>
-                      <div class="invalid-feedback">
-                        <span v-if="!$v.email.required">email is required</span>
-                        <span v-if="!$v.email.isUnique">This email is wrong</span>
+  
+                      <div class="form-outline">
+                        <label class="form-label" for="form-control">Email address</label>
+                        <input type="email" class="form-control" v-model.trim="$v.email.$model" :class="{
+                          'is-invalid': $v.email.$error,
+                          'is-valid': !$v.email.$invalid,
+                        }" name="email" />
+                        <div class="valid-feedback">Your email is valid</div>
+                        <div class="invalid-feedback">
+                          <span v-if="!$v.email.required">email is required</span>
+                          <span v-if="!$v.email.isUnique">This email is wrong</span>
+                        </div>
                       </div>
-                    </div>
-
-                    <div class="form-outline">
-                      <label class="form-label" for="form-control">Password</label>
-                      <input type="password" class="form-control" v-model.trim="$v.password.$model" :class="{
-                        'is-invalid': $v.password.$error,
-                        'is-valid': !$v.password.$invalid,
-                      }" name="password" />
-
-                      <div class="valid-feedback">Your password is valid</div>
-                      <div class="invalid-feedback">
-                        <span v-if="!$v.password.required">password is required</span>
-                        <span v-if="!$v.email.validatePassword">Password should contains minimum 8 characters and
-                          atleast 1 uppercase, lowercase, and special
-                          character</span>
+  
+                      <div class="form-outline">
+                        <label class="form-label" for="form-control">Password</label>
+                        <input type="password" class="form-control" v-model.trim="$v.password.$model" :class="{
+                          'is-invalid': $v.password.$error,
+                          'is-valid': !$v.password.$invalid,
+                        }" name="password" />
+  
+                        <div class="valid-feedback">Your password is valid</div>
+                        <div class="invalid-feedback">
+                          <span v-if="!$v.password.required">password is required</span>
+                          <span v-if="!$v.email.validatePassword">Password should contains minimum 8 characters and
+                            atleast 1 uppercase, lowercase, and special
+                            character</span>
+                        </div>
                       </div>
-                    </div>
-
-                    <div class="form-outline">
-                      <label class="form-label" for="form2Example27">Confirm Password</label>
-                      <input type="password" class="form-control" v-model.trim="$v.repeatPassword.$model" :class="{
-                        'is-invalid': $v.repeatPassword.$error,
-                        'is-valid':
-                          password != '' ? !$v.repeatPassword.$invalid : '',
-                      }" name="confirmPassword" />
-                      <div class="valid-feedback">
-                        Your password is identical!
+  
+                      <div class="form-outline">
+                        <label class="form-label" for="form2Example27">Confirm Password</label>
+                        <input type="password" class="form-control" v-model.trim="$v.repeatPassword.$model" :class="{
+                          'is-invalid': $v.repeatPassword.$error,
+                          'is-valid':
+                            password != '' ? !$v.repeatPassword.$invalid : '',
+                        }" name="confirmPassword" />
+                        <div class="valid-feedback">
+                          Your password is identical!
+                        </div>
+                        <div class="invalid-feedback">
+                          <span v-if="!$v.repeatPassword.sameAsPassword">Passwod must be identical.</span>
+                        </div>
                       </div>
-                      <div class="invalid-feedback">
-                        <span v-if="!$v.repeatPassword.sameAsPassword">Passwod must be identical.</span>
+  
+                      <div v-show="showOTP" class="form-outline">
+                        <label class="form-label" for="form-control">Enter the OTP</label>
+                        <input v-model="otp" type="text" class="form-control" name="otp" />
                       </div>
-                    </div>
-
-                    <div v-show="showOTP" class="form-outline">
-                      <label class="form-label" for="form-control">Enter the OTP</label>
-                      <input v-model="otp" type="text" class="form-control" name="otp" />
-                    </div>
-
+  
+                      <div class="mt-3">
+                        <button v-show="showSubmitButton" class="btn btn-danger btn-lg btn-block" :disabled="$v.$invalid">
+                          Register
+                        </button>
+                      </div>
+                    </form>
+  
                     <div class="mt-3">
-                      <button v-show="showSubmitButton" class="btn btn-danger btn-lg btn-block" :disabled="$v.$invalid">
-                        Register
+                      <button @click="verifyOTP()" v-show="showOTPButton" class="btn btn-info btn-lg btn-block"
+                        :disabled="$v.$invalid">
+                        Verify OTP
                       </button>
                     </div>
-                  </form>
-
-                  <div class="mt-3">
-                    <button @click="verifyOTP()" v-show="showOTPButton" class="btn btn-info btn-lg btn-block"
-                      :disabled="$v.$invalid">
-                      Verify OTP
-                    </button>
+  
+                    <div v-show="showSpinner" class="spinner-border" role="status">
+                      <span class="sr-only"></span>
+                    </div>
+  
+                    <p class="mt-3">
+                      Already have an account?
+                      <a href="/">Login here</a>
+                    </p>
+  
                   </div>
-
-                  <div v-show="showSpinner" class="spinner-border" role="status">
-                    <span class="sr-only"></span>
-                  </div>
-
-                  <p class="mt-3">
-                    Already have an account?
-                    <a href="/">Login here</a>
-                  </p>
-
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-</template>
-
-<script>
-import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
-import { Signup } from "@/services/signup";
-import { VerifyOTP } from "@/services/verifyOTP"
-
-export default {
-  name: "RegisterPage",
-  user: "",
-  data() {
-    return {
-      name: "",
-      email: "",
-      password: "",
-      repeatPassword: "",
-      otp: "",
-      userId: "",
-      response: "",
-      showSpinner: false,
-      showOTP: false,
-      showOTPButton: false,
-      showSubmitButton: true,
-    };
-  },
-  validations: {
-    name: {
-      required,
-    },
-    email: {
-      required,
-      email,
-      isUnique(value) {
-        if (value === "") return true;
-
-        var email_regex =
-          /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-        return new Promise((resolve) => {
-          setTimeout(() => {
-            resolve(email_regex.test(value));
-          }, 350 + Math.random() * 300);
-        });
-      },
-    },
-    password: {
-      required,
-      minLength: minLength(8),
-      validatePassword(value) {
-        if (value === "") return true;
-
-        var password_regex =
-          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-
-        return new Promise((resolve) => {
-          setTimeout(() => {
-            resolve(password_regex.test(value));
-          }, 350 + Math.random() * 300);
-        });
-      },
-    },
-    repeatPassword: {
-      sameAsPassword: sameAs("password"),
-    },
-  },
-
-  methods: {
-    async submit() {
-      this.$v.$touch();
-      console.log("object", localStorage.getItem('token'));
-      const credentials = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
+    </section>
+  </template>
+  
+  <script>
+  import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
+  import { Signup } from "@/services/signup";
+  import { VerifyOTP } from "@/services/verifyOTP"
+  export default {
+    name: "RegisterPage",
+    user: "",
+    data() {
+      return {
+        name: "",
+        email: "",
+        password: "",
+        repeatPassword: "",
+        otp: "",
+        userId: "",
+        response: "",
+        showSpinner: false,
+        showOTP: false,
+        showOTPButton: false,
+        showSubmitButton: true,
       };
-
-
-
-      if (!this.$v.$invalid) {
-
-        this.showSpinner = true;
-        this.showSubmitButton = false;
-
-        Signup(credentials)
+    },
+    validations: {
+      name: {
+        required,
+      },
+      email: {
+        required,
+        email,
+        isUnique(value) {
+          if (value === "") return true;
+          var email_regex =
+            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve(email_regex.test(value));
+            }, 350 + Math.random() * 300);
+          });
+        },
+      },
+      password: {
+        required,
+        minLength: minLength(8),
+        validatePassword(value) {
+          if (value === "") return true;
+          var password_regex =
+            /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve(password_regex.test(value));
+            }, 350 + Math.random() * 300);
+          });
+        },
+      },
+      repeatPassword: {
+        sameAsPassword: sameAs("password"),
+      },
+    },
+    methods: {
+      async submit() {
+        this.$v.$touch();
+        console.log("object", localStorage.getItem('token'));
+        const credentials = {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+        };
+        if (!this.$v.$invalid) {
+          this.showSpinner = true;
+          this.showSubmitButton = false;
+          Signup(credentials)
+            .then((response) => {
+              if (response.data.status == "FAILED") {
+                this.showSpinner = false;
+                this.showSubmitButton = true;
+                this.$toasted.show(response.data.message, {
+                  type: 'error'
+                });
+              }
+              else {
+                this.$toasted.show(response.data.message, {
+                  type: 'success'
+                });
+                console.log(response.data)
+                this.userId = response.data.data.userId
+                this.otp = response.data.data.otp
+                this.showSpinner = false;
+                this.showOTPButton = true;
+                this.showOTP = true
+              }
+            })
+        }
+      },
+      verifyOTP() {
+        const credentials = {
+          userId: this.userId,
+          otp: this.otp,
+          email: this.email,
+        }
+        VerifyOTP(credentials)
           .then((response) => {
-            if (response.data.status == "FAILED") {
-              this.showSpinner = false;
-              this.showSubmitButton = true;
+            if (response.data.status == "VERIFIED") {
+              this.$toasted.show(response.data.message, {
+                type: 'success'
+              });
+              this.$router.push({ name: 'login' })
+            } else {
               this.$toasted.show(response.data.message, {
                 type: 'error'
               });
             }
-            else {
-              this.$toasted.show(response.data.message, {
-                type: 'success'
-              });
-              console.log(response.data)
-              this.userId = response.data.data.userId
-              this.otp = response.data.data.otp
-              this.showSpinner = false;
-              this.showOTPButton = true;
-              this.showOTP = true
-            }
-
-
           })
-      }
-    },
-
-    verifyOTP() {
-      const credentials = {
-        userId: this.userId,
-        otp: this.otp,
-        email: this.email,
-      }
-      VerifyOTP(credentials)
-        .then((response) => {
-
-          if (response.data.status == "VERIFIED") {
-            this.$toasted.show(response.data.message, {
-              type: 'success'
-            });
-            this.$router.push({ name: 'login' })
-          } else {
-            this.$toasted.show(response.data.message, {
+          .catch((error) => {
+            this.$toasted.show(error.message, {
               type: 'error'
             });
-          }
-        })
-        .catch((error) => {
-          this.$toasted.show(error.message, {
-            type: 'error'
           });
-        });
-    }
-  },
-};
-</script>
-
-<style>
-</style>
+      }
+    },
+  };
+  </script>
+  
+  <style>
+  </style>

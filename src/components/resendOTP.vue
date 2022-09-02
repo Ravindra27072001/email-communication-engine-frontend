@@ -86,10 +86,8 @@ export default {
     methods: {
         async sendOTP() {
             this.$v.$touch()
-
             this.showSpinner = true;
             this.showSendButton = false;
-
             const credentials = {
                 email: this.email,
             }
@@ -97,7 +95,6 @@ export default {
             ResendOTPVerification(credentials)
                 .then((result) => {
                     console.log("daaaaataaaaaaaaaa", result.data);
-
                     if (result.data.status === "PENDING") {
                         this.$toasted.show(result.data.message, {
                             type: 'success'
@@ -117,7 +114,6 @@ export default {
                     this.userId = result.data.data.userId
                 })
         },
-
         verifyOTP() {
             // console.log("userId: ", this.userId);
             // console.log("otp: ", this.otp);
@@ -130,7 +126,6 @@ export default {
                 .then((response) => {
                     console.log("Ther response is: ", response.data)
                     console.log("userId: fwdash", this.userId)
-
                     if (response.data.status == "VERIFIED") {
                         this.$toasted.show(response.data.message, {
                             type: 'success'
@@ -142,7 +137,6 @@ export default {
                             type: 'error'
                         });
                     }
-
                     // console.log(this.otp);
                     // console.log(this.userId)
                     // console.log("response is: ", response.data.message)
@@ -157,7 +151,6 @@ export default {
                 });
         }
     }
-
 }
 </script>
 

@@ -142,13 +142,10 @@ export default {
         reminder: {
             required,
         }
-
     },
-
     methods: {
         async submit() {
             this.$v.$touch()
-
             const getHour = (time) => {
                 return time[0] + time[1];
             };
@@ -157,21 +154,16 @@ export default {
             };
             const startTimeHour = getHour(this.startTime);
             const startTimeMin = getMin(this.startTime);
-
             const endTimeHour = getHour(this.endTime);
             const endTimeMin = getMin(this.endTime);
-
             const startTimeObj = {
                 hours: startTimeHour,
                 minutes: startTimeMin,
             };
-
             const endTimeObj = {
                 hours: endTimeHour,
                 minutes: endTimeMin,
             };
-
-
             const credentials = {
                 subject: this.subject,
                 from: this.from,
@@ -183,11 +175,8 @@ export default {
                 endTime: endTimeObj,
                 userId: this.userId
             }
-
             SendEmail(credentials).then((result) => {
-
                 console.log("object, ", result.data);
-
                 if (result.data.status == "FAILED") {
                     this.$toasted.show(result.data.message, {
                         type: 'error'

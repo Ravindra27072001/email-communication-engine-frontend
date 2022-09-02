@@ -81,44 +81,31 @@ export default {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
 }
-
 .tables {
     background-color: lightblue;
 }
-
-
-
 /* .navbar-brand:hover,
 .nav-link:hover {
     background-color: rgba(128, 128, 128, 0.5);
     border-radius: 5px;
 } */
-
-
-
 /* #nav a.router-link-exact-active {
   color: #42b983;
 } */
-
 #nav a:hover {
     /* padding: 20px; */
     /* text-align: center; */
     background-color: lightgrey;
     border-radius: 5px;
 }
-
 #nav a {
     font-weight: bold;
     color: #2c3e50;
 }
-
-
-
 @media(max-width: 990px) {
     .email {
         display: none;
     }
-
     .nav-link {
         text-align: center;
     }
