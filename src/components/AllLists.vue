@@ -41,8 +41,8 @@
           </div>
         </div>
   
-        <div class="container ">
-          <h1 class="mb-3 pb-3 text-center text-white fw-bolder mt-5">All Lists</h1>
+        <div>
+          <h1 class="mb-3 pb-3 text-center text-secondary fw-bolder mt-5">All Lists</h1>
   
           <div class="d-flex justify-content-center">
             <div v-show="showSpinner" class="spinner-border" role="status">
@@ -57,11 +57,10 @@
             </div>
   
   
-            <div v-show="showListsTable" class="text-center">
+            <div v-show="showListsTable" class="text-center rounded m-auto" id="newClass">
   
-              <div class="bg-body rounded">
   
-                <table class="table listTable mt-5">
+                <table class="table listTable rounded mt-5">
                   <thead>
                     <tr>
                       <th scope="col">List Name</th>
@@ -87,7 +86,6 @@
                   </tbody>
                 </table>
   
-              </div>
             </div>
   
             <div class="text-center">
@@ -101,7 +99,7 @@
   
   
             <div v-show="showUsersImage" class="text-center">
-              <h1 class="text-center text-white fw-bolder m-5">All Users</h1>
+              <h1 class="text-center text-secondary fw-bolder m-5">All Users</h1>
               <img src="../images/oops.png" alt="no list">
               <h3 class="mt-5">No email is there</h3>
               <div class="text-center">
@@ -110,14 +108,13 @@
             </div>
   
   
-            <div v-show="showUsersTable" class="text-center">
+            <div v-show="showUsersTable" class="text-center m-auto">
               <hr>
   
               <h1 class="mb-3 pb-3 text-center text-white fw-bolder mt-5">All Users</h1>
   
-              <div class="bg-body rounded">
   
-                <table class="table userTable mt-5">
+                <table class="table userTable rounded mt-5 m-auto" id="newClass">
                   <thead>
                     <tr>
                       <th scope="col">User Name</th>
@@ -137,7 +134,6 @@
                   </tbody>
                 </table>
   
-              </div>
               <div class="text-center">
                 <button @click="addUser()" type="button" class="btn btn-primary m-5">Add an Email</button>
               </div>

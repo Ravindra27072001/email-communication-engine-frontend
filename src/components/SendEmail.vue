@@ -2,11 +2,11 @@
     <section class="body">
         <NavBar />
 
-        <div class="container p-5">
-            <h1 class="mb-3 pb-3 text-center fw-bolder text-white">Send an Email</h1>
+        <div class="pt-5">
+            <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary">Send an Email</h1>
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col col-xl-8">
-                    <div class="rounded tables p-3">
+                    <div class="rounded tables m-auto"  id="newClass">
 
                         <form class="p-3" @submit.prevent="submit">
 
@@ -202,4 +202,7 @@ export default {
 </script>
 
 <style>
+    #newClass{
+        background-color: #2f53a538;;
+    }
 </style>

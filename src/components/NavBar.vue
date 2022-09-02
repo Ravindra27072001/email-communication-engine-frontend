@@ -4,7 +4,10 @@
         <div id="nav">
             <nav class="navbar navbar-expand-lg navbar-light tables">
                 <div class="container-fluid">
-                    <a class="navbar-brand p-2" href="/home">Email Engine</a>
+                    <router-link to="/home" class="text-decoration-none">
+                        <span class="colorClass p-2">Email Engine</span>
+                    </router-link>
+                    <!-- <h1 class="colorClass p-2 mt-1" href="/home">Email Engine</h1> -->
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -77,13 +80,21 @@ export default {
 </script>
 
 <style>
+.colorClass {
+    font-weight: bold;
+    font-size: 25px;
+    color: firebrick;
+}
+
 .body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
 }
+
 .tables {
-    background-color: lightblue;
+    background-color: #6581d07a
 }
+
 /* .navbar-brand:hover,
 .nav-link:hover {
     background-color: rgba(128, 128, 128, 0.5);
@@ -98,14 +109,17 @@ export default {
     background-color: lightgrey;
     border-radius: 5px;
 }
+
 #nav a {
     font-weight: bold;
     color: #2c3e50;
 }
+
 @media(max-width: 990px) {
     .email {
         display: none;
     }
+
     .nav-link {
         text-align: center;
     }

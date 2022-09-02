@@ -1,14 +1,14 @@
 <template>
-    <section class="body mt-5">
-      <div class="container p-5">
+    <section class="mt-5 body">
+      <div class="pt-3">
         <div class="row d-flex justify-content-center align-items-center">
           <div class="col col-xl-10">
-            <div class="card rounded">
+            <div class="card border-0 rounded m-auto p-3" id="newClass">
               <div class="row g-0">
                 <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
                   <img src="../images/email.png" alt="login form" class="img-fluid" style="
                       border-radius: 1rem 0 0 1rem;
-                      padding: 20px;
+                      padding-right: 20px;
                       margin-top: 150px;
                       margin-bottom: 70px;
                     " />
@@ -17,7 +17,7 @@
                   <div class="card-body rounded">
                     <form @submit.prevent="submit">
   
-                      <h1 class="mb-3 pb-3 text-center">SignUp to your account</h1>
+                      <h2 class="mb-3 pb-3 text-center">SignUp to your account</h2>
   
                       <div class="form-outline">
                         <label class="form-label" for="form-control">Name</label>

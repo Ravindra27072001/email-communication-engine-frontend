@@ -3,7 +3,7 @@
         <div class="container mt-5">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col col-xl-10">
-                    <div class="card rounded m-5">
+                    <div class="card rounded mt-5 m-auto" id="newClass">
                         <div class="row g-0">
                             <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
                                 <img src="../images/verifyEmail.png" alt="login form" class="img-fluid"

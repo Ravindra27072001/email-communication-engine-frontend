@@ -2,15 +2,15 @@
     <section class="body">
         <NavBar />
 
-        <div class="container p-5">
-            <h1 class="mb-3 pb-3 text-center fw-bolder text-white">Add a List</h1>
+        <div class="pt-5">
+            <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary mt-3">Add a List</h1>
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col col-xl-8">
-                    <div class="card rounded">
+                    <div class="card rounded m-auto" id="newClass">
                         <div class="row g-0">
                             <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
                                 <img src="../images/addList.png" alt="login form" class="img-fluid"
-                                    style="border-radius: 1rem 0 0 1rem;margin-left: 25px; margin-top: 50px; margin-bottom: 40px; width: 300px;" />
+                                    style="border-radius: 1rem 0 0 1rem;margin-left: 10px; margin-top: 50px; margin-bottom: 40px; width: 300px;" />
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body rounded">

@@ -22,7 +22,7 @@
         </div>
   
         <div>
-          <h1 class="mb-3 pb-3 text-center text-white fw-bolder m-5">All Accounts</h1>
+          <h1 class="mb-3 pb-3 text-center text-secondary fw-bolder m-5">All Accounts</h1>
   
           <div class="d-flex justify-content-center">
             <div v-show="showSpinner" class="spinner-border" role="status">
@@ -32,14 +32,12 @@
   
           <div v-show="showImage" class="text-center">
             <img src="../images/oops.png" alt="no account">
-            <h3 class="mt-5 text-white">You don't have any account</h3>
+            <h3 class="mt-5 text-dark">You don't have any account</h3>
           </div>
   
-          <div v-show="showTable" class="container">
+          <div v-show="showTable" class="mt-5 rounded">
   
-  
-  
-            <table class="table accountTable shadow p-5 mt-5 mb-5 bg-body rounded ">
+            <table class="table accountTable rounded m-auto" id="newClass">
               <thead>
                 <tr>
                   <th scope="col">S.No.</th>

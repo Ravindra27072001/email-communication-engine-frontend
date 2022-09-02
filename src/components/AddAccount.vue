@@ -2,11 +2,11 @@
     <section class="body">
         <NavBar />
 
-        <div class="container  p-5">
-            <h1 class="mb-3 pb-3 text-center fw-bolder text-white">Add an account</h1>
+        <div class="pt-5">
+            <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary">Add an account</h1>
             <div class="row d-flex justify-content-center align-items-center ">
                 <div class="col col-xl-8">
-                    <div class="card rounded">
+                    <div class="card rounded mt-5 m-auto" id="newClass">
                         <div class="row g-0">
                             <div class="col-md-6 col-lg-5 d-none d-md-block">
                                 <img src="../images/addAccount.png" alt="login form" class="img-fluid"

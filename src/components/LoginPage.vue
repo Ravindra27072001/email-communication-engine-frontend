@@ -1,13 +1,13 @@
 <template>
-    <section class="body mt-5">
-        <div class="container p-5">
+    <section class="mt-5 body">
+        <div class="container">
             <div class="row d-flex justify-content-center align-items-center">
-                <div class="col col-xl-10">
-                    <div class="card rounded">
+                <div class="col col-xl-10 mt-5">
+                    <div class="card border-0 rounded m-auto" id="newClass">
                         <div class="row g-0">
                             <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
                                 <img src="../images/email.png" alt="login form" class="img-fluid"
-                                    style="border-radius: 1rem 0 0 1rem; margin-top: 100px; margin-bottom: 100px;" />
+                                    style="border-radius: 1rem 0 0 1rem; margin-top: 100px; margin-bottom: 100px; padding: 10px;" />
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body rounded">
@@ -16,9 +16,9 @@
                                             <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219"></i>
                                         </div>
 
-                                        <h1 class="mb-3 pb-3 text-center">
-                                            Sign into your account
-                                        </h1>
+                                        <h2 class="mb-3 pb-3 text-center">
+                                            Signin to your account
+                                        </h2>
 
                                         <div class="form-outline">
                                             <label class="form-label" for="form-control">Email address</label>
@@ -112,4 +112,9 @@ export default {
 </script>
 
 <style>
+#newClass {
+    box-shadow: 17px 10px 20px 6px black;
+    background-color: white;
+    width: 80%;
+}
 </style>

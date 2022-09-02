@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-secondary">
+  <div class="background">
     <router-view></router-view>
   </div>
 </template>
@@ -11,7 +11,11 @@ export default {
 </script>
 
 <style>
+
 html{
-  background-color: #6C757D;
+  background-image: url("./images/background.png");
+}
+.background{
+  background-image: url("./images/background.png");
 }
 </style>
