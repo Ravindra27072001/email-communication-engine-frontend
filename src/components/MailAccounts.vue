@@ -26,9 +26,11 @@
         <h1 class="mb-3 pb-3 text-center text-secondary fw-bolder m-5">All Accounts</h1>
 
         <div class="d-flex justify-content-center">
+
           <div v-show="showSpinner" class="spinner-border" role="status">
             <span class="visually-hidden"></span>
           </div>
+
         </div>
 
         <div v-show="showImage" class="text-center">
@@ -52,25 +54,28 @@
                 <th scope="col">Action</th>
               </tr>
             </thead>
+
             <tbody>
               <tr v-for="account, i in accounts" :key="account._id">
+
                 <td data-label="S.No.">{{ ++i }}</td>
                 <td data-label="Email">{{ account.email }}</td>
                 <td data-label="Company Name">{{ account.companyName }}</td>
-
-                <td data-label="Action"><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                <td data-label="Action">
+                  <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                     data-bs-target="#exampleModal" @click="getAccountId(account._id)">
                     Delete
-                  </button></td>
-
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
-
         </div>
+        
         <div class="text-center">
           <button @click="addAccount()" type="button" class="btn btn-primary m-5">Add Account</button>
         </div>
+
       </div>
     </section>
   </div>
@@ -78,14 +83,14 @@
 </template>
   
   <script>
+
 import { SearchAccounts, DeleteAccount } from '../services/mailAccounts'
 import NavBar from "./NavBar.vue";
+
 export default {
   name: "MailAccount",
   components: { NavBar },
-  // component: {
-  //   NavBar,
-  // },
+
   data() {
     return {
       accounts: "",
@@ -96,19 +101,26 @@ export default {
       showTable: true,
     };
   },
+
   methods: {
+
     addAccount() {
       this.$router.push({ name: "addAccount" });
     },
+
     getAccountId(_id) {
       this.accountId = _id;
     },
+
     removeAccount() {
+
       DeleteAccount(this.accountId).then((result) => {
+
         if (result.data.status == "SUCCESS") {
           this.$toasted.show(result.data.message, {
             type: 'success'
           });
+
           SearchAccounts(this.userId).then((response) => {
             if (response.data.message === "No account is there") {
               this.showImage = true;
@@ -116,7 +128,8 @@ export default {
             }
             this.accounts = response.data.data;
           });
-        } else {
+        } 
+        else {
           this.$toasted.show(result.data.message, {
             type: 'error'
           });
@@ -125,8 +138,11 @@ export default {
     }
   },
   mounted() {
+
     this.userId = localStorage.getItem("userId");
+
     SearchAccounts(this.userId).then((response) => {
+      
       if (response.data.message === "No account is there") {
         this.showSpinner = false;
         this.showImage = true;

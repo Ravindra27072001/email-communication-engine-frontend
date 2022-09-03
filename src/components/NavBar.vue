@@ -3,16 +3,19 @@
 
         <div id="nav">
             <nav class="navbar navbar-expand-lg navbar-light tables">
+
                 <div class="container-fluid">
+
                     <router-link to="/home" class="text-decoration-none">
                         <span class="colorClass p-2">Email</span>
                     </router-link>
-                    <!-- <h1 class="colorClass p-2 mt-1" href="/home">Email Engine</h1> -->
+
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
 
@@ -42,21 +45,19 @@
 
                                 </ul>
                             </li>
-
-
-
-
                         </ul>
 
-                        <div class="ms-auto text-primary email ">Hello- {{ email }} </div>
+                        <div class="d-flex ms-auto">
+                            <p class="mt-3"> Hello- </p>
+                            <p class="text-danger email mt-3">{{ email }}</p>
+                        </div>
+
                         <router-link to="/" class="text-decoration-none">
                             <span class="nav-link text-dark ms-2 p-2" @click="logout()">Logout</span>
                         </router-link>
 
                     </div>
                 </div>
-
-
             </nav>
         </div>
     </div>
@@ -101,17 +102,7 @@ export default {
     background-color: #6581d07a
 }
 
-/* .navbar-brand:hover,
-.nav-link:hover {
-    background-color: rgba(128, 128, 128, 0.5);
-    border-radius: 5px;
-} */
-/* #nav a.router-link-exact-active {
-  color: #42b983;
-} */
 #nav a:hover {
-    /* padding: 20px; */
-    /* text-align: center; */
     background-color: lightgrey;
     border-radius: 5px;
 }

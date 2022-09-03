@@ -5,13 +5,18 @@
                 <div class="col col-xl-10 mt-5">
                     <div class="card border-0 rounded m-auto" id="newClass">
                         <div class="row g-0">
+
                             <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
                                 <img src="../images/email.png" alt="login form" class="img-fluid"
                                     style="border-radius: 1rem 0 0 1rem; margin-top: 100px; margin-bottom: 100px; padding: 10px;" />
                             </div>
+
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
+
                                 <div class="card-body rounded">
+
                                     <form @submit.prevent="login">
+
                                         <div class="d-flex align-items-center mb-3 pb-1">
                                             <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219"></i>
                                         </div>
@@ -61,12 +66,10 @@
 </template>
 
 <script>
+
 import { required, email } from 'vuelidate/lib/validators'
 import { Signin } from '@/services/signin'
-// import store from '../store/modules/auth'
-// import Vue from 'vue'
-// import axios from 'axios'
-// import { response } from 'express'
+
 export default {
     name: 'LoginPage',
     data() {
@@ -88,16 +91,20 @@ export default {
                 email: this.email,
                 password: this.password
             }
+
             Signin(credentials).then((response) => {
+
                 if (response.data.status === "FAILED") {
                     this.$toasted.show(response.data.message, {
                         type: 'error'
                     });
                 } else {
                     const { authToken, email, userId } = response.data;
+
                     localStorage.setItem('token', authToken);
                     localStorage.setItem('email', email);
                     localStorage.setItem('userId', userId);
+                    
                     this.$toasted.show(response.data.message, {
                         type: 'success'
                     });

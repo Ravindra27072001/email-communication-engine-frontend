@@ -94,12 +94,15 @@
 </template>
 
 <script>
+
 import NavBar from './NavBar.vue';
 import { required } from "vuelidate/lib/validators";
 import { SearchList } from '../services/allLists'
 import { SearchAccounts } from '../services/mailAccounts'
 import { SendEmail } from '../services/sendEmail'
+
 export default {
+
     name: "AddAccount",
     components: { NavBar },
     data() {
@@ -144,18 +147,23 @@ export default {
         }
     },
     methods: {
+
         async submit() {
+
             this.$v.$touch()
+
             const getHour = (time) => {
                 return time[0] + time[1];
             };
             const getMin = (time) => {
                 return time[3] + time[4];
             };
+
             const startTimeHour = getHour(this.startTime);
             const startTimeMin = getMin(this.startTime);
             const endTimeHour = getHour(this.endTime);
             const endTimeMin = getMin(this.endTime);
+
             const startTimeObj = {
                 hours: startTimeHour,
                 minutes: startTimeMin,
@@ -164,6 +172,7 @@ export default {
                 hours: endTimeHour,
                 minutes: endTimeMin,
             };
+
             const credentials = {
                 subject: this.subject,
                 from: this.from,
@@ -175,12 +184,15 @@ export default {
                 endTime: endTimeObj,
                 userId: this.userId
             }
+
             SendEmail(credentials).then((result) => {
+
                 if (result.data.status == "FAILED") {
                     this.$toasted.show(result.data.message, {
                         type: 'error'
                     });
-                } else {
+                } 
+                else {
                     this.$toasted.show(result.data.message, {
                         type: 'success'
                     });

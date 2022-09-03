@@ -3,17 +3,22 @@
         <NavBar />
 
         <div class="pt-5">
+
             <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary">Add an email</h1>
+
             <div class="d-flex justify-content-center align-items-center">
                 <div class="col col-xl-8">
                     <div class="card mt-3 m-auto" id="newClass">
                         <div class="row g-0">
+
                             <div class=" col-md-6 col-lg-5 d-none d-md-block">
                                 <img src="../images/addAccount.png" alt="login form" class="img-fluid"
                                     style="border-radius: 1rem 0 0 1rem;padding: 10px; margin-left: 10px; margin-top: 50px; margin-bottom: 40px;" />
                             </div>
+
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body rounded">
+
                                     <form @submit.prevent="submit">
 
                                         <div class="form-outline">
@@ -74,10 +79,11 @@
 </template>
 
 <script>
+
 import { required, email } from 'vuelidate/lib/validators'
 import NavBar from './NavBar.vue';
-// import { AddAccount } from '@/services/mailAccounts'
 import { SearchList, AddUser } from '../services/allLists'
+
 export default {
     name: "AddAccount",
     components: { NavBar },
@@ -115,12 +121,14 @@ export default {
     methods: {
         async submit() {
             this.$v.$touch();
+
             const credentials = {
                 userId: this.userId,
                 name: this.name,
                 email: this.email,
                 listName: this.listName
             }
+            
             AddUser(credentials).then((result) => {
                 if (result.data.status === "FAILED") {
                     this.$toasted.show(result.data.message, {

@@ -8,12 +8,15 @@
                 <div class="col col-xl-8">
                     <div class="card rounded m-auto" id="newClass">
                         <div class="row g-0">
+
                             <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
                                 <img src="../images/addList.png" alt="login form" class="img-fluid"
                                     style="border-radius: 1rem 0 0 1rem;margin-left: 10px; margin-top: 50px; margin-bottom: 40px; width: 300px;" />
                             </div>
+
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body rounded">
+
                                     <form @submit.prevent="submit">
 
                                         <div class="form-outline">
@@ -53,9 +56,11 @@
 </template>
 
 <script>
+
 import NavBar from './NavBar.vue';
 import { required } from 'vuelidate/lib/validators'
 import { AddList } from '@/services/allLists'
+
 export default {
     name: "AddAccount",
     components: { NavBar },
@@ -76,11 +81,13 @@ export default {
     },
     methods: {
         async submit() {
+
             const credentials = {
                 userId: localStorage.getItem("userId"),
                 listName: this.listName,
                 description: this.description
             }
+            
             AddList(credentials).then((result) => {
                 if (result.data.status === "FAILED") {
                     this.$toasted.show(result.data.message, {

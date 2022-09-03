@@ -42,11 +42,9 @@
 
                 <div class="d-flex row justify-content-center m-auto p-3">
 
-                    <!-- <div v-for="list in lists" v-bind:key="list._id" class="card col-lg-3 col-md-3 m-2" style="min-width:365px"> -->
-
-
                     <div v-for="list in lists" v-bind:key="list._id" class="card col-lg-3 col-md-3 p-3 m-2"
                         style="min-width:355px; box-shadow: 7px 10px 20px 6px;">
+
                         <h2 class="card-title">{{ list.subject }}</h2>
                         <hr>
                         <div class="d-flex">
@@ -75,14 +73,15 @@
                 </div>
 
             </div>
-            <!-- </div> -->
         </div>
     </div>
 </template>
 
 <script>
+
 import NavBar from "./NavBar.vue";
 import { ScheduledEmails, DeleteMeeting } from '../services/homePage'
+
 export default {
     components: {
         NavBar
@@ -133,6 +132,7 @@ export default {
     },
     mounted() {
         ScheduledEmails(this.userId).then((result) => {
+            
             if (result.data.status === "FAILED") {
                 this.showSpinner = false;
                 this.showEmails = true;

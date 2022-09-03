@@ -58,12 +58,9 @@
                 <p class="mt-3">You don't have any list</p>
               </div>
             </div>
-
           </div>
 
-
           <div v-show="showListsTable" class="text-center rounded m-auto" id="newClass">
-
 
             <table class="table listTable rounded mt-5">
               <thead>
@@ -76,17 +73,18 @@
               </thead>
               <tbody>
                 <tr v-for="list in lists" :key="list._id">
+
                   <td data-label="List Name">{{ list.listName }}</td>
                   <td data-label="Users"> <button @click="userList(list._id)" type="button"
                       class="btn btn-primary btn-sm">Users list</button></td>
                   <td data-label="Description">{{ list.description }}</td>
-                  <td data-label="Action"><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                  <td data-label="Action">
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                       data-bs-target="#exampleModal" @click="getListId(list._id)">
                       Delete
-                    </button></td>
+                    </button>
+                  </td>
 
-
-                  <!-- <button @click="removeList(list._id)" type="button" class="btn btn-danger btn-sm">Delete</button> -->
                 </tr>
               </tbody>
             </table>
@@ -99,12 +97,11 @@
         </div>
 
 
-
         <div>
-
-
           <div v-show="showUsersImage" class="text-center">
+
             <h1 class="mb-3 pb-3 text-center text-secondary fw-bolder mt-5">All Users</h1>
+
             <div id="main">
               <div class="fof">
                 <h1>OOPS</h1>
@@ -123,7 +120,6 @@
 
             <h1 class="mb-3 pb-3 text-center text-secondary fw-bolder mt-5">All Users</h1>
 
-
             <table class="table userTable rounded mt-5 m-auto" id="newClass">
               <thead>
                 <tr>
@@ -136,10 +132,12 @@
                 <tr v-for="user in usersEmails" :key="user._id">
                   <td data-label="User Name">{{ user.name }}</td>
                   <td data-label="Email"> {{ user.email }}</td>
-                  <td data-label="Action"><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                  <td data-label="Action">
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                       data-bs-target="#exampleModal1" @click="getMemberId(user._id)">
                       Delete
-                    </button></td>
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -149,20 +147,17 @@
             </div>
           </div>
         </div>
-
       </div>
-
-
-
-
     </section>
   </div>
 
 </template>
   
   <script>
+
 import { SearchList, SearchUserEmail, DeleteList, DeleteMember } from '../services/allLists'
 import NavBar from "./NavBar.vue";
+
 export default {
   name: "MailAccount",
   components: {
@@ -185,40 +180,55 @@ export default {
   },
   methods: {
     async userList(id) {
+
       this.SearchUserId = id;
+
       const result = await SearchUserEmail(id)
+
       this.showUsersTable = true;
       this.showUsersImage = false;
+
       this.usersEmails = result.data.data
+
       if (!this.usersEmails.length) {
         this.showUsersImage = true;
         this.showUsersTable = false;
       }
     },
+
     addUser() {
       this.$router.push({ name: "addEmail" });
     },
+
     addList() {
       this.$router.push({ name: "addList" });
     },
+
     getListId(_id) {
       this.listId = _id;
     },
+
     getMemberId(_id) {
       this.memberId = _id;
     },
+
     async removeList() {
+
       const result = await DeleteList(this.listId)
+
       if (result.data.status == "SUCCESS") {
         const response = await SearchList(this.userId);
+
         if (response.data.status === "FAILED") {
           this.showListsImage = true;
           this.showListsTable = false;
         }
         else {
           this.lists = response.data.data;
+
           const result = await SearchUserEmail(this.listId);
           this.usersEmails = result.data.data
+
           if (!this.usersEmails.length) {
             this.showUsersImage = true;
             this.showUsersTable = false;
@@ -236,7 +246,9 @@ export default {
     },
 
     async removeMember() {
+
       const result = await DeleteMember(this.memberId)
+
       if (result.data.message === "No Email is there") {
         this.$toasted.show(result.data.message, {
           type: 'error'
@@ -247,7 +259,9 @@ export default {
           type: 'success'
         });
         const response = await SearchUserEmail(this.SearchUserId);
+
         this.usersEmails = response.data.data
+
         if (!this.usersEmails.length) {
           this.showUsersImage = true;
           this.showUsersTable = false;
@@ -256,7 +270,9 @@ export default {
     }
   },
   mounted() {
+
     SearchList(this.userId).then((response) => {
+      
       if (response.data.status === "FAILED") {
         this.showSpinner = true;
         this.showListsImage = true;
