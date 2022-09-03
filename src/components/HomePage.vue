@@ -41,7 +41,7 @@
 
 
                         <div v-for="list in lists" v-bind:key="list._id" class="card col-lg-3 col-md-3 p-3 m-2" 
-                            style="min-width:365px; box-shadow: 7px 10px 20px 6px;">
+                            style="min-width:355px; box-shadow: 7px 10px 20px 6px;">
                             <h2 class="card-title" >{{ list.subject }}</h2>
                             <hr>
                             <div class="d-flex">
@@ -54,7 +54,7 @@
                                 <p class="card-text ms-2">{{ list.startTime }} to {{ list.endTime }}</p>
                             </div>
 
-                            <div class="d">
+                            <div class="d-flex">
                                 <h5 class="text-primary">Admin: </h5>
                                 <p class="card-text ms-2">{{ list.from }}</p>
                             </div>
@@ -149,7 +149,7 @@ export default {
 </script>
 
 <style>
-.d {
+/* .d {
     display: flex;
 }
 
@@ -157,5 +157,5 @@ export default {
     .d {
         display: block;
     }
-}
+} */
 </style>

@@ -112,9 +112,5 @@ export default {
 </script>
 
 <style>
-#newClass {
-    box-shadow: 17px 10px 20px 6px black;
-    background-color: white;
-    width: 80%;
-}
+
 </style>
