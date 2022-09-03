@@ -32,9 +32,14 @@
                 </div>
 
                 <div v-show="showEmails" class="text-center mt-5">
-                    <img src="../images/oops.png" alt="no list">
-                    <h3 class="text-dark mt-5">No scheduled email is there</h3>
+                    <div id="main">
+                        <div class="fof">
+                            <h1>OOPS</h1>
+                            <p class="mt-3">No scheduled email is there</p>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="d-flex row justify-content-center m-auto p-3">
 
                     <!-- <div v-for="list in lists" v-bind:key="list._id" class="card col-lg-3 col-md-3 m-2" style="min-width:365px"> -->
@@ -140,14 +145,39 @@ export default {
 }
 </script>
 
-<style>
-/* .d {
-    display: flex;
+<style scoped>
+#main {
+    display: table;
+    width: 100%;
+    text-align: center;
+    margin-top: 100px;
 }
 
-@media(max-width: 550px) {
-    .d {
-        display: block;
+.fof p {
+    font-size: 25px;
+}
+
+.fof {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.fof h1 {
+    font-size: 100px;
+    display: inline-block;
+    padding-right: 12px;
+    animation: type .5s alternate infinite;
+}
+
+@keyframes type {
+
+    from {
+        box-shadow: inset 5px 5px 5px grey
     }
-} */
+
+    to {
+        box-shadow: inset -3px 5px 5px transparent;
+    }
+
+}
 </style>

@@ -1,140 +1,181 @@
 <template>
-    <div class="body">
-      <NavBar />
-  
-      <section>
-  
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <div class="modal-body">
-                  Do you really want to delete the Account ?
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="body">
+    <NavBar />
+
+    <section>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-body">
+                Do you really want to delete the Account ?
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" @click="removeAccount()">Delete</button>
-              </div>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                @click="removeAccount()">Delete</button>
             </div>
           </div>
         </div>
-  
-        <div>
-          <h1 class="mb-3 pb-3 text-center text-secondary fw-bolder m-5">All Accounts</h1>
-  
-          <div class="d-flex justify-content-center">
-            <div v-show="showSpinner" class="spinner-border" role="status">
-              <span class="visually-hidden"></span>
-            </div>
-          </div>
-  
-          <div v-show="showImage" class="text-center">
-            <img src="../images/oops.png" alt="no account">
-            <h3 class="mt-5 text-dark">You don't have any account</h3>
-          </div>
-  
-          <div v-show="showTable" class="mt-5 rounded">
-  
-            <table class="table accountTable rounded m-auto" id="newClass">
-              <thead>
-                <tr>
-                  <th scope="col">S.No.</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Company Name</th>
-                  <!-- <th scope="col">Passwod</th> -->
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="account, i in accounts" :key="account._id">
-                  <td data-label="S.No.">{{  ++i  }}</td>
-                  <td data-label="Email">{{  account.email  }}</td>
-                  <td data-label="Company Name">{{  account.companyName  }}</td>
-  
-                  <td data-label="Action"><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                      data-bs-target="#exampleModal" @click="getAccountId(account._id)">
-                      Delete
-                    </button></td>
-  
-                </tr>
-              </tbody>
-            </table>
-  
-          </div>
-          <div class="text-center">
-            <button @click="addAccount()" type="button" class="btn btn-primary m-5">Add Account</button>
+      </div>
+
+      <div>
+        <h1 class="mb-3 pb-3 text-center text-secondary fw-bolder m-5">All Accounts</h1>
+
+        <div class="d-flex justify-content-center">
+          <div v-show="showSpinner" class="spinner-border" role="status">
+            <span class="visually-hidden"></span>
           </div>
         </div>
-      </section>
-    </div>
-  
-  </template>
+
+        <div v-show="showImage" class="text-center">
+          <div id="main">
+            <div class="fof">
+              <h1>OOPS</h1>
+              <p class="mt-3">You don't have any account</p>
+            </div>
+          </div>
+        </div>
+
+        <div v-show="showTable" class="mt-5 rounded">
+
+          <table class="table accountTable rounded m-auto" id="newClass">
+            <thead>
+              <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Email</th>
+                <th scope="col">Company Name</th>
+                <!-- <th scope="col">Passwod</th> -->
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="account, i in accounts" :key="account._id">
+                <td data-label="S.No.">{{ ++i }}</td>
+                <td data-label="Email">{{ account.email }}</td>
+                <td data-label="Company Name">{{ account.companyName }}</td>
+
+                <td data-label="Action"><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" @click="getAccountId(account._id)">
+                    Delete
+                  </button></td>
+
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+        <div class="text-center">
+          <button @click="addAccount()" type="button" class="btn btn-primary m-5">Add Account</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</template>
   
   <script>
-  import { SearchAccounts, DeleteAccount } from '../services/mailAccounts'
-  import NavBar from "./NavBar.vue";
-  export default {
-    name: "MailAccount",
-    components: { NavBar },
-    // component: {
-    //   NavBar,
-    // },
-    data() {
-      return {
-        accounts: "",
-        userId: "",
-        accountId: "",
-        showSpinner: true,
-        showImage: false,
-        showTable: true,
-      };
+import { SearchAccounts, DeleteAccount } from '../services/mailAccounts'
+import NavBar from "./NavBar.vue";
+export default {
+  name: "MailAccount",
+  components: { NavBar },
+  // component: {
+  //   NavBar,
+  // },
+  data() {
+    return {
+      accounts: "",
+      userId: "",
+      accountId: "",
+      showSpinner: true,
+      showImage: false,
+      showTable: true,
+    };
+  },
+  methods: {
+    addAccount() {
+      this.$router.push({ name: "addAccount" });
     },
-    methods: {
-      addAccount() {
-        this.$router.push({ name: "addAccount" });
-      },
-      getAccountId(_id){
-        this.accountId = _id;
-      },
-      removeAccount() {
-        DeleteAccount(this.accountId).then((result) => {
-          if (result.data.status == "SUCCESS") {
-            this.$toasted.show(result.data.message, {
-              type: 'success'
-            });
-            SearchAccounts(this.userId).then((response) => {
-              if (response.data.message === "No account is there") {
-                this.showImage = true;
-                this.showTable = false;
-              }
-              this.accounts = response.data.data;
-            });
-          } else {
-            this.$toasted.show(result.data.message, {
-              type: 'error'
-            });
-          }
-        })
-      }
+    getAccountId(_id) {
+      this.accountId = _id;
     },
-    mounted() {
-      this.userId = localStorage.getItem("userId");
-      SearchAccounts(this.userId).then((response) => {
-        if (response.data.message === "No account is there") {
-          this.showSpinner = false;
-          this.showImage = true;
-          this.showTable = false;
+    removeAccount() {
+      DeleteAccount(this.accountId).then((result) => {
+        if (result.data.status == "SUCCESS") {
+          this.$toasted.show(result.data.message, {
+            type: 'success'
+          });
+          SearchAccounts(this.userId).then((response) => {
+            if (response.data.message === "No account is there") {
+              this.showImage = true;
+              this.showTable = false;
+            }
+            this.accounts = response.data.data;
+          });
+        } else {
+          this.$toasted.show(result.data.message, {
+            type: 'error'
+          });
         }
+      })
+    }
+  },
+  mounted() {
+    this.userId = localStorage.getItem("userId");
+    SearchAccounts(this.userId).then((response) => {
+      if (response.data.message === "No account is there") {
         this.showSpinner = false;
-        this.accounts = response.data.data;
-      });
-    },
-  }
-  </script>
+        this.showImage = true;
+        this.showTable = false;
+      }
+      this.showSpinner = false;
+      this.accounts = response.data.data;
+    });
+  },
+}
+</script>
   
   <style>
+  #main {
+    display: table;
+    width: 100%;
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  
+  .fof {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
+  .fof p {
+    font-size: 25px;
+  }
+  
+  .fof h1 {
+    font-size: 100px;
+    display: inline-block;
+    padding-right: 12px;
+    animation: type .5s alternate infinite;
+  }
+  
+  @keyframes type {
+  
+    from {
+      box-shadow: inset 5px 5px 5px grey
+    }
+  
+    to {
+      box-shadow: inset -3px 5px 5px transparent;
+    }
+  
+  }
+  
   @media (max-width: 775px) {
     .accountTable td::before {
       content: attr(data-label);
