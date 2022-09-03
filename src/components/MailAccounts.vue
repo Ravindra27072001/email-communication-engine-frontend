@@ -96,20 +96,16 @@
         this.$router.push({ name: "addAccount" });
       },
       getAccountId(_id){
-        console.log("accountId: ", _id);
         this.accountId = _id;
       },
       removeAccount() {
-        // console.log("yeee id aa gyii: ", id);
         DeleteAccount(this.accountId).then((result) => {
-          console.log(result.data.status)
           if (result.data.status == "SUCCESS") {
             this.$toasted.show(result.data.message, {
               type: 'success'
             });
             SearchAccounts(this.userId).then((response) => {
               if (response.data.message === "No account is there") {
-                console.log("dataswaz", response.data.message);
                 this.showImage = true;
                 this.showTable = false;
               }
@@ -124,11 +120,9 @@
       }
     },
     mounted() {
-      // console.log("localstorage", localStorage.getItem("userId"));
       this.userId = localStorage.getItem("userId");
       SearchAccounts(this.userId).then((response) => {
         if (response.data.message === "No account is there") {
-          console.log("dataswaz", response.data.message);
           this.showSpinner = false;
           this.showImage = true;
           this.showTable = false;

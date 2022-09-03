@@ -174,7 +174,6 @@
     methods: {
       async submit() {
         this.$v.$touch();
-        console.log("object", localStorage.getItem('token'));
         const credentials = {
           name: this.name,
           email: this.email,
@@ -196,7 +195,6 @@
                 this.$toasted.show(response.data.message, {
                   type: 'success'
                 });
-                console.log(response.data)
                 this.userId = response.data.data.userId
                 this.otp = response.data.data.otp
                 this.showSpinner = false;

@@ -115,8 +115,6 @@ export default {
     methods: {
         async submit() {
             this.$v.$touch();
-            console.log("listName: ", this.listName, this.userId);
-            console.log('touched')
             const credentials = {
                 userId: this.userId,
                 name: this.name,
@@ -124,7 +122,6 @@ export default {
                 listName: this.listName
             }
             AddUser(credentials).then((result) => {
-                console.log("ye rhi list ki id: ", result.data);
                 if (result.data.status === "FAILED") {
                     this.$toasted.show(result.data.message, {
                         type: 'error'
@@ -139,8 +136,6 @@ export default {
         }
     },
     mounted() {
-        console.log("listName: ", this.listName);
-        console.log("userId: ", this.userId);
         SearchList(this.userId).then((response) => {
             this.lists = response.data.data;
         });

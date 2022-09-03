@@ -10,7 +10,6 @@ export const SearchList = async (userId) => {
 }
 
 export const SearchUserEmail = async (id) => {
-    // console.log("object", id);
     return await axios.get(`${process.env.VUE_APP_BASE_URL}/list/usersEmails/${id}`, {
         headers: {
             "Content-Type": "application/json",
@@ -43,7 +42,6 @@ export const AddList = async (credentials) => {
 }
 
 export const DeleteList = async (id) => {
-    console.log("id", id);
     return await axios.delete(
         `${process.env.VUE_APP_BASE_URL}/list/deleteList/${id}`,
         {

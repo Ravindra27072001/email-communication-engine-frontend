@@ -123,16 +123,13 @@ export default {
     methods: {
         async submit() {
             this.$v.$touch();
-            console.log('touched')
             const credentials = {
                 userId: localStorage.getItem("userId"),
                 companyName: this.companyName,
                 email: this.email,
                 password: this.password,
             }
-            console.log(credentials)
             AddAccount(credentials).then((result) => {
-                console.log("result is: ", result.data)
                 if (result.data.status === "FAILED") {
                     this.$toasted.show(result.data.message, {
                         type: 'error'

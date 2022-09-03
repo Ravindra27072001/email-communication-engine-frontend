@@ -176,7 +176,6 @@
     methods: {
       async userList(id) {
         this.SearchUserId = id;
-        console.log("is:", id);
         const result = await SearchUserEmail(id)
         this.showUsersTable = true;
         this.showUsersImage = false;
@@ -194,11 +193,9 @@
       },
       getListId(_id) {
         this.listId = _id;
-        console.log("List Id: ", this.listId);
       },
       getMemberId(_id) {
         this.memberId = _id;
-        console.log("memberId", this.memberId);
       },
       async removeList() {
         const result = await DeleteList(this.listId)
@@ -227,8 +224,8 @@
           });
         }
       },
+      
       async removeMember() {
-        console.log("memberId", this.memberId);
         const result = await DeleteMember(this.memberId)
         if (result.data.message === "No Email is there") {
           this.$toasted.show(result.data.message, {
@@ -251,7 +248,6 @@
     mounted() {
       SearchList(this.userId).then((response) => {
         if (response.data.status === "FAILED") {
-          console.log("dataswaz", response.data.message);
           this.showSpinner = true;
           this.showListsImage = true;
           this.showListsTable = false;

@@ -8,18 +8,10 @@ import AddAccount from '@/components/AddAccount'
 import AddList from '@/components/AddList'
 import AllLists from '@/components/AllLists'
 import AddEmail from '@/components/AddEmail'
-// import AllUsersEmails from '@/components/AllUsersEmails'
 import SendEmail from "@/components/SendEmail"
 import PageNotFound from '@/components/PageNotFound'
 import HomePage from '@/components/HomePage'
 
-// import store from "@/store";
-
-// const require = `${localStorage.getItem('token')}`
-
-// console.log("des,cjhx",require);
-
-// const authToken = localStorage.getItem('token');
 
 const router = new Router(
     {
@@ -113,7 +105,6 @@ const router = new Router(
 );
 
 router.beforeEach((to,from,next) => {
-    console.log(to.matched)
     if(to.matched.some(record => record.meta.requiresAuth)){
         if(localStorage.getItem('token')){
             next();

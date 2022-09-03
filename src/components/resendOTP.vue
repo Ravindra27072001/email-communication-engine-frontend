@@ -94,7 +94,6 @@ export default {
             
             ResendOTPVerification(credentials)
                 .then((result) => {
-                    console.log("daaaaataaaaaaaaaa", result.data);
                     if (result.data.status === "PENDING") {
                         this.$toasted.show(result.data.message, {
                             type: 'success'
@@ -115,17 +114,12 @@ export default {
                 })
         },
         verifyOTP() {
-            // console.log("userId: ", this.userId);
-            // console.log("otp: ", this.otp);
             const credentials = {
                 userId: this.userId,
                 otp: this.otp,
             }
-            console.log("VerifyOtp k credentials", credentials)
             VerifyOTP(credentials)
                 .then((response) => {
-                    console.log("Ther response is: ", response.data)
-                    console.log("userId: fwdash", this.userId)
                     if (response.data.status == "VERIFIED") {
                         this.$toasted.show(response.data.message, {
                             type: 'success'
@@ -137,17 +131,11 @@ export default {
                             type: 'error'
                         });
                     }
-                    // console.log(this.otp);
-                    // console.log(this.userId)
-                    // console.log("response is: ", response.data.message)
-                    // this.$toasted.show("OTP verified successfully");
                 })
                 .catch(() => {
                     this.$toasted.show('Something went wrong', {
                         type: 'error'
                     });
-                    // console.log("response is: ", error.message)
-                    // console.log("registration failed");
                 });
         }
     }

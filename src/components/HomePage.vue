@@ -35,39 +35,39 @@
                     <img src="../images/oops.png" alt="no list">
                     <h3 class="text-dark mt-5">No scheduled email is there</h3>
                 </div>
-                    <div class="d-flex row justify-content-center m-auto p-3">
+                <div class="d-flex row justify-content-center m-auto p-3">
 
-                        <!-- <div v-for="list in lists" v-bind:key="list._id" class="card col-lg-3 col-md-3 m-2" style="min-width:365px"> -->
+                    <!-- <div v-for="list in lists" v-bind:key="list._id" class="card col-lg-3 col-md-3 m-2" style="min-width:365px"> -->
 
 
-                        <div v-for="list in lists" v-bind:key="list._id" class="card col-lg-3 col-md-3 p-3 m-2" 
-                            style="min-width:355px; box-shadow: 7px 10px 20px 6px;">
-                            <h2 class="card-title" >{{ list.subject }}</h2>
-                            <hr>
-                            <div class="d-flex">
-                                <h5 class="text-danger">Meeting Date: </h5>
-                                <p class="card-text ms-2">{{ list.meetingDate }}</p>
-                            </div>
-
-                            <div class=" d-flex">
-                                <h5 class="text-info">Meeting Time: </h5>
-                                <p class="card-text ms-2">{{ list.startTime }} to {{ list.endTime }}</p>
-                            </div>
-
-                            <div class="d-flex">
-                                <h5 class="text-primary">Admin: </h5>
-                                <p class="card-text ms-2">{{ list.from }}</p>
-                            </div>
-
-                            <div>
-                                <button type="button" class="btn btn-danger btn-block mt-3" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" @click="getMeetingId(list._id)">
-                                    Delete
-                                </button>
-                            </div>
-
+                    <div v-for="list in lists" v-bind:key="list._id" class="card col-lg-3 col-md-3 p-3 m-2"
+                        style="min-width:355px; box-shadow: 7px 10px 20px 6px;">
+                        <h2 class="card-title">{{ list.subject }}</h2>
+                        <hr>
+                        <div class="d-flex">
+                            <h5 class="text-danger">Meeting Date: </h5>
+                            <p class="card-text ms-2">{{ list.meetingDate }}</p>
                         </div>
+
+                        <div class=" d-flex">
+                            <h5 class="text-info">Meeting Time: </h5>
+                            <p class="card-text ms-2">{{ list.startTime }} to {{ list.endTime }}</p>
+                        </div>
+
+                        <div class="d-flex">
+                            <h5 class="text-primary">Admin: </h5>
+                            <p class="card-text ms-2">{{ list.from }}</p>
+                        </div>
+
+                        <div>
+                            <button type="button" class="btn btn-danger btn-block mt-3" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" @click="getMeetingId(list._id)">
+                                Delete
+                            </button>
+                        </div>
+
                     </div>
+                </div>
 
             </div>
             <!-- </div> -->
@@ -101,13 +101,11 @@ export default {
         },
 
         getMeetingId(id) {
-            console.log("object", id);
             this.meetingId = id;
         },
 
         removeMeeting() {
             DeleteMeeting(this.meetingId).then((result) => {
-                console.log(result);
                 if (result.data.status === "FAILED") {
                     this.$toasted.show(result.data.message, {
                         type: 'error',
@@ -118,14 +116,10 @@ export default {
                         type: 'success',
                     });
                     ScheduledEmails(this.userId).then((result) => {
-                        console.log(result);
+                        this.lists = result.data.data;
                         if (result.data.status === "FAILED") {
                             this.showSpinner = false;
                             this.showEmails = true;
-                        } else {
-                            this.showSpinner = false,
-                                this.lists = result.data.data;
-                            console.log(this.lists);
                         }
                     });
                 }
@@ -134,14 +128,12 @@ export default {
     },
     mounted() {
         ScheduledEmails(this.userId).then((result) => {
-            console.log(result);
             if (result.data.status === "FAILED") {
                 this.showSpinner = false;
                 this.showEmails = true;
             } else {
                 this.showSpinner = false,
                     this.lists = result.data.data;
-                console.log(this.lists);
             }
         });
     },

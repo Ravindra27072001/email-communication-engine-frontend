@@ -76,15 +76,12 @@ export default {
     },
     methods: {
         async submit() {
-            console.log('touched')
             const credentials = {
                 userId: localStorage.getItem("userId"),
                 listName: this.listName,
                 description: this.description
             }
-            console.log(credentials)
             AddList(credentials).then((result) => {
-                console.log("result isdscxzdcc: ", result)
                 if (result.data.status === "FAILED") {
                     this.$toasted.show(result.data.message, {
                         type: 'error'

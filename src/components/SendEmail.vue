@@ -176,7 +176,6 @@ export default {
                 userId: this.userId
             }
             SendEmail(credentials).then((result) => {
-                console.log("object, ", result.data);
                 if (result.data.status == "FAILED") {
                     this.$toasted.show(result.data.message, {
                         type: 'error'

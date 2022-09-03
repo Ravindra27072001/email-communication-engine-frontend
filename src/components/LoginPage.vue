@@ -88,14 +88,12 @@ export default {
                 email: this.email,
                 password: this.password
             }
-            // console.log("credentials:", credentials);
             Signin(credentials).then((response) => {
                 if (response.data.status === "FAILED") {
                     this.$toasted.show(response.data.message, {
                         type: 'error'
                     });
                 } else {
-                    console.log("object", response);
                     const { authToken, email, userId } = response.data;
                     localStorage.setItem('token', authToken);
                     localStorage.setItem('email', email);
