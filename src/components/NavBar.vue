@@ -48,7 +48,7 @@
                         </ul>
 
                         <div class="d-flex ms-auto">
-                            <p class="mt-3"> Hello- </p>
+                            <p class="mt-3 email"> Hello- </p>
                             <p class="text-danger email mt-3">{{ email }}</p>
                         </div>
 
