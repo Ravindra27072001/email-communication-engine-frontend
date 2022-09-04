@@ -322,7 +322,7 @@ export default {
   
   }
   
-  @media(max-width: 775px) {
+  @media(max-width: 550px) {
     .table thead {
       display: none;
     }

@@ -71,7 +71,7 @@
             </tbody>
           </table>
         </div>
-        
+
         <div class="text-center">
           <button @click="addAccount()" type="button" class="btn btn-primary m-5">Add Account</button>
         </div>
@@ -192,8 +192,50 @@ export default {
   
   }
   
-  @media (max-width: 775px) {
+  @media(max-width: 775px) {
+  
     .accountTable td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 5%;
+      /* width: 50%; */
+      /* padding-left: 15px; */
+      font-size: 15px;
+      font-weight: bold;
+    }
+  
+    .table thead {
+      display: none;
+    }
+  
+    .table .table tbody,
+    .table tr,
+    .table td {
+      display: block;
+      width: 100%;
+    }
+  
+    .table tr {
+      margin-bottom: 15px;
+    }
+  
+    .table td {
+      text-align: right;
+      /* padding-left: 50px; */
+      position: relative;
+    }
+  
+    .listTable td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 5%;
+      /* width: 50%; */
+      /* padding-left: 15px; */
+      font-size: 15px;
+      font-weight: bold;
+    }
+  
+    .userTable td::before {
       content: attr(data-label);
       position: absolute;
       left: 5%;
