@@ -19,9 +19,9 @@
                                 <div class="card-body rounded">
 
                                     <form @submit.prevent="sendOTP">
-                                        <h1 class="mb-3 pb-3">
+                                        <h2 class="mb-3 pb-3 text-center fw-bolder">
                                             Verify your account
-                                        </h1>
+                                        </h2>
 
                                         <div class="form-outline">
                                             <label class="form-label" for="form-control">Email address</label>

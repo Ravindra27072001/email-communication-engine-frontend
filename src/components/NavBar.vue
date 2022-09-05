@@ -7,7 +7,7 @@
                 <div class="container-fluid">
 
                     <router-link to="/home" class="text-decoration-none">
-                        <span class="colorClass p-2">Email</span>
+                        <span class="colorClass fw-bolder p-2">Email</span>
                     </router-link>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -47,9 +47,12 @@
                             </li>
                         </ul>
 
-                        <div class="d-flex ms-auto">
-                            <p class="mt-3 email"> Hello- </p>
-                            <p class="text-danger email mt-3">{{ email }}</p>
+                        <div class=" ms-auto d-none d-lg-block">
+                            <div class="d-flex">
+                                <p class="mt-3"> Hello- </p>
+                                <p class="text-danger mt-3">{{ email }}</p>
+                            </div>
+
                         </div>
 
                         <router-link to="/" class="text-decoration-none">
@@ -83,12 +86,13 @@ export default {
 <style>
 #newClass {
     box-shadow: 17px 10px 20px 6px black;
-    background-color: white;
+    background-color: #2f53a538;
     width: 90%;
 }
 
+
+
 .colorClass {
-    font-weight: bold;
     font-size: 25px;
     color: firebrick;
 }
@@ -109,17 +113,6 @@ export default {
 
 #nav a {
     font-weight: bold;
-    font-style: italic;
     color: #2c3e50;
-}
-
-@media(max-width: 990px) {
-    .email {
-        display: none;
-    }
-
-    .nav-link {
-        text-align: center;
-    }
 }
 </style>

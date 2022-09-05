@@ -21,7 +21,7 @@
 
                                 <div class="card-body rounded">
 
-                                    <h2 class="mb-3 pb-3 text-center text-dark fw-bolder ">
+                                    <h2 class="mb-3 pb-3 text-center fw-bolder">
                                         Signin to your account
                                     </h2>
 

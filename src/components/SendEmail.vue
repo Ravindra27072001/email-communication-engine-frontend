@@ -196,7 +196,7 @@ export default {
                     this.$toasted.show(result.data.message, {
                         type: 'success'
                     });
-                    this.$router.push({ name: 'home' })
+                    // this.$router.push({ name: 'home' })
                 }
             })
         }
@@ -213,7 +213,4 @@ export default {
 </script>
 
 <style>
-    #newClass{
-        background-color: #2f53a538;;
-    }
 </style>

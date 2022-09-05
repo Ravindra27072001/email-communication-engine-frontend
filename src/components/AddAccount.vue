@@ -1,16 +1,17 @@
 <template>
     <section class="body">
+
         <NavBar />
 
         <div class="pt-3">
             <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary">Add an account</h1>
             <div class="col col-xl-8 m-auto">
                 <div class="card rounded mt-5 m-auto" id="newClass">
-                    <div class="row g-0">
+                    <div class="row g-5">
 
                         <div class="col-md-6 col-lg-5 d-none d-md-block">
                             <img src="../images/addAccount.png" alt="login form" class="img-fluid"
-                                style="border-radius: 1rem 0 0 1rem;padding: 10px; margin-left: 10px; margin-top: 50px; margin-bottom: 40px;" />
+                                style="border-radius: 1rem 0 0 1rem;padding: 10px; margin-left: 30px; margin-top: 50px; margin-bottom: 40px;" />
                         </div>
 
                         <div class="col-md-6 col-lg-7 d-flex align-items-center ">

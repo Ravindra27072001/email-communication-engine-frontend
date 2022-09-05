@@ -1,15 +1,17 @@
 <template>
   <section class="mt-5 body">
-    <div class="conyainer">
+    <div class="container">
       <div class="row d-flex justify-content-center align-items-center">
+
         <h1 class="mb-3 pb-3 text-center text-danger fst-italic fw-bolder ">
           Email Communication Engine
         </h1>
+
         <div class="col col-xl-10">
           <div class="card border-0 rounded m-auto p-3" id="newClass">
             <div class="row g-0">
-              <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
 
+              <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
                 <img src="../images/email.png" alt="login form" class="img-fluid" style="
                       border-radius: 1rem 0 0 1rem;
                       padding-right: 20px;
@@ -21,19 +23,17 @@
               <div class="col-md-6 col-lg-7 d-flex align-items-center">
                 <div class="card-body rounded">
 
-                  <h2 class="mb-3 pb-3 text-center text-dark fw-bolder ">
-                    Signin to your account
-                  </h2>
-
                   <form @submit.prevent="submit">
 
+                    <h2 class="mb-3 pb-3 text-center fw-bolder">SignUp to your account</h2>
+
                     <div class="form-outline">
+                      
                       <label class="form-label" for="form-control">Name</label>
                       <input type="text" class="form-control" v-model.trim="$v.name.$model" :class="{
                         'is-invalid': $v.name.$error,
                         'is-valid': !$v.name.$invalid,
                       }" name="name" />
-                      <div class="valid-feedback">Name is valid</div>
                       <div class="invalid-feedback">
                         <span v-if="!$v.name.required">Name is required</span>
                       </div>
@@ -129,7 +129,6 @@ import { VerifyOTP } from "@/services/verifyOTP"
 
 export default {
   name: "RegisterPage",
-  user: "",
   data() {
     return {
       name: "",
