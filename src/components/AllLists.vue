@@ -65,6 +65,7 @@
             <table class="table listTable rounded mt-5">
               <thead>
                 <tr>
+                  <th scope="col">S.No.</th>
                   <th scope="col">List Name</th>
                   <th scope="col">Users</th>
                   <th scope="col">Description</th>
@@ -72,8 +73,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="list in lists" :key="list._id">
+                <tr v-for="list, i in lists" :key="list._id">
 
+                  <td data-label="S.No.">{{ ++i }}</td>
                   <td data-label="List Name">{{ list.listName }}</td>
                   <td data-label="Users"> <button @click="userList(list._id)" type="button"
                       class="btn btn-primary btn-sm">Users list</button></td>

@@ -1,7 +1,10 @@
 <template>
   <section class="mt-5 body">
-    <div class="pt-3">
+    <div class="conyainer">
       <div class="row d-flex justify-content-center align-items-center">
+        <h1 class="mb-3 pb-3 text-center text-danger fst-italic fw-bolder ">
+          Email Communication Engine
+        </h1>
         <div class="col col-xl-10">
           <div class="card border-0 rounded m-auto p-3" id="newClass">
             <div class="row g-0">
@@ -18,9 +21,11 @@
               <div class="col-md-6 col-lg-7 d-flex align-items-center">
                 <div class="card-body rounded">
 
-                  <form @submit.prevent="submit">
+                  <h2 class="mb-3 pb-3 text-center text-dark fw-bolder ">
+                    Signin to your account
+                  </h2>
 
-                    <h2 class="mb-3 pb-3 text-center">SignUp to your account</h2>
+                  <form @submit.prevent="submit">
 
                     <div class="form-outline">
                       <label class="form-label" for="form-control">Name</label>

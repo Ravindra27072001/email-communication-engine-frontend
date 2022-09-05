@@ -109,6 +109,7 @@ export default {
 
 #nav a {
     font-weight: bold;
+    font-style: italic;
     color: #2c3e50;
 }
 
