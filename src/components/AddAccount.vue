@@ -3,7 +3,7 @@
 
         <NavBar />
 
-        <div class="pt-3">
+        <div class="pt-5">
             <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary">Add an account</h1>
             <div class="col col-xl-8 m-auto">
                 <div class="card rounded mt-5 m-auto" id="newClass">
@@ -112,7 +112,7 @@ export default {
             email,
             isUnique(value) {
                 if (value === "") return true;
-                var email_regex =
+                let email_regex =
                     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
                 return new Promise((resolve) => {
                     setTimeout(() => {

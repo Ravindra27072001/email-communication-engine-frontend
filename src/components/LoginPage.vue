@@ -27,8 +27,6 @@
 
                                     <form @submit.prevent="login">
 
-
-
                                         <div class="form-outline">
                                             <label class="form-label" for="form-control">Email address</label>
                                             <input type="email" class="form-control" v-model.trim="$v.email.$model"

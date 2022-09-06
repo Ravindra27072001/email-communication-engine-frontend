@@ -28,7 +28,7 @@
                     <h2 class="mb-3 pb-3 text-center fw-bolder">SignUp to your account</h2>
 
                     <div class="form-outline">
-                      
+
                       <label class="form-label" for="form-control">Name</label>
                       <input type="text" class="form-control" v-model.trim="$v.name.$model" :class="{
                         'is-invalid': $v.name.$error,
@@ -220,6 +220,7 @@ export default {
           })
       }
     },
+    
     verifyOTP() {
 
       const credentials = {
@@ -236,7 +237,7 @@ export default {
               type: 'success'
             });
             this.$router.push({ name: 'login' })
-          } 
+          }
           else {
             this.$toasted.show(response.data.message, {
               type: 'error'

@@ -102,7 +102,7 @@ export default {
             email,
             isUnique(value) {
                 if (value === "") return true;
-                var email_regex =
+                let email_regex =
                     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
                 return new Promise((resolve) => {
                     setTimeout(() => {

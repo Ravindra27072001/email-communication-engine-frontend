@@ -1,16 +1,17 @@
 import Router from "vue-router";
+
 import RegisterPage from '@/components/RegisterPage';
-import LoginPage from '@/components/LoginPage';
 import VerifyOTP from '@/components/RegisterPage';
-import OTPVerification from '@/components/resendOTP'
-import MailAccounts from '@/components/MailAccounts'
-import AddAccount from '@/components/AddAccount'
-import AddList from '@/components/AddList'
-import AllLists from '@/components/AllLists'
-import AddEmail from '@/components/AddEmail'
-import SendEmail from "@/components/SendEmail"
-import PageNotFound from '@/components/PageNotFound'
-import HomePage from '@/components/HomePage'
+import LoginPage from '@/components/LoginPage';
+import OTPVerification from '@/components/resendOTP';
+import HomePage from '@/components/HomePage';
+import MailAccounts from '@/components/MailAccounts';
+import AddAccount from '@/components/AddAccount';
+import AllLists from '@/components/AllLists';
+import AddList from '@/components/AddList';
+import AddEmail from '@/components/AddEmail';
+import SendEmail from '@/components/SendEmail';
+import PageNotFound from '@/components/PageNotFound';
 
 
 const router = new Router(
