@@ -4,7 +4,7 @@
         <div id="nav">
             <nav class="navbar navbar-expand-lg navbar-light tables">
 
-                <div class="container-fluid">
+                <div class="container-fluid align-item-center">
 
                     <router-link to="/home" class="text-decoration-none">
                         <span class="colorClass fw-bolder p-2">Email</span>
@@ -16,7 +16,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">
                         <ul class="navbar-nav">
 
                             <router-link to="/mailAccounts" class="text-decoration-none">
@@ -47,7 +47,7 @@
                             </li>
                         </ul>
 
-                        <div class=" ms-auto d-none d-lg-block">
+                        <div class="ms-auto d-none d-lg-block">
                             <div class="d-flex">
                                 <p class="mt-3"> Hello- </p>
                                 <p class="text-danger mt-3">{{ email }}</p>
@@ -56,7 +56,7 @@
                         </div>
 
                         <router-link to="/" class="text-decoration-none">
-                            <span class="nav-link text-dark ms-2 p-2" @click="logout()">Logout</span>
+                            <span class="nav-link text-center text-dark ms-2 p-2" @click="logout()">Logout</span>
                         </router-link>
 
                     </div>

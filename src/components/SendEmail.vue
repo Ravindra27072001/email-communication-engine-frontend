@@ -196,7 +196,7 @@ export default {
                     this.$toasted.show(result.data.message, {
                         type: 'success'
                     });
-                    // this.$router.push({ name: 'home' })
+                    this.$router.push({ name: 'home' })
                 }
             })
         }
