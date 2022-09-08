@@ -6,7 +6,7 @@
             <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary">Send an Email</h1>
             <div class="d-flex justify-content-center align-items-center">
                 <div class="col col-xl-8">
-                    <div class="rounded tables m-auto" id="newClass">
+                    <div class="rounded tables m-auto"  id="newClass">
 
                         <form class="p-3" @submit.prevent="submit">
 
@@ -99,7 +99,7 @@ import NavBar from './NavBar.vue';
 import { required } from "vuelidate/lib/validators";
 import { SearchList } from '../services/allLists'
 import { SearchAccounts } from '../services/mailAccounts'
-import { SendEmail, sendEmailImmediate } from '../services/sendEmail'
+import { SendEmail } from '../services/sendEmail'
 
 export default {
 
@@ -185,42 +185,20 @@ export default {
                 userId: this.userId
             }
 
-            // console.log(this.description);
+            SendEmail(credentials).then((result) => {
 
-            if (this.reminder === "Immediately") {
-                // console.log("yeeeeeeee chla");
-                sendEmailImmediate(credentials).then((result) => {
-
-                    if (result.data.status == "FAILED") {
-                        this.$toasted.show(result.data.message, {
-                            type: 'error'
-                        });
-                    }
-                    else {
-                        this.$toasted.show(result.data.message, {
-                            type: 'success'
-                        });
-                        this.$router.push({ name: 'home' })
-                    }
-                })
-            }
-            else {
-                SendEmail(credentials).then((result) => {
-                    // console.log("aree ye chla");
-
-                    if (result.data.status == "FAILED") {
-                        this.$toasted.show(result.data.message, {
-                            type: 'error'
-                        });
-                    }
-                    else {
-                        this.$toasted.show(result.data.message, {
-                            type: 'success'
-                        });
-                        this.$router.push({ name: 'home' })
-                    }
-                })
-            }
+                if (result.data.status == "FAILED") {
+                    this.$toasted.show(result.data.message, {
+                        type: 'error'
+                    });
+                } 
+                else {
+                    this.$toasted.show(result.data.message, {
+                        type: 'success'
+                    });
+                    // this.$router.push({ name: 'home' })
+                }
+            })
         }
     },
     mounted() {
@@ -235,5 +213,4 @@ export default {
 </script>
 
 <style>
-
 </style>
