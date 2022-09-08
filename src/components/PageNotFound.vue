@@ -22,7 +22,7 @@ export default {
 #main {
     display: table;
     width: 100%;
-    height: 100vh;
+    height: 60vh;
     text-align: center;
 }
 
