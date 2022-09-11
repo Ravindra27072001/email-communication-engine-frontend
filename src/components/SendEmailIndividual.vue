@@ -72,10 +72,10 @@
                             <div class="form-outline mt-2">
                                 <label class="form-label" for="form-control">When do you want to send the email</label>
                                 <select v-model.trim="reminder" class="form-select form-outline">
-                                    <option>Before 1 hour</option>
-                                    <option>Before 6 hour</option>
-                                    <option>Before 12 hour</option>
-                                    <option>Before 1 day</option>
+                                    <option>Before 1 hour of the meeting</option>
+                                    <option>Before 6 hours of the meeting</option>
+                                    <option>Before 12 hours of the meeting</option>
+                                    <option>Before 1 day of the meeting</option>
                                     <option>Immediately</option>
                                 </select>
                                 <div class="invalid-feedback">
