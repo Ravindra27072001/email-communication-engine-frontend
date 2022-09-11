@@ -44,7 +44,7 @@
                                             <div class="valid-feedback">Your email is valid</div>
                                             <div class="invalid-feedback">
                                                 <span v-if="!$v.email.required">email is required</span>
-                                                <span v-if="!$v.email.isUnique">This email is wrong</span>
+                                                <span v-if="!$v.email.email">This email is wrong</span>
                                             </div>
                                         </div>
 
@@ -100,16 +100,6 @@ export default {
         email: {
             required,
             email,
-            isUnique(value) {
-                if (value === "") return true;
-                let email_regex =
-                    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        resolve(email_regex.test(value));
-                    }, 350 + Math.random() * 300);
-                });
-            },
         },
         name: {
             required,

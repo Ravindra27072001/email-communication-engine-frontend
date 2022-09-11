@@ -11,6 +11,7 @@ import AllLists from '@/components/AllLists';
 import AddList from '@/components/AddList';
 import AddEmail from '@/components/AddEmail';
 import SendEmail from '@/components/SendEmail';
+import SendEmailIndividual from '@/components/SendEmailIndividual'
 import PageNotFound from '@/components/PageNotFound';
 
 
@@ -90,6 +91,14 @@ const router = new Router(
                 name: 'sendEmail',
                 path: '/sendEmail',
                 component: SendEmail,
+                meta: {
+                    requiresAuth: true,
+                }
+            },
+            {
+                name: 'sendEmailIndividual',
+                path: '/sendEmailIndividual',
+                component: SendEmailIndividual,
                 meta: {
                     requiresAuth: true,
                 }

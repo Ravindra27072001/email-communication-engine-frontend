@@ -3,17 +3,15 @@
         <NavBar />
 
         <div class="pt-5">
-            <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary">Send Email to Everyone</h1>
+            <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary">Send Email to Individual</h1>
             <div class="d-flex justify-content-center m-5">
-
                 <router-link to="/sendEmail" class="text-decoration-none">
-                    <button class="btn bg-info">To everyone</button>
-                </router-link>
-                
-                <router-link to="/sendEmailIndividual" class="text-decoration-none">
-                    <button class="btn bg-secondary ms-5">To individual</button>
+                    <button class="btn bg-secondary">To everyone</button>
                 </router-link>
 
+                <router-link to="/sendEmailIndividual" class="text-decoration-none">
+                    <button class="btn bg-info ms-5">To individual</button>
+                </router-link>
             </div>
             <div class="d-flex justify-content-center align-items-center">
                 <div class="col col-xl-8">
@@ -36,12 +34,14 @@
 
                             <div class="form-outline mt-2">
                                 <label class="form-label" for="form-control">To</label>
-                                <select v-model.trim="$v.to.$model" class="form-select form-outline" name="to">
-                                    <option v-for="list in lists" :key="list._id">{{ list.listName }}
-                                    </option>
-                                </select>
+                                <input type="email" class="form-control" v-model.trim="$v.to.$model" :class="{
+                                    'is-invalid': $v.to.$error,
+                                    'is-valid': !$v.to.$invalid,
+                                }" name="to" />
+                                <div class="valid-feedback">Your email is valid</div>
                                 <div class="invalid-feedback">
-                                    <span v-if="!$v.to.required">Required</span>
+                                    <span v-if="!$v.to.required">email is required</span>
+                                    <span v-if="!$v.to.email">Email is not valid</span>
                                 </div>
                             </div>
 
@@ -107,18 +107,16 @@
 <script>
 
 import NavBar from './NavBar.vue';
-import { required } from "vuelidate/lib/validators";
-import { SearchList } from '../services/allLists'
+import { required, email } from 'vuelidate/lib/validators'
+import { SendEmailIndividual } from '../services/sendEmail'
 import { SearchAccounts } from '../services/mailAccounts'
-import { SendEmail } from '../services/sendEmail'
 
 export default {
 
-    name: "SendEmail",
+    name: "AddAccount",
     components: { NavBar },
     data() {
         return {
-            lists: '',
             accounts: '',
             subject: '',
             description: ``,
@@ -142,6 +140,7 @@ export default {
             required,
         },
         to: {
+            email,
             required,
         },
         startTime: {
@@ -155,7 +154,7 @@ export default {
         },
         reminder: {
             required,
-        }
+        },
     },
     methods: {
 
@@ -196,7 +195,7 @@ export default {
                 userId: this.userId
             }
 
-            SendEmail(credentials).then((result) => {
+            SendEmailIndividual(credentials).then((result) => {
 
                 if (result.data.status == "FAILED") {
                     this.$toasted.show(result.data.message, {
@@ -213,9 +212,6 @@ export default {
         }
     },
     mounted() {
-        SearchList(this.userId).then((response) => {
-            this.lists = response.data.data;
-        });
         SearchAccounts(this.userId).then((response) => {
             this.accounts = response.data.data;
         });
