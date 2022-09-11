@@ -1,12 +1,13 @@
 <template>
-    <section class="body">
-
+    <div>
         <NavBar />
 
-        <div class="pt-3">
+        <div class="pt-5">
+
             <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary">Add an account</h1>
+            
             <div class="col col-xl-8 m-auto">
-                <div class="card rounded mt-5 m-auto" id="newClass">
+                <div class="card rounded mt-3 m-auto" id="newClass">
                     <div class="row g-5">
 
                         <div class="col-md-6 col-lg-5 d-none d-md-block">
@@ -34,7 +35,7 @@
                                         <div class="valid-feedback">Your email is valid</div>
                                         <div class="invalid-feedback">
                                             <span v-if="!$v.email.required">email is required</span>
-                                            <span v-if="!$v.email.isUnique">This email is wrong</span>
+                                            <span v-if="!$v.email.email">This email is wrong</span>
                                         </div>
                                     </div>
 
@@ -60,10 +61,10 @@
                 </div>
             </div>
 
-            <p class="text-center text-dark mt-5" type="text" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <h5 class="text-center text-danger mt-3" type="text" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Attention:-
-                <a href="#">click here</a> before enter password
-            </p>
+                <a href="#">click here</a> before creating an account
+            </h5>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -71,13 +72,14 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <div class="modal-body">
-                                <h4 class="fw-bolder"> Please enther the app password which is provided by the email
+                                <h4 class="fw-bolder"> Please enter the app password which is provided by the email
                                 </h4>
-                                <p>Please follow the steps mentioned below to get the app password</p>
+                                <p>Please follow the steps mentioned below to get the app password otherwise you will not be able to send email</p>
                                 <p> 1) Open gmail -> Manage your Google Account -> Security -> 2-Step Verification -> On
                                 </p>
                                 <p>2) Open gmail -> Manage your Google Account -> Security -> App password -> Create
                                     Password </p>
+                                <a href="www.gmail.com">go there</a>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -88,13 +90,14 @@
             </div>
         </div>
 
-    </section>
+    </div>
 </template>
 
 <script>
-import { required, email } from 'vuelidate/lib/validators'
 import NavBar from './NavBar.vue';
+import { required, email } from 'vuelidate/lib/validators'
 import { AddAccount } from '@/services/mailAccounts'
+
 export default {
     name: "AddAccount",
     components: { NavBar },
@@ -110,16 +113,6 @@ export default {
         email: {
             required,
             email,
-            isUnique(value) {
-                if (value === "") return true;
-                let email_regex =
-                    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        resolve(email_regex.test(value));
-                    }, 350 + Math.random() * 300);
-                });
-            },
         },
         password: {
             required,

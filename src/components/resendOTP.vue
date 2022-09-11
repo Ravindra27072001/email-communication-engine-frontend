@@ -1,14 +1,13 @@
 <template>
-    <section class="mt-5 body">
-        <div class="container">
+        <div class="container mt-5">
             <div class="row d-flex justify-content-center align-items-center">
 
-                <h1 class="mb-3 pb-3 text-center text-danger fst-italic fw-bolder ">
+                <h1 class="mb-3 pb-3 mt-5 text-center text-danger fst-italic fw-bolder ">
                     Email Communication Engine
                 </h1>
-                <div class="col col-xl-10">
+                <div class="col col-xl-8">
                     <div class="card rounded m-auto" id="newClass">
-                        <div class="row g-0">
+                        <div class="row g-5">
 
                             <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
                                 <img src="../images/verifyEmail.png" alt="login form" class="img-fluid"
@@ -61,7 +60,6 @@
                 </div>
             </div>
         </div>
-    </section>
 </template>
 
 <script>

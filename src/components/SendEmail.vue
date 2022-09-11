@@ -1,12 +1,12 @@
 <template>
-    <section class="body">
+    <div>
         <NavBar />
 
         <div class="pt-5">
             <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary">Send an Email</h1>
             <div class="d-flex justify-content-center align-items-center">
                 <div class="col col-xl-8">
-                    <div class="rounded tables m-auto"  id="newClass">
+                    <div class="rounded tables m-auto" id="newClass">
 
                         <form class="p-3" @submit.prevent="submit">
 
@@ -90,7 +90,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </template>
 
 <script>
@@ -191,7 +191,7 @@ export default {
                     this.$toasted.show(result.data.message, {
                         type: 'error'
                     });
-                } 
+                }
                 else {
                     this.$toasted.show(result.data.message, {
                         type: 'success'
@@ -213,4 +213,5 @@ export default {
 </script>
 
 <style>
+
 </style>

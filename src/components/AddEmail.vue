@@ -1,5 +1,5 @@
 <template>
-    <section class="body">
+    <div>
         <NavBar />
 
         <div class="pt-5">
@@ -13,7 +13,7 @@
 
                             <div class=" col-md-6 col-lg-5 d-none d-md-block">
                                 <img src="../images/addAccount.png" alt="login form" class="img-fluid"
-                                    style="border-radius: 1rem 0 0 1rem;padding: 10px; margin-left: 10px; margin-top: 50px; margin-bottom: 40px;" />
+                                style="border-radius: 1rem 0 0 1rem; margin-top: 50px; margin-bottom: 40px; margin-left: 30px;" />
                             </div>
 
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
@@ -75,7 +75,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </template>
 
 <script>

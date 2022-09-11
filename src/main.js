@@ -7,12 +7,9 @@ import Vuelidate from 'vuelidate'
 import Toasted from 'vue-toasted'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-
 import 'bootstrap/js/dist/dropdown'
-
 import 'bootstrap/js/dist/collapse'
 import 'bootstrap/js/dist/modal'
-
 
 Vue.use(Router);
 Vue.use(Vuelidate);
@@ -28,7 +25,6 @@ Vue.use(Toasted, {
 Vue.config.productionTip = false
 
 new Vue({
-  // store,
   render: h => h(App),
   router
 }).$mount('#app')

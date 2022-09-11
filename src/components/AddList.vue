@@ -1,5 +1,5 @@
 <template>
-    <section class="body">
+    <div>
         <NavBar />
 
         <div class="pt-5">
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </template>
 
 <script>

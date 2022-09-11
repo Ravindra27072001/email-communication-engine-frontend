@@ -44,15 +44,12 @@ p {
 
 @keyframes type {
 
-    /* from {
-        box-shadow: inset -5px 5px 5px grey
-    } */
     from {
         box-shadow: inset 5px 5px 5px grey
     }
 
     to {
-        box-shadow: inset -3px 5px 5px transparent;
+        box-shadow: inset 5px 5px 5px transparent;
     }
 
 }

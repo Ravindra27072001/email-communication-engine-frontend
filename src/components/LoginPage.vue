@@ -1,6 +1,5 @@
 <template>
-    <section class="mt-5 body">
-        <div class="container">
+        <div class="container mt-4">
             <div class="row d-flex justify-content-center align-items-center">
                 <h1 class="mb-3 pb-3 text-center text-danger fst-italic fw-bolder ">
                     Email Communication Engine
@@ -49,11 +48,11 @@
                                         </div>
 
                                         <p class="mt-5">
-                                            Don't have an account? <a href="/register">Register</a>
+                                            Don't have an account? <a class="text-decoration-none" href="/register">Register</a>
                                         </p>
 
                                         <p class="mt-3">
-                                            Didn't verify your account? <a href="/OTPVerification">Verify</a>
+                                            Didn't verify your account? <a class="text-decoration-none" href="/OTPVerification">Verify</a>
                                         </p>
 
                                     </form>
@@ -64,14 +63,11 @@
                 </div>
             </div>
         </div>
-    </section>
 </template>
 
 <script>
-
 import { required, email } from 'vuelidate/lib/validators'
 import { Signin } from '@/services/signin'
-
 export default {
     name: 'LoginPage',
     data() {
@@ -93,16 +89,13 @@ export default {
                 email: this.email,
                 password: this.password
             }
-
             Signin(credentials).then((response) => {
-
                 if (response.data.status === "FAILED") {
                     this.$toasted.show(response.data.message, {
                         type: 'error'
                     });
                 } else {
                     const { authToken, email, userId } = response.data;
-
                     localStorage.setItem('token', authToken);
                     localStorage.setItem('email', email);
                     localStorage.setItem('userId', userId);

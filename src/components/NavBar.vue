@@ -7,7 +7,7 @@
                 <div class="container-fluid align-item-center">
 
                     <router-link to="/home" class="text-decoration-none">
-                        <span class="colorClass fw-bolder p-2">Email</span>
+                        <h2 class="text-danger fw-bolder mt-1 p-2">Email</h2>
                     </router-link>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -20,15 +20,15 @@
                         <ul class="navbar-nav">
 
                             <router-link to="/mailAccounts" class="text-decoration-none">
-                                <span class="nav-link text-dark">Accounts</span>
+                                <span class="nav-link text-dark fw-bolder">Accounts</span>
                             </router-link>
 
                             <router-link to="/sendEmail" class="text-decoration-none">
-                                <span class="nav-link text-dark ms-2">Send Email</span>
+                                <span class="nav-link text-dark fw-bolder ms-2">Send Email</span>
                             </router-link>
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-dark ms-2" href="#" id="navbarDropdownMenuLink"
+                                <a class="nav-link dropdown-toggle text-dark fw-bolder ms-2" href="#" id="navbarDropdownMenuLink"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Features
                                 </a>
@@ -56,7 +56,7 @@
                         </div>
 
                         <router-link to="/" class="text-decoration-none">
-                            <span class="nav-link text-center text-dark ms-2 p-2" @click="logout()">Logout</span>
+                            <span class="nav-link text-center text-dark fw-bolder ms-2 p-2" @click="logout()">Logout</span>
                         </router-link>
 
                     </div>
@@ -90,13 +90,6 @@ export default {
     width: 90%;
 }
 
-
-
-.colorClass {
-    font-size: 25px;
-    color: firebrick;
-}
-
 .body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
@@ -109,10 +102,5 @@ export default {
 #nav a:hover {
     background-color: lightgrey;
     border-radius: 5px;
-}
-
-#nav a {
-    font-weight: bold;
-    color: #2c3e50;
 }
 </style>
