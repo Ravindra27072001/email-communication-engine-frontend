@@ -106,7 +106,6 @@ export default {
             email: '',
             password: '',
             companyName: '',
-            userId: '',
         }
     },
     validations: {
@@ -124,6 +123,7 @@ export default {
 
             const credentials = {
                 userId: localStorage.getItem("userId"),
+                authEmail: localStorage.getItem("email"),
                 companyName: this.companyName,
                 email: this.email,
                 password: this.password,

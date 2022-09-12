@@ -250,7 +250,7 @@ export default {
 
       const result = await DeleteMember(this.memberId)
 
-      if (result.data.message === "No Email is there") {
+      if (result.data.message === "No Email is there" || result.data.status == "FAILED") {
         this.$toasted.show(result.data.message, {
           type: 'error'
         });
