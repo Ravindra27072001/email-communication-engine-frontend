@@ -76,7 +76,7 @@
                                     <option>Before 6 hour of the meeting</option>
                                     <option>Before 12 hour of the meeting</option>
                                     <option>Before 1 day of the meeting</option>
-                                    <option>Immediately of the meeting</option>
+                                    <option>Immediately</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     <span v-if="!$v.reminder.required">Required</span>
