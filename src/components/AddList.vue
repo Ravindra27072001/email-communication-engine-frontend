@@ -3,24 +3,24 @@
         <NavBar />
 
         <div class="pt-5">
-            <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary mt-3">Add a List</h1>
+            <h1 class="mb-3 pb-3 text-center fw-bolder text-dark mt-3">Add a List</h1>
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col col-xl-8">
-                    <div class="card rounded m-auto" id="newClass">
+                    <div class="card m-auto" id="newClass">
                         <div class="row g-0">
 
-                            <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block">
                                 <img src="../images/addList.png" alt="login form" class="img-fluid"
-                                    style="border-radius: 1rem 0 0 1rem;margin-left: 10px; margin-top: 50px; margin-bottom: 40px; width: 300px;" />
+                                    style="border-radius: 1rem 0 0 1rem;margin-left: 50px; margin-top: 50px; margin-bottom: 40px; width: 300px;" />
                             </div>
 
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                                <div class="card-body rounded">
+                                <div class="card-body">
 
                                     <form @submit.prevent="submit">
 
                                         <div class="form-outline">
-                                            <label class="form-label" for="form-control">Name of the List</label>
+                                            <label class="form-label text-light" for="form-control">Name of the List</label>
                                             <input type="text" class="form-control" v-model.trim="$v.listName.$model"
                                                 name="listName" />
 
@@ -30,7 +30,7 @@
                                         </div>
 
                                         <div class="form-outline">
-                                            <label class="form-label" for="form-control">Description</label>
+                                            <label class="form-label text-light" for="form-control">Description</label>
                                             <input type="text" class="form-control" v-model.trim="$v.description.$model"
                                                 name="description" />
                                             <div class="invalid-feedback">
@@ -105,5 +105,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+#newClass {
+    box-shadow: 17px 10px 20px 6px black;
+    background-color: #303E48;
+    width: 90%;
+}
+
+
 </style>

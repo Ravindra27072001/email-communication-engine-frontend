@@ -6,28 +6,26 @@
                 </h1>
                 <div class="col col-xl-10">
 
-                    <div class="card border-0 rounded m-auto" id="newClass">
+                    <div class="card border-0 m-auto" id="newClass">
                         <div class="row g-0">
 
-                            <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block">
                                 <img src="../images/email.png" alt="login form" class="img-fluid"
                                     style="border-radius: 1rem 0 0 1rem; margin-top: 100px; margin-bottom: 100px; padding: 10px;" />
                             </div>
 
-
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
 
+                                <div class="card-body">
 
-                                <div class="card-body rounded">
-
-                                    <h2 class="mb-3 pb-3 text-center fw-bolder">
+                                    <h2 class="mb-3 pb-3 text-white text-center fw-bolder">
                                         Signin to your account
                                     </h2>
 
                                     <form @submit.prevent="login">
 
                                         <div class="form-outline">
-                                            <label class="form-label" for="form-control">Email address</label>
+                                            <label class="form-label text-white" for="form-control">Email address</label>
                                             <input type="email" class="form-control" v-model.trim="$v.email.$model"
                                                 name="email">
                                             <div class="invalid-feedback">
@@ -35,8 +33,8 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-outline ">
-                                            <label class="form-label" for="form-control">Password</label>
+                                        <div class="form-outline">
+                                            <label class="form-label text-white" for="form-control">Password</label>
                                             <input type="password" v-model="password" class="form-control"
                                                 name="password">
                                         </div>
@@ -47,12 +45,12 @@
                                             </button>
                                         </div>
 
-                                        <p class="mt-5">
-                                            Don't have an account? <a class="text-decoration-none" href="/register">Register</a>
+                                        <p class="mt-5 text-white">
+                                            Don't have an account? <a class="text-decoration-none text-info" href="/register">Register</a>
                                         </p>
 
-                                        <p class="mt-3">
-                                            Didn't verify your account? <a class="text-decoration-none" href="/OTPVerification">Verify</a>
+                                        <p class="mt-3 text-white">
+                                            Didn't verify your account? <a class="text-decoration-none text-info" href="/OTPVerification">Verify</a>
                                         </p>
 
                                     </form>
@@ -84,7 +82,9 @@ export default {
     },
     methods: {
         async login() {
+            
             this.$v.$touch()
+
             const credentials = {
                 email: this.email,
                 password: this.password
@@ -111,5 +111,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+#newClass {
+    box-shadow: 17px 10px 20px 6px black;
+    background-color: #303E48;
+    width: 90%;
+}
+
 </style>

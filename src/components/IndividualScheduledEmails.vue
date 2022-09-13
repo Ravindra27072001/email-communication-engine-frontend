@@ -28,11 +28,11 @@
 
                 <div class="d-flex justify-content-center m-3">
                     <router-link to="/home" class="text-decoration-none">
-                        <button class="btn bg-info">Everyone</button>
+                        <button class="btn bg-secondary">Everyone</button>
                     </router-link>
 
                     <router-link to="/individualScheduledEmails" class="text-decoration-none">
-                        <button class="btn bg-secondary ms-5">Individual</button>
+                        <button class="btn bg-info ms-5">Individual</button>
                     </router-link>
                 </div>
 
@@ -92,7 +92,7 @@
 <script>
 
 import NavBar from "./NavBar.vue";
-import { ScheduledEmails, DeleteMeeting } from '../services/homePage'
+import { ScheduledIndividualEmails, DeleteMeeting } from '../services/homePage'
 
 export default {
     components: {
@@ -131,7 +131,7 @@ export default {
                     this.$toasted.show(result.data.message, {
                         type: 'success',
                     });
-                    ScheduledEmails(this.userId).then((result) => {
+                    ScheduledIndividualEmails(this.userId).then((result) => {
                         this.lists = result.data.data;
                         if (result.data.status === "FAILED") {
                             this.showSpinner = false;
@@ -143,7 +143,8 @@ export default {
         }
     },
     mounted() {
-        ScheduledEmails(this.userId).then((result) => {
+
+        ScheduledIndividualEmails(this.userId).then((result) => {
 
             if (result.data.status === "FAILED") {
                 this.showSpinner = false;

@@ -12,10 +12,10 @@ export default {
 
 <style>
 
-html{
+/* html{
   background-image: url("./images/background.png");
 }
 .background{
   background-image: url("./images/background.png");
-}
+} */
 </style>

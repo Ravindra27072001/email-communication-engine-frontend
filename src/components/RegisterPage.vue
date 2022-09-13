@@ -7,10 +7,10 @@
       </h1>
 
       <div class="col col-xl-10">
-        <div class="card border-0 rounded m-auto p-3" id="newClass">
+        <div class="card border-0 m-auto p-3" id="newClass">
           <div class="row g-0">
 
-            <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
               <img src="../images/email.png" alt="login form" class="img-fluid" style="
                       border-radius: 1rem 0 0 1rem;
                       padding-right: 20px;
@@ -20,15 +20,14 @@
             </div>
 
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
-              <div class="card-body rounded">
+              <div class="card-body">
 
                 <form @submit.prevent="submit">
 
-                  <h2 class="mb-3 pb-3 text-center fw-bolder">SignUp to your account</h2>
+                  <h2 class="mb-3 pb-3 text-white text-center fw-bolder">SignUp to your account</h2>
 
                   <div class="form-outline">
-
-                    <label class="form-label" for="form-control">Name</label>
+                    <label class="form-label text-white" for="form-control">Name</label>
                     <input type="text" class="form-control" v-model.trim="$v.name.$model" :class="{
                       'is-invalid': $v.name.$error,
                       'is-valid': !$v.name.$invalid,
@@ -39,7 +38,7 @@
                   </div>
 
                   <div class="form-outline">
-                    <label class="form-label" for="form-control">Email address</label>
+                    <label class="form-label text-white" for="form-control">Email address</label>
                     <input type="email" class="form-control" v-model.trim="$v.email.$model" :class="{
                       'is-invalid': $v.email.$error,
                       'is-valid': !$v.email.$invalid,
@@ -52,7 +51,7 @@
                   </div>
 
                   <div class="form-outline">
-                    <label class="form-label" for="form-control">Password</label>
+                    <label class="form-label text-white" for="form-control">Password</label>
                     <input type="password" class="form-control" v-model.trim="$v.password.$model" :class="{
                       'is-invalid': $v.password.$error,
                       'is-valid': !$v.password.$invalid,
@@ -73,7 +72,7 @@
                   </div>
 
                   <div class="form-outline">
-                    <label class="form-label" for="form2Example27">Confirm Password</label>
+                    <label class="form-label text-white" for="form2Example27">Confirm Password</label>
                     <input type="password" class="form-control" v-model.trim="$v.repeatPassword.$model" :class="{
                       'is-invalid': $v.repeatPassword.$error,
                       'is-valid': password != '' ? !$v.repeatPassword.$invalid : '',
@@ -87,7 +86,7 @@
                   </div>
 
                   <div v-show="showOTP" class="form-outline">
-                    <label class="form-label" for="form-control">Enter the OTP</label>
+                    <label class="form-label text-white" for="form-control">Enter the OTP</label>
                     <input v-model="otp" type="text" class="form-control" name="otp" />
                   </div>
 
@@ -109,9 +108,9 @@
                   <span class="sr-only"></span>
                 </div>
 
-                <p class="mt-3">
+                <p class="mt-3 text-white">
                   Already have an account?
-                  <a class="text-decoration-none" href="/">Login</a>
+                  <a class="text-decoration-none text-info" href="/">Login</a>
                 </p>
 
               </div>
@@ -248,6 +247,12 @@ export default {
 };
 </script>
   
-<style>
+<style scoped>
+
+#newClass {
+    box-shadow: 17px 10px 20px 6px black;
+    background-color: #303E48;
+    width: 90%;
+}
 
 </style>

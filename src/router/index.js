@@ -14,6 +14,8 @@ import SendEmail from '@/components/SendEmail';
 import SendEmailIndividual from '@/components/SendEmailIndividual'
 import PageNotFound from '@/components/PageNotFound';
 
+import IndividualScheduledEmails from "@/components/IndividualScheduledEmails"
+
 
 const router = new Router(
     {
@@ -43,6 +45,14 @@ const router = new Router(
                 name: 'home',
                 path: '/home',
                 component: HomePage,
+                meta: {
+                    requiresAuth: true,
+                }
+            },
+            {
+                name: 'individualScheduledEmails',
+                path: '/individualScheduledEmails',
+                component: IndividualScheduledEmails,
                 meta: {
                     requiresAuth: true,
                 }

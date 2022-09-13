@@ -4,7 +4,7 @@
 
         <div class="pt-5">
 
-            <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary">Add an email</h1>
+            <h1 class="mb-3 pb-3 text-center fw-bolder text-dark">Add an email</h1>
 
             <div class="d-flex justify-content-center align-items-center">
                 <div class="col col-xl-8">
@@ -13,16 +13,16 @@
 
                             <div class=" col-md-6 col-lg-5 d-none d-md-block">
                                 <img src="../images/addAccount.png" alt="login form" class="img-fluid"
-                                style="border-radius: 1rem 0 0 1rem; margin-top: 50px; margin-bottom: 40px; margin-left: 30px;" />
+                                    style="border-radius: 1rem 0 0 1rem; margin-top: 50px; margin-bottom: 40px; margin-left: 30px;" />
                             </div>
 
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                                <div class="card-body rounded">
+                                <div class="card-body">
 
                                     <form @submit.prevent="submit">
 
                                         <div class="form-outline">
-                                            <label class="form-label" for="form-control">Name</label>
+                                            <label class="form-label text-light" for="form-control">Name</label>
                                             <input type="text" class="form-control" v-model.trim="$v.name.$model"
                                                 :class="{
                                                     'is-invalid': $v.name.$error,
@@ -35,7 +35,7 @@
                                         </div>
 
                                         <div class="form-outline">
-                                            <label class="form-label" for="form-control">Email address</label>
+                                            <label class="form-label text-light" for="form-control">Email address</label>
                                             <input type="email" class="form-control" v-model.trim="$v.email.$model"
                                                 :class="{
                                                     'is-invalid': $v.email.$error,
@@ -49,7 +49,7 @@
                                         </div>
 
                                         <div class="form-outline">
-                                            <label class="form-label" for="form-control">List</label>
+                                            <label class="form-label text-light" for="form-control">List</label>
                                             <select v-model.trim="$v.listName.$model" class="form-select form-outline"
                                                 aria-label="Default select example" name="list">
                                                 <div class="invalid-feedback">
@@ -118,7 +118,7 @@ export default {
                 email: this.email,
                 listName: this.listName
             }
-            
+
             AddUser(credentials).then((result) => {
                 if (result.data.status === "FAILED") {
                     this.$toasted.show(result.data.message, {
@@ -141,5 +141,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+    
+#newClass {
+    box-shadow: 17px 10px 20px 6px black;
+    background-color: #303E48;
+    width: 90%;
+}
 </style>

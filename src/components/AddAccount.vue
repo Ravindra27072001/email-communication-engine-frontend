@@ -4,10 +4,10 @@
 
         <div class="pt-5">
 
-            <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary">Add an account</h1>
+            <h1 class="mb-3 pb-3 text-center fw-bolder text-dark">Add an account</h1>
             
             <div class="col col-xl-8 m-auto">
-                <div class="card rounded mt-3 m-auto" id="newClass">
+                <div class="card mt-3 m-auto" id="newClass">
                     <div class="row g-5">
 
                         <div class="col-md-6 col-lg-5 d-none d-md-block">
@@ -16,18 +16,18 @@
                         </div>
 
                         <div class="col-md-6 col-lg-7 d-flex align-items-center ">
-                            <div class="card-body rounded">
+                            <div class="card-body">
 
                                 <form @submit.prevent="submit">
 
                                     <div class="form-outline">
-                                        <label class="form-label" for="form-control">Company Name</label>
+                                        <label class="form-label text-light" for="form-control">Company Name</label>
                                         <input type="text" class="form-control" v-model.trim=companyName name="name" />
 
                                     </div>
 
                                     <div class="form-outline">
-                                        <label class="form-label" for="form-control">Email address</label>
+                                        <label class="form-label text-light" for="form-control">Email address</label>
                                         <input type="email" class="form-control" v-model.trim="$v.email.$model" :class="{
                                             'is-invalid': $v.email.$error,
                                             'is-valid': !$v.email.$invalid,
@@ -40,7 +40,7 @@
                                     </div>
 
                                     <div class="form-outline">
-                                        <label class="form-label" for="form-control">Password</label>
+                                        <label class="form-label text-light" for="form-control">Password</label>
                                         <input type="password" class="form-control" v-model.trim="$v.password.$model"
                                             name="password" />
                                         <div class="invalid-feedback">
@@ -106,6 +106,7 @@ export default {
             email: '',
             password: '',
             companyName: '',
+            userId: '',
         }
     },
     validations: {
@@ -123,7 +124,6 @@ export default {
 
             const credentials = {
                 userId: localStorage.getItem("userId"),
-                authEmail: localStorage.getItem("email"),
                 companyName: this.companyName,
                 email: this.email,
                 password: this.password,
@@ -146,5 +146,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+#newClass {
+    box-shadow: 17px 10px 20px 6px black;
+    background-color: #303E48;
+    width: 90%;
+}
+
 </style>

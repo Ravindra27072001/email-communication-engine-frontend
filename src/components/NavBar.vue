@@ -7,10 +7,10 @@
                 <div class="container-fluid align-item-center">
 
                     <router-link to="/home" class="text-decoration-none">
-                        <h2 class="text-danger fw-bolder mt-1 p-2">Email</h2>
+                        <h2 class="textColor fw-bolder mt-1 p-2">Email</h2>
                     </router-link>
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -20,15 +20,15 @@
                         <ul class="navbar-nav">
 
                             <router-link to="/mailAccounts" class="text-decoration-none">
-                                <span class="nav-link text-dark fw-bolder">Accounts</span>
+                                <span class="nav-link onHover text-white fw-bolder">Accounts</span>
                             </router-link>
 
                             <router-link to="/sendEmail" class="text-decoration-none">
-                                <span class="nav-link text-dark fw-bolder ms-2">Send Email</span>
+                                <span class="nav-link onHover text-white fw-bolder ms-2">Send Email</span>
                             </router-link>
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-dark fw-bolder ms-2" href="#" id="navbarDropdownMenuLink"
+                                <a class="nav-link onHover dropdown-toggle text-white fw-bolder ms-2" href="#" id="navbarDropdownMenuLink"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Features
                                 </a>
@@ -49,14 +49,14 @@
 
                         <div class="ms-auto d-none d-lg-block">
                             <div class="d-flex">
-                                <p class="mt-3"> Hello- </p>
-                                <p class="text-danger mt-3">{{ email }}</p>
+                                <p class="mt-3 text-white"> Hello- </p>
+                                <p class="textColor mt-3">{{ email }}</p>
                             </div>
 
                         </div>
 
                         <router-link to="/" class="text-decoration-none">
-                            <span class="nav-link text-center text-dark fw-bolder ms-2 p-2" @click="logout()">Logout</span>
+                            <span class="nav-link onHover text-center text-white fw-bolder ms-2 p-2" @click="logout()">Logout</span>
                         </router-link>
 
                     </div>
@@ -83,12 +83,7 @@ export default {
 }
 </script>
 
-<style>
-#newClass {
-    box-shadow: 17px 10px 20px 6px black;
-    background-color: #2f53a538;
-    width: 90%;
-}
+<style scoped>
 
 .body {
     font-family: Arial, Helvetica, sans-serif;
@@ -96,11 +91,14 @@ export default {
 }
 
 .tables {
-    background-color: #6581d07a
+    background-color: #303E48
+}
+.textColor{
+    color: greenyellow;
 }
 
-#nav a:hover {
-    background-color: lightgrey;
+#nav .onHover:hover {
+    background-color: rgba(207, 88, 88, 0.5);
     border-radius: 5px;
 }
 </style>

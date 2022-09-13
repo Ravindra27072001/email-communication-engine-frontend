@@ -3,8 +3,8 @@
         <NavBar />
 
         <div class="pt-5">
-            <h1 class="mb-3 pb-3 text-center fw-bolder text-secondary">Send Email to Everyone</h1>
-            <div class="d-flex justify-content-center m-5">
+            <h1 class="mb-3 pb-3 text-center fw-bolder text-dark">Send Email to Everyone</h1>
+            <div class="d-flex justify-content-center m-3">
 
                 <router-link to="/sendEmail" class="text-decoration-none">
                     <button class="btn bg-info">To everyone</button>
@@ -17,17 +17,17 @@
             </div>
             <div class="d-flex justify-content-center align-items-center">
                 <div class="col col-xl-8">
-                    <div class="rounded tables m-auto" id="newClass">
+                    <div class="tables m-auto" id="newClass">
 
                         <form class="p-3" @submit.prevent="submit">
 
                             <div class="form-outline mt-2">
-                                <label class="form-label" for="form-control">Subject</label>
+                                <label class="form-label text-white" for="form-control">Subject</label>
                                 <input type="text" class="form-control" v-model.trim="$v.subject.$model" name="name" />
                             </div>
 
                             <div class="form-outline mt-2">
-                                <label class="form-label" for="form-control">From</label>
+                                <label class="form-label text-white" for="form-control">From</label>
                                 <select v-model.trim="$v.from.$model" class="form-select form-outline" name="from">
                                     <option v-for="account in accounts" :key="account._id">{{ account.email
                                     }}</option>
@@ -35,7 +35,7 @@
                             </div>
 
                             <div class="form-outline mt-2">
-                                <label class="form-label" for="form-control">To</label>
+                                <label class="form-label text-white" for="form-control">To</label>
                                 <select v-model.trim="$v.to.$model" class="form-select form-outline" name="to">
                                     <option v-for="list in lists" :key="list._id">{{ list.listName }}
                                     </option>
@@ -46,7 +46,7 @@
                             </div>
 
                             <div class="form-outline mt-2 w-50">
-                                <label class="form-label" for="form-control">Date</label>
+                                <label class="form-label text-white" for="form-control">Date</label>
                                 <input type="date" class="form-control" v-model.trim="date" name="date" />
                                 <div class="invalid-feedback">
                                     <span v-if="!$v.to.required">Required</span>
@@ -54,7 +54,7 @@
                             </div>
 
                             <div class="form-outline mt-2 w-50">
-                                <label class="form-label" for="form-control">Start time</label>
+                                <label class="form-label text-white" for="form-control">Start time</label>
                                 <input type="time" class="form-control" v-model.trim="startTime" name="startTime" />
                                 <div class="invalid-feedback">
                                     <span v-if="!$v.to.startTime">Required</span>
@@ -62,7 +62,7 @@
                             </div>
 
                             <div class="form-outline mt-2 w-50">
-                                <label class="form-label" for="form-control">End time</label>
+                                <label class="form-label text-white" for="form-control">End time</label>
                                 <input type="time" class="form-control" v-model.trim="endTime" name="endTime" />
                                 <div class="invalid-feedback">
                                     <span v-if="!$v.to.endTime">Required</span>
@@ -70,7 +70,7 @@
                             </div>
 
                             <div class="form-outline mt-2">
-                                <label class="form-label" for="form-control">When do you want to send the email</label>
+                                <label class="form-label text-white" for="form-control">When do you want to send the email</label>
                                 <select v-model.trim="reminder" class="form-select form-outline">
                                     <option>Before 1 hour of the meeting</option>
                                     <option>Before 6 hour of the meeting</option>
@@ -84,7 +84,7 @@
                             </div>
 
                             <div class="form-outline mt-2">
-                                <label class="form-label" for="form-control">Description</label>
+                                <label class="form-label text-white" for="form-control">Description</label>
                                 <textarea type="text" class="form-control" v-model.trim="$v.description.$model"
                                     name="description" rows="15"></textarea>
                                 <div class="invalid-feedback">
@@ -223,6 +223,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+#newClass {
+    box-shadow: 17px 10px 20px 6px black;
+    background-color: #303E48;
+    width: 90%;
+}
 
 </style>

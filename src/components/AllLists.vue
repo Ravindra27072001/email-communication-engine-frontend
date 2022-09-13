@@ -41,7 +41,7 @@
       </div>
 
       <div>
-        <h1 class="mb-3 pb-3 text-center text-secondary fw-bolder mt-5">All Lists</h1>
+        <h1 class="mb-3 pb-3 text-center text-dark fw-bolder mt-5">All Lists</h1>
 
         <div class="d-flex justify-content-center">
           <div v-show="showSpinner" class="spinner-border" role="status">
@@ -59,9 +59,9 @@
             </div>
           </div>
 
-          <div v-show="showListsTable" class="text-center rounded m-auto" id="newClass">
+          <div v-show="showListsTable" class="text-center m-auto" id="newClass">
 
-            <table class="table listTable rounded mt-5">
+            <table class="table text-light listTable mt-5">
               <thead>
                 <tr>
                   <th scope="col">S.No.</th>
@@ -101,7 +101,7 @@
         <div>
           <div v-show="showUsersImage" class="text-center">
 
-            <h1 class="mb-3 pb-3 text-center text-secondary fw-bolder mt-5">All Users</h1>
+            <h1 class="mb-3 pb-3 text-center text-dark fw-bolder mt-5">All Users</h1>
 
             <div id="main">
               <div class="fof">
@@ -119,9 +119,9 @@
           <div v-show="showUsersTable" class="text-center m-auto">
             <hr>
 
-            <h1 class="mb-3 pb-3 text-center text-secondary fw-bolder mt-5">All Users</h1>
+            <h1 class="mb-3 pb-3 text-center text-dark fw-bolder mt-5">All Users</h1>
 
-            <table class="table userTable rounded mt-5 m-auto" id="newClass">
+            <table class="table text-light userTable mt-5 m-auto" id="newClass">
               <thead>
                 <tr>
                   <th scope="col">User Name</th>
@@ -154,7 +154,7 @@
 
 </template>
   
-  <script>
+<script>
 
 import { SearchList, SearchUserEmail, DeleteList, DeleteMember } from '../services/allLists'
 import NavBar from "./NavBar.vue";
@@ -218,6 +218,7 @@ export default {
       const result = await DeleteList(this.listId)
 
       if (result.data.status == "SUCCESS") {
+
         const response = await SearchList(this.userId);
 
         if (response.data.status === "FAILED") {
@@ -250,7 +251,7 @@ export default {
 
       const result = await DeleteMember(this.memberId)
 
-      if (result.data.message === "No Email is there" || result.data.status == "FAILED") {
+      if (result.data.status == "FAILED") {
         this.$toasted.show(result.data.message, {
           type: 'error'
         });
@@ -273,7 +274,7 @@ export default {
   mounted() {
 
     SearchList(this.userId).then((response) => {
-      
+
       if (response.data.status === "FAILED") {
         this.showSpinner = true;
         this.showListsImage = true;
@@ -286,83 +287,93 @@ export default {
 }
 </script>
   
-  <style scoped>
-  #main {
-    display: table;
+<style scoped>
+#main {
+  display: inline;
+  width: 100%;
+  text-align: center;
+  margin-top: 100px;
+}
+
+
+.fof {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.fof p {
+  font-size: 25px;
+}
+
+.fof h1 {
+  font-size: 100px;
+  display: inline-block;
+  padding-right: 12px;
+  animation: type .5s alternate infinite;
+}
+
+@keyframes type {
+
+  from {
+    box-shadow: inset 5px 5px 5px grey
+  }
+
+  to {
+    box-shadow: inset -3px 5px 5px transparent;
+  }
+
+}
+.table thead {
+    background-color: #0c1c25d1;
+    color: white;
+  }
+
+  #newClass {
+    box-shadow: 17px 10px 20px 6px black;
+    background-color: #303E48;
+    width: 90%;
+}
+
+@media(max-width: 550px) {
+  .table thead {
+    display: none;
+  }
+
+  .table .table tbody,
+  .table tr,
+  .table td {
+    display: block;
     width: 100%;
-    text-align: center;
-    margin-top: 100px;
   }
-  
-  
-  .fof {
-    display: table-cell;
-    vertical-align: middle;
+
+  .table tr {
+    margin-bottom: 15px;
   }
-  
-  .fof p {
-    font-size: 25px;
+
+  .table td {
+    text-align: right;
+    /* padding-left: 50px; */
+    position: relative;
   }
-  
-  .fof h1 {
-    font-size: 100px;
-    display: inline-block;
-    padding-right: 12px;
-    animation: type .5s alternate infinite;
+
+  .listTable td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 5%;
+    /* width: 50%; */
+    /* padding-left: 15px; */
+    font-size: 15px;
+    font-weight: bold;
   }
-  
-  @keyframes type {
-  
-    from {
-      box-shadow: inset 5px 5px 5px grey
-    }
-  
-    to {
-      box-shadow: inset -3px 5px 5px transparent;
-    }
-  
+
+  .userTable td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 5%;
+    /* width: 50%; */
+    /* padding-left: 15px; */
+    font-size: 15px;
+    font-weight: bold;
   }
-  
-  @media(max-width: 550px) {
-    .table thead {
-      display: none;
-    }
-  
-    .table .table tbody,
-    .table tr,
-    .table td {
-      display: block;
-      width: 100%;
-    }
-  
-    .table tr {
-      margin-bottom: 15px;
-    }
-  
-    .table td {
-      text-align: right;
-      /* padding-left: 50px; */
-      position: relative;
-    }
-  
-    .listTable td::before {
-      content: attr(data-label);
-      position: absolute;
-      left: 5%;
-      /* width: 50%; */
-      /* padding-left: 15px; */
-      font-size: 15px;
-      font-weight: bold;
-    }
-  
-    .userTable td::before {
-      content: attr(data-label);
-      position: absolute;
-      left: 5%;
-      /* width: 50%; */
-      /* padding-left: 15px; */
-      font-size: 15px;
-      font-weight: bold;
-    }
-  }
-  </style>
+}
+</style>

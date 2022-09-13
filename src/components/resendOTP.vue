@@ -1,29 +1,29 @@
 <template>
-        <div class="container mt-5">
+        <div class="container mt-4">
             <div class="row d-flex justify-content-center align-items-center">
 
                 <h1 class="mb-3 pb-3 mt-5 text-center text-danger fst-italic fw-bolder ">
                     Email Communication Engine
                 </h1>
                 <div class="col col-xl-8">
-                    <div class="card rounded m-auto" id="newClass">
+                    <div class="card m-auto" id="newClass">
                         <div class="row g-5">
 
-                            <div class="col-md-6 col-lg-5 d-none d-md-block rounded">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block">
                                 <img src="../images/verifyEmail.png" alt="login form" class="img-fluid"
                                     style="border-radius: 1rem 0 0 1rem; margin-top: 50px; margin-bottom: 40px; margin-left: 30px;" />
                             </div>
 
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                                <div class="card-body rounded">
+                                <div class="card-body">
 
                                     <form @submit.prevent="sendOTP">
-                                        <h2 class="mb-3 pb-3 text-center fw-bolder">
+                                        <h2 class="mb-3 pb-3 text-light text-center fw-bolder">
                                             Verify your account
                                         </h2>
 
                                         <div class="form-outline">
-                                            <label class="form-label" for="form-control">Email address</label>
+                                            <label class="form-label text-white" for="form-control">Email address</label>
                                             <input type="email" class="form-control" v-model.trim="$v.email.$model"
                                                 name="email">
                                             <div class="invalid-feedback">
@@ -149,5 +149,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+#newClass {
+    box-shadow: 17px 10px 20px 6px black;
+    background-color: #303E48;
+    width: 90%;
+}
+
 </style>
