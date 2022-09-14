@@ -2,7 +2,7 @@
   <div>
     <NavBar />
 
-    <section>
+    <div class="container">
 
       <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModal1Label" aria-hidden="true">
         <div class="modal-dialog">
@@ -149,7 +149,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
   </div>
 
 </template>
@@ -319,7 +319,7 @@ export default {
   }
 
   to {
-    box-shadow: inset -3px 5px 5px transparent;
+    box-shadow: inset -5px -5px 5px transparent;
   }
 
 }

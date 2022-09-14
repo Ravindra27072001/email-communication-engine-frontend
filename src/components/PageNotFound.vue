@@ -20,9 +20,10 @@ export default {
 
 <style scoped>
 #main {
-    display: table;
-    width: 100%;
-    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     text-align: center;
 }
 
@@ -49,7 +50,7 @@ p {
     }
 
     to {
-        box-shadow: inset 5px 5px 5px transparent;
+        box-shadow: inset -5px -5px 5px transparent;
     }
 
 }

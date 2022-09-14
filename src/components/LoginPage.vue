@@ -1,66 +1,74 @@
 <template>
-        <div class="container mt-4">
-            <div class="row d-flex justify-content-center align-items-center">
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center align-items-center">
+
+            <div class="col">
                 <h1 class="mb-3 pb-3 text-center text-danger fst-italic fw-bolder ">
                     Email Communication Engine
                 </h1>
-                <div class="col col-xl-10">
+            </div>
+            <div class="col col-xl-10 m-3">
 
-                    <div class="card border-0 m-auto" id="newClass">
-                        <div class="row g-0">
+                <div class="m-auto p-3" id="newClass">
+                    <div class="row mt-3 d-flex justify-content-center align-items-center">
 
-                            <div class="col-md-6 col-lg-5 d-none d-md-block">
-                                <img src="../images/email.png" alt="login form" class="img-fluid"
-                                    style="border-radius: 1rem 0 0 1rem; margin-top: 100px; margin-bottom: 100px; padding: 10px;" />
-                            </div>
+                        <div class="col col-lg-5 col-md-6 d-none d-md-block">
+                            <img src="../images/email.png" alt="login form" class="img-fluid" />
+                        </div>
 
-                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                        <div class="col col-md-6 col-lg-6">
 
-                                <div class="card-body">
+                            <div class="card-body">
 
-                                    <h2 class="mb-3 pb-3 text-white text-center fw-bolder">
-                                        Signin to your account
-                                    </h2>
+                                <h2 class="mb-3 pb-3 text-white text-center fw-bolder">
+                                    Signin to your account
+                                </h2>
 
-                                    <form @submit.prevent="login">
+                                <form @submit.prevent="login">
 
-                                        <div class="form-outline">
-                                            <label class="form-label text-white" for="form-control">Email address</label>
-                                            <input type="email" class="form-control" v-model.trim="$v.email.$model"
-                                                name="email">
-                                            <div class="invalid-feedback">
-                                                <span v-if="!$v.email.required">email is required</span>
-                                            </div>
+                                    <div class="form-outline">
+                                        <label class="form-label text-white" for="form-control">Email address</label>
+                                        <input type="email" class="form-control" v-model.trim="$v.email.$model" :class="{
+                                          'is-invalid': $v.email.$error,
+                                          'is-valid': !$v.email.$invalid,
+                                        }" name="email" />
+                                        <div class="valid-feedback">Your email is valid</div>
+                                        <div class="invalid-feedback">
+                                            <span v-if="!$v.email.required">email is required</span>
+                                            <span v-if="!$v.email.email">This email is wrong</span>
                                         </div>
+                                    </div>
 
-                                        <div class="form-outline">
-                                            <label class="form-label text-white" for="form-control">Password</label>
-                                            <input type="password" v-model="password" class="form-control"
-                                                name="password">
-                                        </div>
 
-                                        <div class="mt-3">
-                                            <button class="btn btn-danger btn-lg btn-block" :disabled="$v.$invalid">
-                                                Login
-                                            </button>
-                                        </div>
+                                    <div class="form-outline">
+                                        <label class="form-label text-white" for="form-control">Password</label>
+                                        <input type="password" v-model="password" class="form-control" name="password">
+                                    </div>
 
-                                        <p class="mt-5 text-white">
-                                            Don't have an account? <a class="text-decoration-none text-info" href="/register">Register</a>
-                                        </p>
+                                    <div class="mt-3">
+                                        <button class="btn btn-danger btn-lg btn-block" :disabled="$v.$invalid">
+                                            Login
+                                        </button>
+                                    </div>
 
-                                        <p class="mt-3 text-white">
-                                            Didn't verify your account? <a class="text-decoration-none text-info" href="/OTPVerification">Verify</a>
-                                        </p>
+                                    <p class="mt-5 text-white">
+                                        Don't have an account? <a class="text-decoration-none text-info"
+                                            href="/register">Register</a>
+                                    </p>
 
-                                    </form>
-                                </div>
+                                    <p class="mt-3 text-white">
+                                        Didn't verify your account? <a class="text-decoration-none text-info"
+                                            href="/OTPVerification">Verify</a>
+                                    </p>
+
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </template>
 
 <script>
@@ -82,7 +90,7 @@ export default {
     },
     methods: {
         async login() {
-            
+
             this.$v.$touch()
 
             const credentials = {
@@ -99,7 +107,7 @@ export default {
                     localStorage.setItem('token', authToken);
                     localStorage.setItem('email', email);
                     localStorage.setItem('userId', userId);
-                    
+
                     this.$toasted.show(response.data.message, {
                         type: 'success'
                     });
@@ -112,11 +120,9 @@ export default {
 </script>
 
 <style scoped>
-
 #newClass {
     box-shadow: 17px 10px 20px 6px black;
     background-color: #303E48;
     width: 90%;
 }
-
 </style>

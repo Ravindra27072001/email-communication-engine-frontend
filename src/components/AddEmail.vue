@@ -2,21 +2,23 @@
     <div>
         <NavBar />
 
-        <div class="pt-5">
+        <div class="container mt-5">
 
-            <h1 class="mb-3 pb-3 text-center fw-bolder text-dark">Add an email</h1>
+            <div class="col">
+                <h1 class="mb-3 pb-3 text-center fw-bolder text-dark">Add an email</h1>
+            </div>
+            
+            <div class="row d-flex justify-content-center align-items-center">
 
-            <div class="d-flex justify-content-center align-items-center">
-                <div class="col col-xl-8">
-                    <div class="card mt-3 m-auto" id="newClass">
-                        <div class="row g-0">
+                <div class="col col-xl-10">
+                    <div class="m-auto p-5" id="newClass">
+                        <div class="row d-flex justify-content-center align-items-center">
 
-                            <div class=" col-md-6 col-lg-5 d-none d-md-block">
-                                <img src="../images/addAccount.png" alt="login form" class="img-fluid"
-                                    style="border-radius: 1rem 0 0 1rem; margin-top: 50px; margin-bottom: 40px; margin-left: 30px;" />
+                            <div class="col col-lg-5 col-md-6 d-none d-md-block">
+                                <img src="../images/addAccount.png" alt="login form" class="img-fluid" />
                             </div>
 
-                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="col-md-6 col-lg-6">
                                 <div class="card-body">
 
                                     <form @submit.prevent="submit">
@@ -35,7 +37,8 @@
                                         </div>
 
                                         <div class="form-outline">
-                                            <label class="form-label text-light" for="form-control">Email address</label>
+                                            <label class="form-label text-light" for="form-control">Email
+                                                address</label>
                                             <input type="email" class="form-control" v-model.trim="$v.email.$model"
                                                 :class="{
                                                     'is-invalid': $v.email.$error,
@@ -142,7 +145,6 @@ export default {
 </script>
 
 <style scoped>
-    
 #newClass {
     box-shadow: 17px 10px 20px 6px black;
     background-color: #303E48;

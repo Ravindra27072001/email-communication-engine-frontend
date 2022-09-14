@@ -18,7 +18,7 @@ Vue.use(Toasted, {
   duration: 2000,
   theme: 'outline',
   iconPack: 'fontawesome',
-  position: 'top-right'
+  position: 'top-right',
 });
 
 

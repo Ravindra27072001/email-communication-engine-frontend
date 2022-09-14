@@ -189,7 +189,7 @@ export default {
     }
 
     to {
-        box-shadow: inset -3px 5px 5px transparent;
+        box-shadow: inset -5px -5px 5px transparent;
     }
 
 }

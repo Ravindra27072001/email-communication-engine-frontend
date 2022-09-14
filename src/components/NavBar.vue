@@ -7,7 +7,7 @@
                 <div class="container-fluid align-item-center">
 
                     <router-link to="/home" class="text-decoration-none">
-                        <h2 class="textColor fw-bolder mt-1 p-2">Email</h2>
+                        <h2 class="textColor fw-bolder mt-1">Email</h2>
                     </router-link>
 
                     <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse"
@@ -20,7 +20,7 @@
                         <ul class="navbar-nav">
 
                             <router-link to="/mailAccounts" class="text-decoration-none">
-                                <span class="nav-link onHover text-white fw-bolder">Accounts</span>
+                                <span class="nav-link onHover text-white fw-bolder ms-3">Accounts</span>
                             </router-link>
 
                             <router-link to="/sendEmail" class="text-decoration-none">
@@ -36,6 +36,11 @@
                                     <router-link to="/allLists" class="text-decoration-none">
                                         <span class="dropdown-item">Lists</span>
                                     </router-link>
+
+                                    <router-link to="/addList" class="text-decoration-none">
+                                        <span class="dropdown-item">Add List</span>
+                                    </router-link>
+
                                     <router-link to="/addEmail" class="text-decoration-none">
                                         <span class="dropdown-item">Add Member</span>
                                     </router-link>
@@ -49,7 +54,7 @@
 
                         <div class="ms-auto d-none d-lg-block">
                             <div class="d-flex">
-                                <p class="mt-3 text-white"> Hello- </p>
+                                <p class="mt-3 text-white"> Hello👋🏻 </p>
                                 <p class="textColor mt-3">{{ email }}</p>
                             </div>
 
@@ -98,7 +103,7 @@ export default {
 }
 
 #nav .onHover:hover {
-    background-color: rgba(207, 88, 88, 0.5);
+    background-color: rgba(173, 255, 47,0.5);
     border-radius: 5px;
 }
 </style>

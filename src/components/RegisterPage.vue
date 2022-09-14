@@ -1,30 +1,28 @@
 <template>
-  <div class="container mt-4">
+  <div class="container mt-5">
     <div class="row d-flex justify-content-center align-items-center">
 
-      <h1 class="mb-3 pb-3 text-center text-danger fst-italic fw-bolder ">
-        Email Communication Engine
-      </h1>
+      <div class="col">
+        <h1 class="mb-3 pb-3 text-center text-danger fst-italic fw-bolder ">
+          Email Communication Engine
+        </h1>
+      </div>
 
-      <div class="col col-xl-10">
-        <div class="card border-0 m-auto p-3" id="newClass">
-          <div class="row g-0">
+      <div class="col col-xl-10 m-3">
 
-            <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img src="../images/email.png" alt="login form" class="img-fluid" style="
-                      border-radius: 1rem 0 0 1rem;
-                      padding-right: 20px;
-                      margin-top: 110px;
-                      margin-bottom: 70px;
-                    " />
+        <div class="m-auto p-3" id="newClass">
+          <div class="row d-flex justify-content-center align-items-center">
+
+            <div class="col col-lg-5 col-md-6 d-none d-md-block">
+              <img src="../images/email.png" alt="login form" class="img-fluid" />
             </div>
 
-            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+            <div class="col col-lg-6 col-md-6">
               <div class="card-body">
 
-                <form @submit.prevent="submit">
+                <h2 class="mb-3 pb-3 text-white text-center fw-bolder">SignUp to your account</h2>
 
-                  <h2 class="mb-3 pb-3 text-white text-center fw-bolder">SignUp to your account</h2>
+                <form @submit.prevent="submit">
 
                   <div class="form-outline">
                     <label class="form-label text-white" for="form-control">Name</label>
@@ -64,7 +62,7 @@
                         letter</span>
                       <span v-else-if="!$v.password.upperCase">Password should contains atleast one upperCase
                         letter</span>
-                        <span v-else-if="!$v.password.specialCharecter">password should contains atleast one special
+                      <span v-else-if="!$v.password.specialCharecter">password should contains atleast one special
                         character</span>
                       <span v-else-if="!$v.password.integer">Password should contains atleast one number</span>
                       <span v-else-if="!$v.password.minLength">Password should contains atleast 8 character</span>
@@ -248,11 +246,9 @@ export default {
 </script>
   
 <style scoped>
-
 #newClass {
-    box-shadow: 17px 10px 20px 6px black;
-    background-color: #303E48;
-    width: 90%;
+  box-shadow: 17px 10px 20px 6px black;
+  background-color: #303E48;
+  width: 90%;
 }
-
 </style>

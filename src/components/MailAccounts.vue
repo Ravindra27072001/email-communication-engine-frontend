@@ -2,7 +2,7 @@
   <div>
     <NavBar />
 
-    <section>
+    <div class="container">
 
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -26,11 +26,9 @@
         <h1 class="mb-3 pb-3 text-center text-dark fw-bolder m-5">All Accounts</h1>
 
         <div class="d-flex justify-content-center">
-
           <div v-show="showSpinner" class="spinner-border" role="status">
             <span class="visually-hidden"></span>
           </div>
-
         </div>
 
         <div v-show="showImage" class="text-center">
@@ -76,7 +74,7 @@
         </div>
 
       </div>
-    </section>
+    </div>
   </div>
 
 </template>
@@ -185,7 +183,7 @@ export default {
   }
 
   to {
-    box-shadow: inset -3px 5px 5px transparent;
+    box-shadow: inset -5px -5px 5px transparent;
   }
 
 }

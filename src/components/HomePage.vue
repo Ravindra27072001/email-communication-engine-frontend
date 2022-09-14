@@ -21,10 +21,10 @@
                     </div>
                 </div>
             </div>
+
             <div>
 
                 <h1 class="mb-3 pb-3 text-center text-dark fw-bolder mt-5">Scheduled Emails</h1>
-
 
                 <div class="d-flex justify-content-center m-3">
                     <router-link to="/home" class="text-decoration-none">
@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-                <div class="d-flex row justify-content-center m-auto p-3">
+                <div class="d-flex justify-content-center m-auto p-3">
 
                     <div v-for="list in lists" v-bind:key="list._id" class="card col-lg-3 col-md-3 p-3 m-3"
                         style="min-width:355px; box-shadow: 7px 10px 20px 6px; background-color: #303E48;">
@@ -188,7 +188,7 @@ export default {
     }
 
     to {
-        box-shadow: inset -3px 5px 5px transparent;
+        box-shadow: inset -5px -5px 5px transparent;
     }
 
 }

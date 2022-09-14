@@ -2,25 +2,30 @@
     <div>
         <NavBar />
 
-        <div class="pt-5">
-            <h1 class="mb-3 pb-3 text-center fw-bolder text-dark mt-3">Add a List</h1>
-            <div class="row d-flex justify-content-center align-items-center">
-                <div class="col col-xl-8">
-                    <div class="card m-auto" id="newClass">
-                        <div class="row g-0">
+        <div class="container mt-5">
 
-                            <div class="col-md-6 col-lg-5 d-none d-md-block">
-                                <img src="../images/addList.png" alt="login form" class="img-fluid"
-                                    style="border-radius: 1rem 0 0 1rem;margin-left: 50px; margin-top: 50px; margin-bottom: 40px; width: 300px;" />
+            <div class="col">
+                <h1 class="mb-3 pb-3 text-center fw-bolder text-dark mt-3">Add a List</h1>
+            </div>
+
+            <div class="row d-flex justify-content-center align-items-center">
+
+                <div class="col col-xl-10">
+                    <div class="m-auto p-5" id="newClass">
+                        <div class="row d-flex justify-content-center align-items-center">
+
+                            <div class="col col-lg-5 col-md-6 d-none d-md-block">
+                                <img src="../images/addList.png" alt="login form" class="img-fluid" style="width: 320px" />
                             </div>
 
-                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="col-md-6 col-lg-6">
                                 <div class="card-body">
 
                                     <form @submit.prevent="submit">
 
                                         <div class="form-outline">
-                                            <label class="form-label text-light" for="form-control">Name of the List</label>
+                                            <label class="form-label text-light" for="form-control">Name of the
+                                                List</label>
                                             <input type="text" class="form-control" v-model.trim="$v.listName.$model"
                                                 name="listName" />
 
@@ -87,7 +92,7 @@ export default {
                 listName: this.listName,
                 description: this.description
             }
-            
+
             AddList(credentials).then((result) => {
                 if (result.data.status === "FAILED") {
                     this.$toasted.show(result.data.message, {
@@ -106,12 +111,9 @@ export default {
 </script>
 
 <style scoped>
-
 #newClass {
     box-shadow: 17px 10px 20px 6px black;
     background-color: #303E48;
     width: 90%;
 }
-
-
 </style>

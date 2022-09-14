@@ -2,59 +2,66 @@
     <div>
         <NavBar />
 
-        <div class="pt-5">
+        <div class="container mt-5">
 
-            <h1 class="mb-3 pb-3 text-center fw-bolder text-dark">Add an account</h1>
-            
-            <div class="col col-xl-8 m-auto">
-                <div class="card mt-3 m-auto" id="newClass">
-                    <div class="row g-5">
+            <div class="col">
+                <h1 class="mb-3 pb-3 text-center fw-bolder text-dark">Add an account</h1>
+            </div>
 
-                        <div class="col-md-6 col-lg-5 d-none d-md-block">
-                            <img src="../images/addAccount.png" alt="login form" class="img-fluid"
-                                style="border-radius: 1rem 0 0 1rem;padding: 10px; margin-left: 30px; margin-top: 50px; margin-bottom: 40px;" />
-                        </div>
+            <div class="row d-flex justify-content-center align-items-center">
 
-                        <div class="col-md-6 col-lg-7 d-flex align-items-center ">
-                            <div class="card-body">
+                <div class="col col-xl-10">
+                    <div class="m-auto p-5" id="newClass">
+                        <div class="row d-flex justify-content-center align-items-center">
 
-                                <form @submit.prevent="submit">
+                            <div class="col-lg-5 col-md-6 d-none d-md-block">
+                                <img src="../images/addAccount.png" alt="login form" class="img-fluid"/>
+                            </div>
 
-                                    <div class="form-outline">
-                                        <label class="form-label text-light" for="form-control">Company Name</label>
-                                        <input type="text" class="form-control" v-model.trim=companyName name="name" />
+                            <div class="col-md-6 col-lg-6">
+                                <div class="card-body">
 
-                                    </div>
+                                    <form @submit.prevent="submit">
 
-                                    <div class="form-outline">
-                                        <label class="form-label text-light" for="form-control">Email address</label>
-                                        <input type="email" class="form-control" v-model.trim="$v.email.$model" :class="{
-                                            'is-invalid': $v.email.$error,
-                                            'is-valid': !$v.email.$invalid,
-                                        }" name="email" />
-                                        <div class="valid-feedback">Your email is valid</div>
-                                        <div class="invalid-feedback">
-                                            <span v-if="!$v.email.required">email is required</span>
-                                            <span v-if="!$v.email.email">This email is wrong</span>
+                                        <div class="form-outline">
+                                            <label class="form-label text-light" for="form-control">Company Name</label>
+                                            <input type="text" class="form-control" v-model.trim=companyName
+                                                name="name" />
+
                                         </div>
-                                    </div>
 
-                                    <div class="form-outline">
-                                        <label class="form-label text-light" for="form-control">Password</label>
-                                        <input type="password" class="form-control" v-model.trim="$v.password.$model"
-                                            name="password" />
-                                        <div class="invalid-feedback">
-                                            <span v-if="!$v.password.required">password is required</span>
+                                        <div class="form-outline">
+                                            <label class="form-label text-light" for="form-control">Email
+                                                address</label>
+                                            <input type="email" class="form-control" v-model.trim="$v.email.$model"
+                                                :class="{
+                                                    'is-invalid': $v.email.$error,
+                                                    'is-valid': !$v.email.$invalid,
+                                                }" name="email" />
+                                            <div class="valid-feedback">Your email is valid</div>
+                                            <div class="invalid-feedback">
+                                                <span v-if="!$v.email.required">email is required</span>
+                                                <span v-if="!$v.email.email">This email is wrong</span>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="mt-3">
-                                        <button class="btn btn-danger btn-lg btn-block" :disabled="$v.$invalid">
-                                            Add
-                                        </button>
-                                    </div>
+                                        <div class="form-outline">
+                                            <label class="form-label text-light" for="form-control">Password</label>
+                                            <input type="password" class="form-control"
+                                                v-model.trim="$v.password.$model" name="password" />
+                                            <div class="invalid-feedback">
+                                                <span v-if="!$v.password.required">password is required</span>
+                                            </div>
+                                        </div>
 
-                                </form>
+                                        <div class="mt-3">
+                                            <button class="btn btn-danger btn-lg btn-block" :disabled="$v.$invalid">
+                                                Add
+                                            </button>
+                                        </div>
+
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -74,12 +81,12 @@
                             <div class="modal-body">
                                 <h4 class="fw-bolder"> Please enter the app password which is provided by the email
                                 </h4>
-                                <p>Please follow the steps mentioned below to get the app password otherwise you will not be able to send email</p>
+                                <p>Please follow the steps mentioned below to get the app password otherwise you will
+                                    not be able to send email</p>
                                 <p> 1) Open gmail -> Manage your Google Account -> Security -> 2-Step Verification -> On
                                 </p>
                                 <p>2) Open gmail -> Manage your Google Account -> Security -> App password -> Create
                                     Password </p>
-                                <a href="www.gmail.com">go there</a>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -128,7 +135,7 @@ export default {
                 email: this.email,
                 password: this.password,
             }
-            
+
             AddAccount(credentials).then((result) => {
                 if (result.data.status === "FAILED") {
                     this.$toasted.show(result.data.message, {
@@ -147,11 +154,9 @@ export default {
 </script>
 
 <style scoped>
-
 #newClass {
     box-shadow: 17px 10px 20px 6px black;
     background-color: #303E48;
     width: 90%;
 }
-
 </style>
