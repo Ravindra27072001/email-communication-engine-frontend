@@ -52,26 +52,28 @@
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-center m-auto p-3">
+                <div class="row d-flex justify-content-center m-auto p-3">
 
-                    <div v-for="list in lists" v-bind:key="list._id" class="card col-lg-3 col-md-3 p-3 m-3"
+                    <div v-for="list in lists" v-bind:key="list._id" class="col col-lg-3 col-md-3 p-3 m-3"
                         style="min-width:355px; box-shadow: 7px 10px 20px 6px; background-color: #303E48;">
 
-                        <h2 class="card-title text-light">{{ list.subject }}</h2>
+                        <h2 class="text-light">{{ list.subject }}</h2>
+
                         <hr class="text-light">
+
                         <div class="d-flex">
                             <h5 style="color:aqua">Meeting Date: </h5>
-                            <p class="card-text text-light ms-2">{{ list.meetingDate }}</p>
+                            <p class="text-light ms-2">{{ list.meetingDate }}</p>
                         </div>
 
-                        <div class=" d-flex">
+                        <div class="d-flex">
                             <h5 style="color:#2aff00">Meeting Time: </h5>
-                            <p class="card-text text-light ms-2">{{ list.startTime }} to {{ list.endTime }}</p>
+                            <p class="text-light ms-2">{{ list.startTime }} to {{ list.endTime }}</p>
                         </div>
 
                         <div class="d-flex">
                             <h5 style="color:#fcf903">Admin: </h5>
-                            <p class="card-text text-light ms-2">{{ list.from }}</p>
+                            <p class="text-light ms-2">{{ list.from }}</p>
                         </div>
 
                         <div>
