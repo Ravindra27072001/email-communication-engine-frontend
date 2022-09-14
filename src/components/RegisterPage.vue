@@ -2,11 +2,9 @@
   <div class="container mt-5">
     <div class="row d-flex justify-content-center align-items-center">
 
-      <div class="col">
         <h1 class="mb-3 pb-3 text-center text-danger fst-italic fw-bolder ">
           Email Communication Engine
         </h1>
-      </div>
 
       <div class="col col-xl-10 m-3">
 
