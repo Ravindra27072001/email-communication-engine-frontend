@@ -102,7 +102,7 @@
                   </button>
                 </div>
 
-                <div v-show="showSpinner" class="spinner-border" role="status">
+                <div v-show="showSpinner" class="spinner-border text-light" role="status">
                   <span class="sr-only"></span>
                 </div>
 

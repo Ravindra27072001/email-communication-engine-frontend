@@ -70,7 +70,8 @@
                             </div>
 
                             <div class="form-outline mt-2">
-                                <label class="form-label text-white" for="form-control">When do you want to send the email</label>
+                                <label class="form-label text-white" for="form-control">When do you want to send the
+                                    email</label>
                                 <select v-model.trim="reminder" class="form-select form-outline">
                                     <option>Before 1 hour of the meeting</option>
                                     <option>Before 6 hours of the meeting</option>
@@ -92,8 +93,13 @@
                                 </div>
                             </div>
 
+                            <div v-show="showSpinner" class="spinner-border text-light mt-3" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+
                             <div class="mt-3">
-                                <button class="btn btn-info btn-lg btn-block" :disabled="$v.$invalid"> Send </button>
+                                <button v-show="showSendButton" class="btn btn-info btn-lg btn-block"
+                                    :disabled="$v.$invalid"> Send </button>
                             </div>
 
                         </form>
@@ -127,6 +133,8 @@ export default {
             startTime: '',
             endTime: '',
             userId: localStorage.getItem('userId'),
+            showSpinner: false,
+            showSendButton: true,
         }
     },
     validations: {
@@ -195,14 +203,20 @@ export default {
                 userId: this.userId
             }
 
+            this.showSendButton = false;
+            this.showSpinner = true;
+
             SendEmailIndividual(credentials).then((result) => {
 
                 if (result.data.status == "FAILED") {
+                    this.showSpinner = false;
+                    this.showSendButton = true;
                     this.$toasted.show(result.data.message, {
                         type: 'error'
                     });
                 }
                 else {
+                    this.showSpinner = false;
                     this.$toasted.show(result.data.message, {
                         type: 'success'
                     });
@@ -219,12 +233,10 @@ export default {
 }
 </script>
 
-<style scoped> 
-
+<style scoped>
 #newClass {
     box-shadow: 17px 10px 20px 6px black;
     background-color: #303E48;
     width: 90%;
 }
-
 </style>

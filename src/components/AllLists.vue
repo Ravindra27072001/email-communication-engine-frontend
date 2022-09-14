@@ -124,13 +124,15 @@
             <table class="table text-light userTable mt-5 m-auto" id="newClass">
               <thead>
                 <tr>
+                  <th scope="col">S.No.</th>
                   <th scope="col">User Name</th>
                   <th scope="col">Email</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="user in usersEmails" :key="user._id">
+                <tr v-for="user, i in usersEmails" :key="user._id">
+                  <td data-label="S.No.">{{ ++i }}</td>
                   <td data-label="User Name">{{ user.name }}</td>
                   <td data-label="Email"> {{ user.email }}</td>
                   <td data-label="Action">
@@ -323,15 +325,16 @@ export default {
   }
 
 }
-.table thead {
-    background-color: #0c1c25d1;
-    color: white;
-  }
 
-  #newClass {
-    box-shadow: 17px 10px 20px 6px black;
-    background-color: #303E48;
-    width: 90%;
+.table thead {
+  background-color: #0c1c25d1;
+  color: white;
+}
+
+#newClass {
+  box-shadow: 17px 10px 20px 6px black;
+  background-color: #303E48;
+  width: 90%;
 }
 
 @media(max-width: 550px) {
