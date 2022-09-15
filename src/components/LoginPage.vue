@@ -33,7 +33,7 @@
                                         <div class="valid-feedback">Your email is valid</div>
                                         <div class="invalid-feedback">
                                             <span v-if="!$v.email.required">email is required</span>
-                                            <span v-if="!$v.email.email">This email is wrong</span>
+                                            <span v-if="!$v.email.email">This email is not valid</span>
                                         </div>
                                     </div>
 
@@ -88,8 +88,6 @@ export default {
     },
     methods: {
         async login() {
-
-            this.$v.$touch()
 
             const credentials = {
                 email: this.email,

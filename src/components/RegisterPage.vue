@@ -2,9 +2,9 @@
   <div class="container mt-5">
     <div class="row d-flex justify-content-center align-items-center">
 
-        <h1 class="mb-3 pb-3 text-center text-danger fst-italic fw-bolder ">
-          Email Communication Engine
-        </h1>
+      <h1 class="mb-3 pb-3 text-center text-danger fst-italic fw-bolder ">
+        Email Communication Engine
+      </h1>
 
       <div class="col col-xl-10 m-3">
 
@@ -42,7 +42,7 @@
                     <div class="valid-feedback">Your email is valid</div>
                     <div class="invalid-feedback">
                       <span v-if="!$v.email.required">email is required</span>
-                      <span v-if="!$v.email.email">This email is wrong</span>
+                      <span v-if="!$v.email.email">This email is not valid</span>
                     </div>
                   </div>
 
@@ -153,10 +153,10 @@ export default {
       required,
       minLength: minLength(8),
       integer(value) {
-        return /(?=.*[0-9])/.test(value)
+        return /([0-9])/.test(value)
       },
       specialCharecter(value) {
-        return /(?=.*[!@#$%^&*])/.test(value)
+        return /([!@#$%^&*])/.test(value)
       },
       upperCase(value) {
         return (/[A-Z]/).test(value);
@@ -173,15 +173,11 @@ export default {
   methods: {
     async submit() {
 
-      this.$v.$touch();
-
-      const credentials = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-      };
-
-      if (!this.$v.$invalid) {
+        const credentials = {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+        };
 
         this.showSpinner = true;
         this.showSubmitButton = false;
@@ -207,7 +203,6 @@ export default {
               this.showOTP = true
             }
           })
-      }
     },
 
     verifyOTP() {
