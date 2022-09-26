@@ -168,8 +168,6 @@ export default {
 
         async submit() {
 
-            this.$v.$touch()
-
             const getHour = (time) => {
                 return time[0] + time[1];
             };
@@ -206,23 +204,38 @@ export default {
             this.showSendButton = false;
             this.showSpinner = true;
 
-            SendEmailIndividual(credentials).then((result) => {
+            try {
+                const result = await SendEmailIndividual(credentials);
+                this.showSpinner = false;
+                this.$toasted.show(result.data.message, {
+                    type: 'success'
+                });
+                this.$router.push({ name: 'home' })
+            } catch (error) {
+                this.showSpinner = false;
+                this.showSendButton = true;
+                this.$toasted.show(error.response.data.message, {
+                    type: 'error'
+                });
+            }
 
-                if (result.data.status == "FAILED") {
-                    this.showSpinner = false;
-                    this.showSendButton = true;
-                    this.$toasted.show(result.data.message, {
-                        type: 'error'
-                    });
-                }
-                else {
-                    this.showSpinner = false;
-                    this.$toasted.show(result.data.message, {
-                        type: 'success'
-                    });
-                    this.$router.push({ name: 'home' })
-                }
-            })
+            // SendEmailIndividual(credentials).then((result) => {
+
+            //     if (result.data.status == "FAILED") {
+            //         this.showSpinner = false;
+            //         this.showSendButton = true;
+            //         this.$toasted.show(result.data.message, {
+            //             type: 'error'
+            //         });
+            //     }
+            //     else {
+            //         this.showSpinner = false;
+            //         this.$toasted.show(result.data.message, {
+            //             type: 'success'
+            //         });
+            //         this.$router.push({ name: 'home' })
+            //     }
+            // })
         }
     },
     mounted() {

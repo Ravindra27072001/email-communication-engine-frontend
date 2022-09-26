@@ -11,10 +11,9 @@ import AllLists from '@/components/AllLists';
 import AddList from '@/components/AddList';
 import AddEmail from '@/components/AddEmail';
 import SendEmail from '@/components/SendEmail';
-import SendEmailIndividual from '@/components/SendEmailIndividual'
+import SendEmailIndividual from '@/components/SendEmailIndividual';
 import PageNotFound from '@/components/PageNotFound';
-
-import IndividualScheduledEmails from "@/components/IndividualScheduledEmails"
+import IndividualScheduledEmails from "@/components/IndividualScheduledEmails";
 
 
 const router = new Router(
@@ -115,13 +114,11 @@ const router = new Router(
             },
             {
                 name: 'pageNotFound',
-                path: '/:pageNotFound(.*)*',
+                path: '*',
                 component: PageNotFound
             },
         ]
     },
-
-
 );
 
 router.beforeEach((to,from,next) => {

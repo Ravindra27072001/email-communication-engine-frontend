@@ -273,18 +273,18 @@ export default {
       }
     }
   },
-  mounted() {
+  async mounted() {
 
-    SearchList(this.userId).then((response) => {
-
-      if (response.data.status === "FAILED") {
-        this.showSpinner = true;
-        this.showListsImage = true;
-        this.showListsTable = false;
-      }
+    try {
+      const response = await SearchList(this.userId);
+      console.log(response);
       this.showSpinner = false;
       this.lists = response.data.data;
-    });
+    } catch (error) {
+      this.showSpinner = false;
+      this.showListsImage = true;
+      this.showListsTable = false;
+    }
   },
 }
 </script>
