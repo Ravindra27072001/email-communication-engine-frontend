@@ -122,33 +122,39 @@ export default {
             this.meetingId = id;
         },
 
-        async removeMeeting() {
-            try {
-                const result = await DeleteMeeting(this.meetingId);
-                this.$toasted.show(result.data.message, {
-                    type: 'success',
-                });
-                let response = await ScheduledEmails(this.userId);
-                this.lists = response.data.data;
-            } catch (error) {
-                this.$toasted.show(error.response.data.message, {
-                    type: 'error',
-                });
-                this.showSpinner = false;
-                this.showEmails = true;
-            }
+        removeMeeting() {
+            DeleteMeeting(this.meetingId).then((result) => {
+                if (result.data.status === "FAILED") {
+                    this.$toasted.show(result.data.message, {
+                        type: 'error',
+                    });
+                }
+                else {
+                    this.$toasted.show(result.data.message, {
+                        type: 'success',
+                    });
+                    ScheduledEmails(this.userId).then((result) => {
+                        this.lists = result.data.data;
+                        if (result.data.status === "FAILED") {
+                            this.showSpinner = false;
+                            this.showEmails = true;
+                        }
+                    });
+                }
+            })
         }
     },
-    async mounted() {
+    mounted() {
+        ScheduledEmails(this.userId).then((result) => {
 
-        try {
-            let result = await ScheduledEmails(this.userId);
-            this.showSpinner = false,
-                this.lists = result.data.data;
-        } catch (error) {
-            this.showSpinner = false;
-            this.showEmails = true;
-        }
+            if (result.data.status === "FAILED") {
+                this.showSpinner = false;
+                this.showEmails = true;
+            } else {
+                this.showSpinner = false,
+                    this.lists = result.data.data;
+            }
+        });
     },
 }
 </script>
