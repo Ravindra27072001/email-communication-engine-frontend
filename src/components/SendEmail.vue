@@ -240,13 +240,19 @@ export default {
             // })
         }
     },
-    mounted() {
-        SearchList(this.userId).then((response) => {
-            this.lists = response.data.data;
-        });
-        SearchAccounts(this.userId).then((response) => {
-            this.accounts = response.data.data;
-        });
+    async mounted() {
+
+
+        const response = await SearchList(this.userId);
+        this.lists = response.data.data;
+        const result = await SearchAccounts(this.userId);
+        this.accounts = result.data.data;
+        // SearchList(this.userId).then((response) => {
+        //     this.lists = response.data.data;
+        // });
+        // SearchAccounts(this.userId).then((response) => {
+        //     this.accounts = response.data.data;
+        // });
     },
 }
 </script>
