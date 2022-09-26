@@ -109,46 +109,49 @@ export default {
       this.accountId = _id;
     },
 
-    removeAccount() {
+    async removeAccount() {
 
-      DeleteAccount(this.accountId).then((result) => {
+      try {
+        const result = await DeleteAccount(this.accountId);
 
-        if (result.data.status == "SUCCESS") {
-          this.$toasted.show(result.data.message, {
-            type: 'success'
-          });
+        this.$toasted.show(result.data.message, {
+          type: 'success'
+        });
 
-          SearchAccounts(this.userId).then((response) => {
-            if (response.data.message === "No account is there") {
-              this.showImage = true;
-              this.showTable = false;
-            }
-            this.accounts = response.data.data;
-          });
-        }
-        else {
-          this.$toasted.show(result.data.message, {
-            type: 'error'
-          });
-        }
-      })
-    }
-  },
-
-  mounted() {
-
-    this.userId = localStorage.getItem("userId");
-
-    SearchAccounts(this.userId).then((response) => {
-
-      if (response.data.message === "No account is there") {
-        this.showSpinner = false;
+        let response = await SearchAccounts(this.userId);
+        this.accounts = response.data.data;
+      } catch (error) {
         this.showImage = true;
         this.showTable = false;
       }
+    }
+  },
+
+  async mounted() {
+
+    this.userId = localStorage.getItem("userId");
+
+    try {
+      let response = await SearchAccounts(this.userId);
       this.showSpinner = false;
       this.accounts = response.data.data;
-    });
+
+    } catch (error) {
+      this.showSpinner = false;
+      this.showImage = true;
+      this.showTable = false;
+    }
+
+    // SearchAccounts(this.userId).then((response) => {
+
+    //   if (response.data.message === "No account is there") {
+    //     this.showSpinner = false;
+    //     this.showImage = true;
+    //     this.showTable = false;
+    //   }
+    //   this.showSpinner = false;
+    //   this.accounts = response.data.data;
+    // });
   },
 }
 </script>
@@ -194,9 +197,9 @@ export default {
 }
 
 #newClass {
-    box-shadow: 17px 10px 20px 6px black;
-    background-color: #303E48;
-    width: 90%;
+  box-shadow: 17px 10px 20px 6px black;
+  background-color: #303E48;
+  width: 90%;
 }
 
 @media(max-width: 775px) {

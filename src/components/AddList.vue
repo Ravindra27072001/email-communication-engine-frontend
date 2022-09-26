@@ -15,7 +15,8 @@
                         <div class="row d-flex justify-content-center align-items-center">
 
                             <div class="col col-lg-5 col-md-6 d-none d-md-block">
-                                <img src="../images/addList.png" alt="login form" class="img-fluid" style="width: 320px" />
+                                <img src="../images/addList.png" alt="login form" class="img-fluid"
+                                    style="width: 320px" />
                             </div>
 
                             <div class="col-md-6 col-lg-6">
@@ -93,18 +94,17 @@ export default {
                 description: this.description
             }
 
-            AddList(credentials).then((result) => {
-                if (result.data.status === "FAILED") {
-                    this.$toasted.show(result.data.message, {
-                        type: 'error'
-                    });
-                } else {
-                    this.$toasted.show(result.data.message, {
-                        type: 'success'
-                    });
-                    this.$router.push({ name: 'allLists' })
-                }
-            })
+            try {
+                let result = await AddList(credentials);
+                this.$toasted.show(result.data.message, {
+                    type: 'success'
+                });
+                this.$router.push({ name: 'allLists' })
+            } catch (error) {
+                this.$toasted.show(error.response.data.message, {
+                    type: 'error'
+                });
+            }
         }
     },
 }

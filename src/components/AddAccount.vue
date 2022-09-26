@@ -15,7 +15,7 @@
                         <div class="row d-flex justify-content-center align-items-center">
 
                             <div class="col-lg-5 col-md-6 d-none d-md-block">
-                                <img src="../images/addAccount.png" alt="login form" class="img-fluid"/>
+                                <img src="../images/addAccount.png" alt="login form" class="img-fluid" />
                             </div>
 
                             <div class="col-md-6 col-lg-6">
@@ -135,18 +135,32 @@ export default {
                 password: this.password,
             }
 
-            AddAccount(credentials).then((result) => {
-                if (result.data.status === "FAILED") {
-                    this.$toasted.show(result.data.message, {
-                        type: 'error'
-                    });
-                } else {
-                    this.$toasted.show(result.data.message, {
-                        type: 'success'
-                    });
-                    this.$router.push({ name: 'mailAccounts' })
-                }
-            })
+            try {
+                let result = await AddAccount(credentials);
+                this.$toasted.show(result.data.message, {
+                    type: 'success'
+                });
+                this.$router.push({ name: 'mailAccounts' })
+
+            } catch (error) {
+                this.$toasted.show(error.response.data.message, {
+                    type: 'error'
+                });
+
+            }
+
+            // AddAccount(credentials).then((result) => {
+            //     if (result.data.status === "FAILED") {
+            //         this.$toasted.show(result.data.message, {
+            //             type: 'error'
+            //         });
+            //     } else {
+            //         this.$toasted.show(result.data.message, {
+            //             type: 'success'
+            //         });
+            //         this.$router.push({ name: 'mailAccounts' })
+            //     }
+            // })
         }
     },
 }

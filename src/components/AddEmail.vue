@@ -7,7 +7,7 @@
             <div class="col">
                 <h1 class="mb-3 pb-3 text-center fw-bolder text-dark">Add an email</h1>
             </div>
-            
+
             <div class="row d-flex justify-content-center align-items-center">
 
                 <div class="col col-xl-10">
@@ -121,18 +121,18 @@ export default {
                 listName: this.listName
             }
 
-            AddUser(credentials).then((result) => {
-                if (result.data.status === "FAILED") {
-                    this.$toasted.show(result.data.message, {
-                        type: 'error'
-                    });
-                } else {
-                    this.$toasted.show(result.data.message, {
-                        type: 'success'
-                    });
-                    this.$router.push({ name: 'allLists' })
-                }
-            })
+            try {
+                let result = await AddUser(credentials);
+                console.log(result);
+                this.$toasted.show(result.data.message, {
+                    type: 'success'
+                });
+                this.$router.push({ name: 'allLists' })
+            } catch (error) {
+                this.$toasted.show(error.response.data.message, {
+                    type: 'error'
+                });
+            }
         }
     },
     mounted() {

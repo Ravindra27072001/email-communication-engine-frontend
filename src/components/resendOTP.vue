@@ -96,55 +96,49 @@ export default {
             const credentials = {
                 email: this.email,
             }
+            console.log(credentials);
 
-            ResendOTPVerification(credentials)
-                .then((result) => {
+            try {
+                let result = await ResendOTPVerification(credentials);
 
-                    if (result.data.status === "PENDING") {
-                        this.$toasted.show(result.data.message, {
-                            type: 'success'
-                        });
-                        this.showSpinner = false;
-                        this.showOTPButton = true;
-                        this.showOTP = true;
-                        this.showSendButton = false;
-                    }
-                    else {
-                        this.showSpinner = false;
-                        this.showSendButton = true;
-                        this.$toasted.show(result.data.message, {
-                            type: 'error'
-                        });
-                    }
-                    this.userId = result.data.data.userId
-                })
+                console.log(result);
+
+                this.$toasted.show(result.data.message, {
+                    type: 'success'
+                });
+                this.showSpinner = false;
+                this.showOTPButton = true;
+                this.showOTP = true;
+                this.showSendButton = false;
+                this.userId = result.data.data.userId
+
+            } catch (error) {
+                console.log("dfkjsdjfjdssdfsdf", error);
+                this.showSpinner = false;
+                this.showSendButton = true;
+                this.$toasted.show(error.response.data.message, {
+                    type: 'error'
+                });
+            }
         },
-        verifyOTP() {
+        async verifyOTP() {
 
             const credentials = {
                 userId: this.userId,
                 otp: this.otp,
             }
 
-            VerifyOTP(credentials)
-                .then((response) => {
-                    if (response.data.status == "VERIFIED") {
-                        this.$toasted.show(response.data.message, {
-                            type: 'success'
-                        });
-                        this.$router.push({ name: 'login' })
-                    }
-                    else {
-                        this.$toasted.show(response.data.message, {
-                            type: 'error'
-                        });
-                    }
-                })
-                .catch(() => {
-                    this.$toasted.show('Something went wrong', {
-                        type: 'error'
-                    });
+            try {
+                const response = await VerifyOTP(credentials);
+                this.$toasted.show(response.data.message, {
+                    type: 'success'
                 });
+                this.$router.push({ name: 'login' })
+            } catch (error) {
+                this.$toasted.show(error.response.data.message, {
+                    type: 'error'
+                });
+            }
         }
     }
 }

@@ -186,17 +186,29 @@ export default {
 
       this.SearchUserId = id;
 
-      const result = await SearchUserEmail(id)
+      try {
+        const result = await SearchUserEmail(id)
 
-      this.showUsersTable = true;
-      this.showUsersImage = false;
+        this.showUsersTable = true;
+        this.showUsersImage = false;
 
-      this.usersEmails = result.data.data
-
-      if (!this.usersEmails.length) {
+        this.usersEmails = result.data.data
+      } catch (error) {
         this.showUsersImage = true;
         this.showUsersTable = false;
       }
+
+      // const result = await SearchUserEmail(id)
+
+      // this.showUsersTable = true;
+      // this.showUsersImage = false;
+
+      // this.usersEmails = result.data.data
+
+      // if (!this.usersEmails.length) {
+      //   this.showUsersImage = true;
+      //   this.showUsersTable = false;
+      // }
     },
 
     addUser() {
@@ -273,18 +285,18 @@ export default {
       }
     }
   },
-  mounted() {
+  async mounted() {
 
-    SearchList(this.userId).then((response) => {
-
-      if (response.data.status === "FAILED") {
-        this.showSpinner = true;
-        this.showListsImage = true;
-        this.showListsTable = false;
-      }
+    try {
+      const response = await SearchList(this.userId);
+      console.log(response);
       this.showSpinner = false;
       this.lists = response.data.data;
-    });
+    } catch (error) {
+      this.showSpinner = false;
+      this.showListsImage = true;
+      this.showListsTable = false;
+    }
   },
 }
 </script>

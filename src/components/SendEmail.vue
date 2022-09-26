@@ -205,32 +205,54 @@ export default {
             this.showSpinner = true;
             this.showSendButton = false;
 
-            SendEmail(credentials).then((result) => {
+            try {
+                const result = await SendEmail(credentials);
+                console.log(result);
+                this.showSpinner = false;
+                this.$toasted.show(result.data.message, {
+                    type: 'success'
+                });
+                this.$router.push({ name: 'home' })
+            } catch (error) {
+                this.showSpinner = false;
+                this.showSendButton = true;
+                this.$toasted.show(error.response.data.message, {
+                    type: 'error'
+                });
+            }
 
-                if (result.data.status == "FAILED") {
-                    this.showSpinner = false;
-                    this.showSendButton = true;
-                    this.$toasted.show(result.data.message, {
-                        type: 'error'
-                    });
-                }
-                else {
-                    this.showSpinner = false;
-                    this.$toasted.show(result.data.message, {
-                        type: 'success'
-                    });
-                    this.$router.push({ name: 'home' })
-                }
-            })
+            // SendEmail(credentials).then((result) => {
+
+            //     if (result.data.status == "FAILED") {
+            //         this.showSpinner = false;
+            //         this.showSendButton = true;
+            //         this.$toasted.show(result.data.message, {
+            //             type: 'error'
+            //         });
+            //     }
+            //     else {
+            //         this.showSpinner = false;
+            //         this.$toasted.show(result.data.message, {
+            //             type: 'success'
+            //         });
+            //         this.$router.push({ name: 'home' })
+            //     }
+            // })
         }
     },
-    mounted() {
-        SearchList(this.userId).then((response) => {
-            this.lists = response.data.data;
-        });
-        SearchAccounts(this.userId).then((response) => {
-            this.accounts = response.data.data;
-        });
+    async mounted() {
+
+
+        const response = await SearchList(this.userId);
+        this.lists = response.data.data;
+        const result = await SearchAccounts(this.userId);
+        this.accounts = result.data.data;
+        // SearchList(this.userId).then((response) => {
+        //     this.lists = response.data.data;
+        // });
+        // SearchAccounts(this.userId).then((response) => {
+        //     this.accounts = response.data.data;
+        // });
     },
 }
 </script>
