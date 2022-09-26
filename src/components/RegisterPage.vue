@@ -182,29 +182,30 @@ export default {
       this.showSpinner = true;
       this.showSubmitButton = false;
 
-      try {
-        let response = await Signup(credentials)
+      Signup(credentials)
+        .then((response) => {
 
-        this.$toasted.show(response.data.message, {
-          type: 'success'
-        });
-        this.userId = response.data.data.userId
-        this.otp = response.data.data.otp
-        this.showSpinner = false;
-        this.showOTPButton = true;
-        this.showOTP = true
-
-      } catch (error) {
-        this.showSpinner = false;
-        this.showSubmitButton = true;
-        console.log(error);
-        this.$toasted.show(error.response.data.message, {
-          type: 'error'
-        });
-      }
+          if (response.data.status == "FAILED") {
+            this.showSpinner = false;
+            this.showSubmitButton = true;
+            this.$toasted.show(response.data.message, {
+              type: 'error'
+            });
+          }
+          else {
+            this.$toasted.show(response.data.message, {
+              type: 'success'
+            });
+            this.userId = response.data.data.userId
+            this.otp = response.data.data.otp
+            this.showSpinner = false;
+            this.showOTPButton = true;
+            this.showOTP = true
+          }
+        })
     },
 
-    async verifyOTP() {
+    verifyOTP() {
 
       const credentials = {
         userId: this.userId,
@@ -212,21 +213,26 @@ export default {
         email: this.email,
       }
 
+      VerifyOTP(credentials)
+        .then((response) => {
 
-      try {
-        const response = await VerifyOTP(credentials);
-
-        this.$toasted.show(response.data.message, {
-          type: 'success'
+          if (response.data.status == "VERIFIED") {
+            this.$toasted.show(response.data.message, {
+              type: 'success'
+            });
+            this.$router.push({ name: 'login' })
+          }
+          else {
+            this.$toasted.show(response.data.message, {
+              type: 'error'
+            });
+          }
+        })
+        .catch((error) => {
+          this.$toasted.show(error.message, {
+            type: 'error'
+          });
         });
-        this.$router.push({ name: 'login' })
-
-      } catch (error) {
-
-        this.$toasted.show(error.response.data.message, {
-          type: 'error'
-        });
-      }
     }
   },
 };

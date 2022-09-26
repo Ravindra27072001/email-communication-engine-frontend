@@ -204,38 +204,23 @@ export default {
             this.showSendButton = false;
             this.showSpinner = true;
 
-            try {
-                const result = await SendEmailIndividual(credentials);
-                this.showSpinner = false;
-                this.$toasted.show(result.data.message, {
-                    type: 'success'
-                });
-                this.$router.push({ name: 'home' })
-            } catch (error) {
-                this.showSpinner = false;
-                this.showSendButton = true;
-                this.$toasted.show(error.response.data.message, {
-                    type: 'error'
-                });
-            }
+            SendEmailIndividual(credentials).then((result) => {
 
-            // SendEmailIndividual(credentials).then((result) => {
-
-            //     if (result.data.status == "FAILED") {
-            //         this.showSpinner = false;
-            //         this.showSendButton = true;
-            //         this.$toasted.show(result.data.message, {
-            //             type: 'error'
-            //         });
-            //     }
-            //     else {
-            //         this.showSpinner = false;
-            //         this.$toasted.show(result.data.message, {
-            //             type: 'success'
-            //         });
-            //         this.$router.push({ name: 'home' })
-            //     }
-            // })
+                if (result.data.status == "FAILED") {
+                    this.showSpinner = false;
+                    this.showSendButton = true;
+                    this.$toasted.show(result.data.message, {
+                        type: 'error'
+                    });
+                }
+                else {
+                    this.showSpinner = false;
+                    this.$toasted.show(result.data.message, {
+                        type: 'success'
+                    });
+                    this.$router.push({ name: 'home' })
+                }
+            })
         }
     },
     mounted() {

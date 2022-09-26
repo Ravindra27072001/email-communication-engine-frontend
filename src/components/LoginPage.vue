@@ -25,9 +25,18 @@
                                 <form @submit.prevent="login">
 
                                     <div class="form-outline">
-                                        <label class="form-label text-white" for="form-control">Email</label>
-                                        <input type="email" v-model="email" class="form-control" name="email">
+                                        <label class="form-label text-white" for="form-control">Email address</label>
+                                        <input type="email" class="form-control" v-model.trim="$v.email.$model" :class="{
+                                          'is-invalid': $v.email.$error,
+                                          'is-valid': !$v.email.$invalid,
+                                        }" name="email" />
+                                        <div class="valid-feedback">Your email is valid</div>
+                                        <div class="invalid-feedback">
+                                            <span v-if="!$v.email.required">email is required</span>
+                                            <span v-if="!$v.email.email">This email is not valid</span>
+                                        </div>
                                     </div>
+
 
                                     <div class="form-outline">
                                         <label class="form-label text-white" for="form-control">Password</label>
@@ -35,7 +44,7 @@
                                     </div>
 
                                     <div class="mt-3">
-                                        <button class="btn btn-danger btn-lg btn-block">
+                                        <button class="btn btn-danger btn-lg btn-block" :disabled="$v.$invalid">
                                             Login
                                         </button>
                                     </div>
@@ -61,6 +70,7 @@
 </template>
 
 <script>
+import { required, email } from 'vuelidate/lib/validators'
 import { Signin } from '@/services/signin'
 export default {
     name: 'LoginPage',
@@ -70,6 +80,12 @@ export default {
             password: ''
         }
     },
+    validations: {
+        email: {
+            required,
+            email,
+        },
+    },
     methods: {
         async login() {
 
@@ -77,24 +93,23 @@ export default {
                 email: this.email,
                 password: this.password
             }
-            try {
-                let response = await Signin(credentials);
+            Signin(credentials).then((response) => {
+                if (response.data.status === "FAILED") {
+                    this.$toasted.show(response.data.message, {
+                        type: 'error'
+                    });
+                } else {
+                    const { authToken, email, userId } = response.data;
+                    localStorage.setItem('token', authToken);
+                    localStorage.setItem('email', email);
+                    localStorage.setItem('userId', userId);
 
-                const { authToken, email, userId } = response.data;
-                localStorage.setItem('token', authToken);
-                localStorage.setItem('email', email);
-                localStorage.setItem('userId', userId);
-
-                this.$toasted.show(response.data.message, {
-                    type: 'success'
-                });
-                this.$router.push({ name: 'home' })
-
-            } catch (error) {
-                this.$toasted.show(error.response.data.message, {
-                    type: 'error'
-                });
-            }
+                    this.$toasted.show(response.data.message, {
+                        type: 'success'
+                    });
+                    this.$router.push({ name: 'home' })
+                }
+            })
         }
     }
 }
